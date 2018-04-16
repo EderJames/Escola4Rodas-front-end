@@ -22,6 +22,11 @@ import { PassageirosPage } from '../pages/passageiros/passageiros';
 import { VeiculosPage } from '../pages/veiculos/veiculos';
 import { ViagensPage } from '../pages/viagens/viagens';
 import { InstituicoesPage } from '../pages/instituicoes/instituicoes';
+import { InstituicaoServiceProvider } from '../providers/instituicao-service/instituicao-service';
+import { MotoristaServiceProvider } from '../providers/motorista-service/motorista-service';
+import { PassageiroServiceProvider } from '../providers/passageiro-service/passageiro-service';
+import { VeiculoServiceProvider } from '../providers/veiculo-service/veiculo-service';
+import { ViagemServiceProvider } from '../providers/viagem-service/viagem-service';
 
 @NgModule({
   declarations: [
@@ -66,7 +71,12 @@ import { InstituicoesPage } from '../pages/instituicoes/instituicoes';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: 'IAutenticacaoService', useClass: AutenticacaoService},
     NativeStorage,
-    ProdutoServiceProvider
+    ProdutoServiceProvider,
+    {provide: 'IInstituicaoService', useClass: InstituicaoServiceProvider},
+    {provide: 'IMotoristaService', useClass: MotoristaServiceProvider},
+    {provide: 'IPassageiroService', useClass: PassageiroServiceProvider},
+    {provide: 'IVeiculoService', useClass: VeiculoServiceProvider},
+    {provide: 'IViagemService', useClass: ViagemServiceProvider}
   ]
 })
 export class AppModule {}

@@ -1,0 +1,8 @@
+[0416/004736.862:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
+[0416/004736.917:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
+[0416/004736.918:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
+[0416/004736.920:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
+[0416/004736.921:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
+[0416/004736.985:ERROR:process_info.cc(632)] range at 0xdb482dd800000000, size 0x61 fully unreadable
+[0416/004737.015:ERROR:process_info.cc(632)] range at 0xdb482df800000000, size 0x61 fully unreadable
+[0416/004737.015:ERROR:process_info.cc(632)] range at 0x0, size 0x61 fully unreadable
