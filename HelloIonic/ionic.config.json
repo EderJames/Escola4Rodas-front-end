@@ -4,5 +4,27 @@
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "proxies": [
+	{
+		"path":"/motorista",
+		"proxyUrl": "http://localhost:1234/api/motorista"
+	},
+	{
+		"path":"/instituicao",
+		"proxyUrl": "http://localhost:1234/api/instituicao"
+	},
+	{
+		"path":"/passageiro",
+		"proxyUrl": "http://localhost:1234/api/passageiro"
+	},
+	{
+		"path":"/veiculo",
+		"proxyUrl": "http://localhost:1234/api/veiculo"
+	},
+	{
+		"path":"/viagem",
+		"proxyUrl": "http://localhost:1234/api/viagem"
+	}
+  ]
 }

@@ -11,22 +11,23 @@ import { IAutenticacaoService } from '../providers.interfaces/IAutenticacaoServi
 import { HttpModule } from '@angular/http';
 import { NativeStorage } from '@ionic-native/native-storage';
 
-import{ TabsPage } from '../pages/tabs/tabs';
-import{ ProdutosPage } from '../pages/produtos/produtos';
+import{ TabsPage } from '../pages/produto/tabs/tabs';
+import{ ProdutosPage } from '../pages/produto/produtos/produtos';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { ProdutoServiceProvider } from '../providers/produto-service/produto-service';
-import { DetalhesProdutoPage } from '../pages/detalhes-produto/detalhes-produto';
+import { DetalhesProdutoPage } from '../pages/produto/detalhes-produto/detalhes-produto';
 import { MenuMotoristaPage } from '../pages/menu-motorista/menu-motorista';
-import { MotoristasPage } from '../pages/motoristas/motoristas';
-import { PassageirosPage } from '../pages/passageiros/passageiros';
-import { VeiculosPage } from '../pages/veiculos/veiculos';
-import { ViagensPage } from '../pages/viagens/viagens';
-import { InstituicoesPage } from '../pages/instituicoes/instituicoes';
+import { MotoristasPage } from '../pages/motorista/motoristas/motoristas';
+import { PassageirosPage } from '../pages/passageiro/passageiros/passageiros';
+import { VeiculosPage } from '../pages/veiculo/veiculos/veiculos';
+import { ViagensPage } from '../pages/viagem/viagens/viagens';
+import { InstituicoesPage } from '../pages/instituicao/instituicoes/instituicoes';
 import { InstituicaoServiceProvider } from '../providers/instituicao-service/instituicao-service';
 import { MotoristaServiceProvider } from '../providers/motorista-service/motorista-service';
 import { PassageiroServiceProvider } from '../providers/passageiro-service/passageiro-service';
 import { VeiculoServiceProvider } from '../providers/veiculo-service/veiculo-service';
 import { ViagemServiceProvider } from '../providers/viagem-service/viagem-service';
+import { DetalhesInstituicaoPage } from '../pages/instituicao/detalhes-instituicao/detalhes-instituicao';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ViagemServiceProvider } from '../providers/viagem-service/viagem-servic
     PassageirosPage,
     VeiculosPage,
     MotoristasPage,
-    InstituicoesPage
+    InstituicoesPage,
+    DetalhesInstituicaoPage
   ],
   imports: [
     BrowserModule,
@@ -72,11 +74,11 @@ import { ViagemServiceProvider } from '../providers/viagem-service/viagem-servic
     {provide: 'IAutenticacaoService', useClass: AutenticacaoService},
     NativeStorage,
     ProdutoServiceProvider,
-    {provide: 'IInstituicaoService', useClass: InstituicaoServiceProvider},
-    {provide: 'IMotoristaService', useClass: MotoristaServiceProvider},
-    {provide: 'IPassageiroService', useClass: PassageiroServiceProvider},
-    {provide: 'IVeiculoService', useClass: VeiculoServiceProvider},
-    {provide: 'IViagemService', useClass: ViagemServiceProvider}
+    InstituicaoServiceProvider,
+    MotoristaServiceProvider,
+    PassageiroServiceProvider,
+    VeiculoServiceProvider,
+    ViagemServiceProvider
   ]
 })
 export class AppModule {}

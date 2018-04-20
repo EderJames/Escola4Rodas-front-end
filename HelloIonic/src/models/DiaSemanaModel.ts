@@ -1,9 +1,9 @@
-import { DiaSemanLocalaModel } from "./DiaSemanaLocalModel";
+import { DiaSemanLocalModel } from "./DiaSemanaLocalModel";
 import { DiaSemanaViagemModel } from "./DiaSemanaViagemModel";
 
 export class DiaSemanaModel{
     codigo: number;
     diaSemana: string;
-    diaSemanaLocal: DiaSemanLocalaModel;
+    diaSemanaLocal: DiaSemanLocalModel;
     diaSemanaViagem: DiaSemanaViagemModel;
 }

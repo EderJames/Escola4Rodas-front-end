@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
-import { ProdutoServiceProvider } from '../../providers/produto-service/produto-service';
-import { PaginaBase } from '../../infraestrutura/PaginaBase';
-import { ProdutoModel } from '../../models/ProdutoModel';
 import { DetalhesProdutoPage } from '../detalhes-produto/detalhes-produto';
+import { PaginaBase } from '../../../infraestrutura/PaginaBase';
+import { ProdutoModel } from '../../../models/ProdutoModel';
+import { ProdutoServiceProvider } from '../../../providers/produto-service/produto-service';
 
 
 @IonicPage()

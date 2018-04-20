@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
+import { HomePage } from '../../home/home';
 import { ProdutosPage } from '../produtos/produtos';
-import { PerfilPage } from '../perfil/perfil';
+import { PerfilPage } from '../../perfil/perfil';
+
 
 @IonicPage()
 @Component({

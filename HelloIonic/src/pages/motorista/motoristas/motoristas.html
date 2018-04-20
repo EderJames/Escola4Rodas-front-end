@@ -1,0 +1,20 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Lista de motoristas</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  
+ <ion-list>
+   <button ion-item *ngFor="let motorista of motoristas" >
+     <ion-icon [name]="arrow-forward" item-left></ion-icon>
+     {{motorista.cnh}}
+     <ion-icon name="arrow-forward" item-right></ion-icon>
+   </button>
+ </ion-list>
+
+</ion-content>
