@@ -26,7 +26,13 @@ export class AutenticacaoService implements IAutenticacaoService {
       email: loginModel.email,
       senha: loginModel.senha
     }
-    return this.http.post(HelloIonicConstants.BASE_URL + '/' + HelloIonicConstants.Auth.LOGIN, corpoRequisicao)
+
+    let corpoRequisicao2 = {
+      UserName: loginModel.email,
+      Password: loginModel.senha
+    }
+
+    return this.http.post(HelloIonicConstants.BASE_URL_PROXY_4RODAS  + HelloIonicConstants.Auth.LOGIN_PROXY, corpoRequisicao)
       .map(response => {
         let resp = response.json();
         this.nativeStorage.setItem('token_autenticacao', {token: resp.data.token})

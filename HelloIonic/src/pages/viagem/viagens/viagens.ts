@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
+import { ViagemModel } from '../../../models/ViagemModel';
+import { PaginaBase } from '../../../infraestrutura/PaginaBase';
+import { IViagemService } from '../../../providers.interfaces/IViagemService';
 
 /**
  * Generated class for the ViagensPage page.
@@ -13,13 +16,33 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-viagens',
   templateUrl: 'viagens.html',
 })
-export class ViagensPage {
+export class ViagensPage extends PaginaBase {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  viagens: ViagemModel[];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+      public loadingCtrl: LoadingController, public toastCtrl: ToastController,
+      public alertCtrl: AlertController, private viagemService : IViagemService) {
+    
+        super({alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl});
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ViagensPage');
+    this.mostrarLoading("Buscando viagens");
+    this.viagemService.listarViagens().subscribe(
+      resposta => {
+        this.esconderLoading();
+        this.viagens = resposta;
+      },
+      erro => {
+        this.esconderLoading();
+        this.mostrarMensagemErro(`Erro ao buscar os produtos: ${erro}`);
+      });
   }
 
+  //mostrarDetalhesProduto(viagem: ViagemModel){
+    //this.navCtrl.push(DetalhesViagemPage, {
+    //  viagem: viagem
+  //});
+  
 }

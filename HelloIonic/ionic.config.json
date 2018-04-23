@@ -7,24 +7,28 @@
   },
   "proxies": [
 	{
-		"path":"/motorista",
-		"proxyUrl": "http://localhost:1234/api/motorista"
+		"path":"/proxymotorista",
+		"proxyUrl": "http://localhost:9090/api/motorista"
 	},
 	{
-		"path":"/instituicao",
-		"proxyUrl": "http://localhost:1234/api/instituicao"
+		"path":"/proxyinstituicao",
+		"proxyUrl": "http://localhost:9090/api/instituicao"
 	},
 	{
-		"path":"/passageiro",
-		"proxyUrl": "http://localhost:1234/api/passageiro"
+		"path":"/proxypassageiro",
+		"proxyUrl": "http://localhost:9090/api/passageiro"
 	},
 	{
-		"path":"/veiculo",
-		"proxyUrl": "http://localhost:1234/api/veiculo"
+		"path":"/proxyveiculo",
+		"proxyUrl": "http://localhost:9090/api/veiculo"
 	},
 	{
-		"path":"/viagem",
-		"proxyUrl": "http://localhost:1234/api/viagem"
+		"path":"/proxyviagem",
+		"proxyUrl": "http://localhost:9090/api/viagem"
+	},
+	{
+		"path":"/proxylogin",
+		"proxyUrl": "http://localhost:3000/api/login"
 	}
   ]
 }

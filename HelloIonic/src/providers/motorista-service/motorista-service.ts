@@ -33,11 +33,11 @@ export class MotoristaServiceProvider implements IMotoristaService {
       headers.set('token', token);
 
       //caminho da url da minha webapi - instituicoes/get
-      return this.http.get(HelloIonicConstants.BASE_URL_4_RODAS + '/' + HelloIonicConstants.Motorista.GET, {
+      return this.http.get(HelloIonicConstants.BASE_URL_PROXY_4RODAS + HelloIonicConstants.Motorista.GET, {
         headers : headers
       }).map(response => {
        let resp = response.json();
-       let resultado: MotoristaModel[] = resp.data.motorista.map(function (motorista, index, arr){
+       let resultado: MotoristaModel[] = resp.map(function (motorista, index, arr){
           let m : MotoristaModel = new MotoristaModel();
           m.codigoUsuario = motorista.Codigo_Usuario;
           m.cnh = motorista.Cnh;

@@ -1,14 +1,18 @@
 export class HelloIonicConstants{
     static readonly BASE_URL: string = "http://192.168.100.10:3000/api";
 
-    static readonly BASE_URL_PROXY_4RODAS: string = "http://localhost:59974/api";
+    static readonly BASE_URL_PROXY_4RODAS: string = "http://192.168.100.10:8100/";
+
     static readonly Auth = {
+        LOGIN_PROXY: 'proxylogin',
         LOGIN: 'login'
     };
 
     static readonly Produtos = {
         GET: 'produtos'
     };
+
+    
 
     static readonly Instituicao = {
         GET: 'proxyinstituicao',

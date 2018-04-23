@@ -3,6 +3,7 @@ import { DocumentoVeiculoModel } from "./DocumentoVeiculoModel";
 import { ViagemModel } from "./ViagemModel";
 
 export class VeiculoModel{
+    
     codigoVeiculo: number;
     nome: string;
     placa: string;

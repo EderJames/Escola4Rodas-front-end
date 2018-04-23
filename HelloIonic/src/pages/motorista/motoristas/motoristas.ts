@@ -4,9 +4,6 @@ import { PaginaBase } from '../../../infraestrutura/PaginaBase';
 import { MotoristaModel } from '../../../models/MotoristaModel';
 import { MotoristaServiceProvider } from '../../../providers/motorista-service/motorista-service';
 
-
-
-
 /**
  * Generated class for the MotoristasPage page.
  *

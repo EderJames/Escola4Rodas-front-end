@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
+import { PassageiroModel } from '../../../models/PassageiroModel';
+import { PassageiroServiceProvider } from '../../../providers/passageiro-service/passageiro-service';
+import { PaginaBase } from '../../../infraestrutura/PaginaBase';
 
 /**
  * Generated class for the PassageirosPage page.
@@ -13,13 +16,34 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-passageiros',
   templateUrl: 'passageiros.html',
 })
-export class PassageirosPage {
+export class PassageirosPage extends PaginaBase {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  passageiros: PassageiroModel[];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+     public loadingCtrl: LoadingController, public toastCtrl: ToastController,
+     public alertCtrl: AlertController, private passageiroService : PassageiroServiceProvider) {
+      super({alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl});
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PassageirosPage');
+    this.mostrarLoading("Buscando passageiros");
+    this.passageiroService.listarPassageiros().subscribe(
+      resposta => {
+        this.esconderLoading();
+        this.passageiros = resposta;
+      },
+      erro => {
+        this.esconderLoading();
+        this.mostrarMensagemErro(`Erro ao buscar os produtos: ${erro}`);
+      });
+  }
+
+
+  mostrarDetalhesProduto(produto: PassageiroModel){
+    //this.navCtrl.push(DetalhesMotorista, {
+    //  produto: produto
+    //});
   }
 
 }

@@ -7,7 +7,6 @@ import {LoginModel} from '../../models/LoginModel';
 import {HomePage} from '../home/home'
 import { AlertController, LoadingController, ToastController } from 'ionic-angular';
 import {IAutenticacaoService} from '../../providers.interfaces/IAutenticacaoService';
-import {TabsPage} from '../tabs/tabs';
 import { MenuMotoristaPage } from '../menu-motorista/menu-motorista';
 
 @IonicPage()

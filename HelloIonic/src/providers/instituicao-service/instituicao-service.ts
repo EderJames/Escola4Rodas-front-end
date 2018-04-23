@@ -33,11 +33,12 @@ export class InstituicaoServiceProvider implements IInstituicaoService {
       headers.set('token', token);
 
       //caminho da url da minha webapi - instituicoes/get
-      return this.http.get(HelloIonicConstants.BASE_URL_4_RODAS + '/' + HelloIonicConstants.Instituicao.GET, {
+      return this.http.get(HelloIonicConstants.BASE_URL_PROXY_4RODAS + HelloIonicConstants.Instituicao.GET, {
         headers : headers
       }).map(response => {
        let resp = response.json();
-       let resultado: InstituicaoModel[] = resp.data.instituicoes.map(function (instituicao, index, arr){
+       alert("" + resp.data);
+       let resultado: InstituicaoModel[] = resp.map(function (instituicao, index, arr){
           let i : InstituicaoModel = new InstituicaoModel();
           i.codigoInstituicao = instituicao.codigoInstituicao;
           i.nome = instituicao.Nome;
