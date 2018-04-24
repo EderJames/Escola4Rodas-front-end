@@ -39,9 +39,9 @@ export class MotoristaServiceProvider implements IMotoristaService {
        let resp = response.json();
        let resultado: MotoristaModel[] = resp.map(function (motorista, index, arr){
           let m : MotoristaModel = new MotoristaModel();
+          m.usuario = motorista.Usuario;
           m.codigoUsuario = motorista.Codigo_Usuario;
           m.cnh = motorista.Cnh;
-          m.usuario = motorista.Usuario;
           m.viagens = motorista.Viagens;
           m.instituicoes = motorista.Instituicoes;
           m.passageiros = motorista.Passageiros;

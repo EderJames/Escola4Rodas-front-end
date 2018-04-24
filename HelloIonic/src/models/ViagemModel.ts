@@ -3,16 +3,17 @@ import { InstituicaoModel } from "./InstituicaoModel";
 import { PassageiroModel } from "./PassageiroModel";
 
 export class ViagemModel{
-    codigo: number;
-    nome: string;
-    codigoVeiculo: number;
-    dataInicio: Date;
+    Codigo: number;
+    Nome: string;
+    Codigo_Veiculo: number;
+    Codigo_Rota: number;
+    Data_Inicio: Date;
+    Dthr: Date;
+    Instituicoes: InstituicaoModel;
+    VeiculoViagem: string;
+    RotaViagem: string;
+    Passageiros: PassageiroModel[];
     tipoViagem: number;
     codigoDiaSemana: DiaSemanaViagemModel;
-    instituicoes: InstituicaoModel;
-    veiculo: string;
-    passageiros: PassageiroModel[];
     diasSemanaViagem: DiaSemanaViagemModel[];
-
-
 }

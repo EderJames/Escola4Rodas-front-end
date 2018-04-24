@@ -37,25 +37,48 @@ export class ViagemServiceProvider implements IViagemService {
         headers : headers
       }).map(response => {
        let resp = response.json();
-       alert("" + resp.data);
+       alert("" + resp);
        let resultado: ViagemModel[] = resp.map(function (viagem, index, arr){
           let v : ViagemModel = new ViagemModel();
-          v.codigo = viagem.codigo;
-          v.codigoVeiculo = viagem.codigoVeiculo;
-          v.dataInicio = viagem.dataInicio;
-          v.diasSemanaViagem = viagem.diasSemanaViagem;
-          v.instituicoes = viagem.instituicoes;
-          v.nome = viagem.nome;
-          v.passageiros = viagem.passageiros;
-          v.tipoViagem = viagem.tipoViagem;
-          v.veiculo = viagem.veiculo;
+          v.Codigo = viagem.Codigo;
+          v.Nome = viagem.Nome;
+          v.Codigo_Veiculo = viagem.Codigo_Veiculo;
+          v.Codigo_Rota = viagem.Codigo_Rota;
+          v.Data_Inicio = viagem.Data_Inicio;
+          v.Dthr = viagem.Dthr;
+          v.Instituicoes = viagem.Instituicoes;
+          v.VeiculoViagem = viagem.VeiculoViagem;
+          v.RotaViagem = viagem.RotaViagem;
+          v.Passageiros = viagem.Passageiros;
 
+          //v.diasSemanaViagem = viagem.diasSemanaViagem;
+          //v.tipoViagem = viagem.tipoViagem;
           return v;
        });
 
        return resultado;
       });
     });
+  }
+
+  inserirViagem(viagemModel: ViagemModel): Observable<void> {
+    
+    let corpoRequisicao = {
+      codigoDiaSemana: viagemModel.codigoDiaSemana,
+      codigoVeiculo: viagemModel.Codigo_Veiculo,
+      dataInicio: viagemModel.Data_Inicio,
+      nome: viagemModel.Nome,
+      passageiros: viagemModel.Passageiros,
+      tipoViagem: viagemModel.tipoViagem,
+      veiculo: viagemModel.VeiculoViagem
+    }
+
+    return this.http.post(HelloIonicConstants.BASE_URL_PROXY_4RODAS  + HelloIonicConstants.Viagem.POST, corpoRequisicao)
+      .map(response => {
+        let resp = response.json();
+        
+      });
+    
   }
 
 }

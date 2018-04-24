@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController, ToastController
 import { ViagemModel } from '../../../models/ViagemModel';
 import { PaginaBase } from '../../../infraestrutura/PaginaBase';
 import { IViagemService } from '../../../providers.interfaces/IViagemService';
+import { ViagemServiceProvider } from '../../../providers/viagem-service/viagem-service';
 
 /**
  * Generated class for the ViagensPage page.
@@ -22,7 +23,7 @@ export class ViagensPage extends PaginaBase {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
       public loadingCtrl: LoadingController, public toastCtrl: ToastController,
-      public alertCtrl: AlertController, private viagemService : IViagemService) {
+      public alertCtrl: AlertController, private viagemService : ViagemServiceProvider) {
     
         super({alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl});
   }

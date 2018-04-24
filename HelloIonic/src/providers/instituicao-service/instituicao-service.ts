@@ -37,16 +37,17 @@ export class InstituicaoServiceProvider implements IInstituicaoService {
         headers : headers
       }).map(response => {
        let resp = response.json();
-       alert("" + resp.data);
+       alert("" + resp);
        let resultado: InstituicaoModel[] = resp.map(function (instituicao, index, arr){
           let i : InstituicaoModel = new InstituicaoModel();
-          i.codigoInstituicao = instituicao.codigoInstituicao;
+          i.Codigo = instituicao.Codigo_Instituicao;
           i.nome = instituicao.Nome;
-          i.codigoLocal = instituicao.codigoLocal;
+          i.codigoLocal = instituicao.Codigo_Local;
           i.dthr = instituicao.Dthr;
-          i.localInstituicao = instituicao.LocalInstituicao;
-          i.passageiroInstituicao = instituicao.PassageiroInstituicao;
+          i.localInstituicao = instituicao.Local;
+          i.passageiroInstituicao = instituicao.Passageiros;
           i.motoristas = instituicao.Motoristas;
+          i.Viagens = instituicao.Viagens;
           
           return i;
        });

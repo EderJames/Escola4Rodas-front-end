@@ -41,19 +41,19 @@ export class PassageiroServiceProvider implements IPassageiroService {
        let resultado: PassageiroModel[] = resp.map(function (passageiro, index, arr){
           let p : PassageiroModel = new PassageiroModel();
           
-          p.codigoFormaPagamento = passageiro.codigoFormaPagamento;
-          p.codigoMotorista = passageiro.codigoMotorista;
-          p.codigoUsuario = passageiro.codigoUsuario;
-          p.dthr = passageiro.dthr;
-          p.instituicoes = passageiro.instituicoes
-          p.locaisPassageiro = passageiro.locaisPassageiro;
-          p.motorista = passageiro.motorista;
-          p.pagamentos = passageiro.pagamentos;
-          p.rotas = passageiro.rotas;
-          p.tipoPassageiro = passageiro.tipoPassageiro;
-          p.tipoViagem = passageiro.tipoViagem;
-          p.usuario = passageiro.usuario;
-          p.viagens = p.viagens;
+          p.tipoViagem = passageiro.Tipo_Viagem;
+          p.codigoFormaPagamento = passageiro.Codigo_Forma_Pagamento;
+          p.tipoPassageiro = passageiro.Tipo_Passageiro;
+          p.codigoUsuario = passageiro.Codigo_Usuario;
+          p.dthr = passageiro.Dthr;
+          p.codigoMotorista = passageiro.Codigo_Motorista;
+          p.motorista = passageiro.Motorista;
+          p.usuario = passageiro.Usuario;
+          p.instituicoes = passageiro.Instituicoes;
+          p.pagamentos = passageiro.Pagamentos;
+          p.rotas = passageiro.Rotas;
+          p.locaisPassageiro = passageiro.Locais_Partida;
+          p.viagens = passageiro.Viagens;
 
           return p;
        });

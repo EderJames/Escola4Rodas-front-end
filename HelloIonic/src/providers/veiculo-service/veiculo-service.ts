@@ -40,22 +40,40 @@ export class VeiculoServiceProvider implements IVeiculoService {
        alert("" + resp.data);
        let resultado: VeiculoModel[] = resp.map(function (veiculo, index, arr){
           let v : VeiculoModel = new VeiculoModel();
-          v.codigoVeiculo = veiculo.codigoVeiculo;
-          v.codigoMotorista = veiculo.codigoMotorista;
+          v.codigoVeiculo = veiculo.Codigo_Veiculo;
+          v.nome = veiculo.Nome;
+          v.nome = veiculo.Placa;
+          v.nome = veiculo.Carga_Maxima;
+          v.codigoMotorista = veiculo.Codigo_Motorista;
+          v.dthr = veiculo.Dthr;
+          v.motorista = veiculo.Motorista;
+          v.documentos = veiculo.Documentos;
+          v.viagens = veiculo.Viagens;
           
-          v.documentos = veiculo.documentos;
-          v.dthr = veiculo.dthr;
-          v.motorista = veiculo.motorista;
-          v.nome = veiculo.nome;
-          v.placa = veiculo.placa;
-          v.viagens = veiculo.viagens;
-          v.cargaMaxima = veiculo.cargaMaxima;
-
           return v;
        });
 
        return resultado;
       });
     });
+  }
+
+  inserirVeiculo(veiculoModel: VeiculoModel): Observable<void> {
+    
+    let corpoRequisicao = {
+      codigoMotorista: veiculoModel.codigoMotorista,
+      cargaMaxima: veiculoModel.cargaMaxima,
+      //dataInicio: veiculoModel.documentos,
+      dthr: veiculoModel.dthr,
+      nome: veiculoModel.nome,
+      placa: veiculoModel.placa,
+      //veiculo: viagemModel.veiculo
+    }
+
+    return this.http.post(HelloIonicConstants.BASE_URL_PROXY_4RODAS  + HelloIonicConstants.Veiculo.POST, corpoRequisicao)
+      .map(response => {
+        let resp = response.json();
+        
+      });
   }
 }
