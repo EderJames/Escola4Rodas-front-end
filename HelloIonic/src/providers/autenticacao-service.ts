@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { IAutenticacaoService } from '../providers.interfaces/IAutenticacaoService';
 import { LoginModel } from '../models/LoginModel';
@@ -21,21 +21,31 @@ export class AutenticacaoService implements IAutenticacaoService {
     if (!loginModel || !loginModel.email || !loginModel.senha) {
       return Observable.throw("e-mail e/ou senha não informados");
     }
-
+    
     let corpoRequisicao = {
-      email: loginModel.email,
-      senha: loginModel.senha
+      username: loginModel.email,
+      password: loginModel.senha,
+      grant_type: "password"
     }
 
-    let corpoRequisicao2 = {
-      UserName: loginModel.email,
-      Password: loginModel.senha
-    }
+    var p =[];
+      for (var key in corpoRequisicao)
+      {
+        p.push(key + '=' + encodeURIComponent(corpoRequisicao[key]));
+      }
+     var dados = p.join('&');
 
-    return this.http.post(HelloIonicConstants.BASE_URL_PROXY_4RODAS  + HelloIonicConstants.Auth.LOGIN_PROXY, corpoRequisicao)
+    let headers : Headers = new Headers();
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Accept','application/json');
+    headers.append('Content-type','application/x-www-form-urlencoded');
+
+    return this.http.post(HelloIonicConstants.TOKEN_URL  + HelloIonicConstants.Auth.Token, 
+      dados, { headers: headers} )
       .map(response => {
         let resp = response.json();
-        this.nativeStorage.setItem('token_autenticacao', {token: resp.data.token})
+        this.nativeStorage.setItem('token_autenticacao', {token: resp.access_token})
                           .then(
                             () => console.log('Token armazenado'),
                             (erro) => alert(erro)

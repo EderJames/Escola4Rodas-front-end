@@ -4,31 +4,5 @@
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  },
-  "proxies": [
-	{
-		"path":"/proxymotorista",
-		"proxyUrl": "http://localhost:9090/api/motorista"
-	},
-	{
-		"path":"/proxyinstituicao",
-		"proxyUrl": "http://localhost:9090/api/instituicao"
-	},
-	{
-		"path":"/proxypassageiro",
-		"proxyUrl": "http://localhost:9090/api/passageiro"
-	},
-	{
-		"path":"/proxyveiculo",
-		"proxyUrl": "http://localhost:9090/api/veiculo"
-	},
-	{
-		"path":"/proxyviagem",
-		"proxyUrl": "http://localhost:9090/api/viagem"
-	},
-	{
-		"path":"/proxylogin",
-		"proxyUrl": "http://localhost:3000/api/login"
-	}
-  ]
+  }
 }

@@ -30,10 +30,10 @@ export class ViagemServiceProvider implements IViagemService {
 
     return tokenObservable.flatMap(token => {
       let headers : Headers = new Headers();
-      headers.set('token', token);
+      headers.set('Authorization',  `Bearer ${token}`);
 
       //caminho da url da minha webapi - instituicoes/get
-      return this.http.get(HelloIonicConstants.BASE_URL_PROXY_4RODAS + HelloIonicConstants.Viagem.GET, {
+      return this.http.get(HelloIonicConstants.BASE_URL + HelloIonicConstants.Viagem.GET, {
         headers : headers
       }).map(response => {
        let resp = response.json();

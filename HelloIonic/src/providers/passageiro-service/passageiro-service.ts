@@ -31,10 +31,15 @@ export class PassageiroServiceProvider implements IPassageiroService {
 
     return tokenObservable.flatMap(token => {
       let headers : Headers = new Headers();
-      headers.set('token', token);
+      headers.set('Authorization',  `Bearer ${token}`);
+
+      headers.append('Access-Control-Allow-Origin' , '*');
+      headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+      headers.append('Accept','application/json');
+      headers.append('content-type','application/json');
 
       //caminho da url da minha webapi - instituicoes/get
-      return this.http.get(HelloIonicConstants.BASE_URL_PROXY_4RODAS + HelloIonicConstants.Passageiro.GET, {
+      return this.http.get(HelloIonicConstants.BASE_URL + HelloIonicConstants.Passageiro.GET, {
         headers : headers
       }).map(response => {
        let resp = response.json();

@@ -30,14 +30,14 @@ export class InstituicaoServiceProvider implements IInstituicaoService {
 
     return tokenObservable.flatMap(token => {
       let headers : Headers = new Headers();
-      headers.set('token', token);
+      headers.set('Authorization',  `Bearer ${token}`);
 
       //caminho da url da minha webapi - instituicoes/get
-      return this.http.get(HelloIonicConstants.BASE_URL_PROXY_4RODAS + HelloIonicConstants.Instituicao.GET, {
+      return this.http.get(HelloIonicConstants.BASE_URL + HelloIonicConstants.Instituicao.GET, {
         headers : headers
       }).map(response => {
        let resp = response.json();
-       alert("" + resp);
+       
        let resultado: InstituicaoModel[] = resp.map(function (instituicao, index, arr){
           let i : InstituicaoModel = new InstituicaoModel();
           i.Codigo = instituicao.Codigo_Instituicao;

@@ -30,20 +30,20 @@ export class VeiculoServiceProvider implements IVeiculoService {
 
     return tokenObservable.flatMap(token => {
       let headers : Headers = new Headers();
-      headers.set('token', token);
+      headers.set('Authorization',  `Bearer ${token}`);
 
       //caminho da url da minha webapi - instituicoes/get
-      return this.http.get(HelloIonicConstants.BASE_URL_PROXY_4RODAS + HelloIonicConstants.Veiculo.GET, {
+      return this.http.get(HelloIonicConstants.BASE_URL  + HelloIonicConstants.Veiculo.GET, {
         headers : headers
       }).map(response => {
        let resp = response.json();
-       alert("" + resp.data);
+       
        let resultado: VeiculoModel[] = resp.map(function (veiculo, index, arr){
           let v : VeiculoModel = new VeiculoModel();
           v.codigoVeiculo = veiculo.Codigo_Veiculo;
           v.nome = veiculo.Nome;
-          v.nome = veiculo.Placa;
-          v.nome = veiculo.Carga_Maxima;
+          v.placa = veiculo.Placa;
+          v.cargaMaxima = veiculo.Carga_Maxima;
           v.codigoMotorista = veiculo.Codigo_Motorista;
           v.dthr = veiculo.Dthr;
           v.motorista = veiculo.Motorista;
@@ -70,7 +70,7 @@ export class VeiculoServiceProvider implements IVeiculoService {
       //veiculo: viagemModel.veiculo
     }
 
-    return this.http.post(HelloIonicConstants.BASE_URL_PROXY_4RODAS  + HelloIonicConstants.Veiculo.POST, corpoRequisicao)
+    return this.http.post(HelloIonicConstants.BASE_URL  + HelloIonicConstants.Veiculo.POST, corpoRequisicao)
       .map(response => {
         let resp = response.json();
         

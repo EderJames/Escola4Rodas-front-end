@@ -1,20 +1,27 @@
 export class HelloIonicConstants{
-    static readonly BASE_URL: string = "http://192.168.1.8:3000/api";
+    static readonly BASE_URL: string = "https://escola4rodas.azurewebsites.net/api/";
+    static readonly TOKEN_URL: string = "https://escola4rodas.azurewebsites.net/";
 
-    static readonly BASE_URL_PROXY_4RODAS: string = "http://192.168.1.8:8100/";
+    static readonly BASE_URL_PROXY_4RODAS: string = "http://192.168.1.3:8100/";
 
     static readonly Auth = {
         LOGIN_PROXY: 'proxylogin',
-        LOGIN: 'login'
+        LOGIN: 'login',
+        Token: 'token'
     };
 
     static readonly Produtos = {
         GET: 'produtos'
     };
 
-    
-
     static readonly Instituicao = {
+        GET: 'instituicao',
+        POST: 'instituicao',
+        PUT: 'instituicao',
+        DELETE: 'instituicao'
+    };
+
+    static readonly proxyInstituicao = {
         GET: 'proxyinstituicao',
         POST: 'proxyinstituicao',
         PUT: 'proxyinstituicao',
@@ -22,6 +29,13 @@ export class HelloIonicConstants{
     };
 
     static readonly Motorista = {
+        GET: 'motorista',
+        POST:'motorista',
+        PUT: 'motorista',
+        DELETE: 'motorista'
+    }
+
+    static readonly proxyMotorista = {
         GET: 'proxymotorista',
         POST:'proxymotorista',
         PUT: 'proxymotorista',
@@ -29,6 +43,13 @@ export class HelloIonicConstants{
     }
 
     static readonly Passageiro = {
+        GET: 'passageiro',
+        POST:'passageiro',
+        PUT: 'passageiro',
+        DELETE: 'passageiro'
+    }
+
+    static readonly proxyPassageiro = {
         GET: 'proxypassageiro',
         POST:'proxypassageiro',
         PUT: 'proxypassageiro',
@@ -36,6 +57,13 @@ export class HelloIonicConstants{
     }
 
     static readonly Veiculo = {
+        GET: 'veiculo',
+        POST:'veiculo',
+        PUT: 'veiculo',
+        DELETE: 'veiculo'
+    }
+
+    static readonly proxyVeiculo = {
         GET: 'proxyveiculo',
         POST:'proxyveiculo',
         PUT: 'proxyveiculo',
@@ -43,6 +71,13 @@ export class HelloIonicConstants{
     }
 
     static readonly Viagem = {
+        GET: 'viagem',
+        POST:'viagem',
+        PUT: 'viagem',
+        DELETE: 'viagem'
+    }
+
+    static readonly proxyViagem = {
         GET: 'proxyviagem',
         POST:'proxyviagem',
         PUT: 'proxyviagem',

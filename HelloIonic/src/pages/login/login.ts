@@ -8,6 +8,7 @@ import {HomePage} from '../home/home'
 import { AlertController, LoadingController, ToastController } from 'ionic-angular';
 import {IAutenticacaoService} from '../../providers.interfaces/IAutenticacaoService';
 import { MenuMotoristaPage } from '../menu-motorista/menu-motorista';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @IonicPage()
 @Component({
@@ -37,20 +38,24 @@ export class LoginPage extends PaginaBase {
   login(): void{
     this.foiSubmetido = true;
     this.esconderToast();
+    
     if(this.loginFrmGroup.valid){
       this.mostrarLoading("Fazendo login....");
       this.autenticacaoService.login(this.loginModel).subscribe(
         data => {
           this.esconderLoading();
-          
+          alert('123456');
           this.navCtrl.setRoot(MenuMotoristaPage, {}, {animate: true, direction: 'forward'});
+          this.mostrarToast('Login realizado com sucesso');
         },
         err => {
           this.esconderLoading();
-          this.mostrarToast(`${JSON.parse(err._body).erro.mensagem}`);
+          alert(err);
+          this.mostrarToast('Não foi possível realizar o login');
         }
       );
     }
+    
   }
 
   protected doCarregarValidadores() : void{

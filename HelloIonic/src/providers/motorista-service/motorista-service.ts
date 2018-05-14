@@ -30,10 +30,11 @@ export class MotoristaServiceProvider implements IMotoristaService {
 
     return tokenObservable.flatMap(token => {
       let headers : Headers = new Headers();
-      headers.set('token', token);
+      alert(`Bearer ${token}`);
+      headers.set('Authorization', `Bearer ${token}`);
 
       //caminho da url da minha webapi - instituicoes/get
-      return this.http.get(HelloIonicConstants.BASE_URL_PROXY_4RODAS + HelloIonicConstants.Motorista.GET, {
+      return this.http.get(HelloIonicConstants.BASE_URL + HelloIonicConstants.Motorista.GET, {
         headers : headers
       }).map(response => {
        let resp = response.json();

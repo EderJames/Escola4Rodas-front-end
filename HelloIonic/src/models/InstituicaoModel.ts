@@ -12,5 +12,4 @@ export class InstituicaoModel{
     passageiroInstituicao: PassageiroInstituicaoModel[];
     motoristas: MotoristaModel[];
     Viagens: ViagemModel[];
-
 }
