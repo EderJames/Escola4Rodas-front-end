@@ -29,4 +29,7 @@ export class MenuMotoristaPage {
     console.log('ionViewDidLoad MenuMotoristaPage');
   }
 
+  abrirPagina(pagina) :void{
+    this.navCtrl.setRoot(pagina, {}, {animate: true, direction: 'forward'});
+  }
 }

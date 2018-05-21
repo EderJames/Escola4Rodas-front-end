@@ -1,8 +1,35 @@
-<ion-tabs>
-  <ion-tab [root]="homeTab" tabTitle="Início" tabIcon="home"> </ion-tab>
-  <ion-tab [root]="viagensTab" tabTitle="Viagens" tabIcon="list"> </ion-tab>
-  <ion-tab [root]="passageirosTab" tabTitle="Passageiro" tabIcon="list"> </ion-tab>
-  <ion-tab [root]="veiculosTab" tabTitle="Veículos" tabIcon="list"> </ion-tab>
-  <ion-tab [root]="motoristasTab" tabTitle="Motoristas" tabIcon="list"> </ion-tab>
-  <ion-tab [root]="instituicoesTab" tabTitle="Instituições" tabIcon="list"> </ion-tab>
-</ion-tabs>
+
+<ion-menu [content]="content" >
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button persistent="true" ion-item (click)="abrirPagina(homeTab)">
+        Home
+      </button>
+      <button persistent="true" ion-item (click)="abrirPagina(viagensTab)">
+        Viagens
+      </button>
+      <button persistent="true" ion-item (click)="abrirPagina(passageirosTab)">
+        Passageiros
+      </button>
+      <button ion-item (click)="abrirPagina(veiculosTab)">
+        Veículos
+      </button>
+      <button ion-item (click)="abrirPagina(motoristasTab)">
+        Motoristas
+      </button>
+      <button ion-item (click)="abrirPagina(instituicoesTab)">
+        Instituições
+      </button>
+      <button ion-item (click)="closeMenu()">
+        Close Menu
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="homeTab"></ion-nav>

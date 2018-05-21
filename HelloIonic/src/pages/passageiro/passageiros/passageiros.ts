@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController, ToastController
 import { PassageiroModel } from '../../../models/PassageiroModel';
 import { PassageiroServiceProvider } from '../../../providers/passageiro-service/passageiro-service';
 import { PaginaBase } from '../../../infraestrutura/PaginaBase';
+import { CriarPassageiroPage } from '../criar-passageiro/criar-passageiro';
 
 /**
  * Generated class for the PassageirosPage page.
@@ -19,6 +20,7 @@ import { PaginaBase } from '../../../infraestrutura/PaginaBase';
 export class PassageirosPage extends PaginaBase {
 
   passageiros: PassageiroModel[];
+  esconderEnvioEmail : boolean  = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
      public loadingCtrl: LoadingController, public toastCtrl: ToastController,
@@ -44,6 +46,22 @@ export class PassageirosPage extends PaginaBase {
     //this.navCtrl.push(DetalhesMotorista, {
     //  produto: produto
     //});
+  }
+
+  novoPassageiro(){
+    alert("novo passageiro");
+    //this.navCtrl.setRoot(MenuMotoristaPage, {}, {animate: true, direction: 'forward'});
+    this.navCtrl.setRoot(CriarPassageiroPage, {}, {animate: true, direction: 'forward'});
+  }
+
+  filtrarInadimplentes(){
+    alert("filtrando passageiros");
+    //this.filtrarInadimplentes = !this.filtrarInadimplentes;
+    this.esconderEnvioEmail = false;
+  }
+
+  enviarEmailInadimplentes(){
+    alert("Enviando e-mail para inadimplentes");
   }
 
 }

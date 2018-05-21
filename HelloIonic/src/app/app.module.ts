@@ -19,6 +19,7 @@ import { DetalhesProdutoPage } from '../pages/produto/detalhes-produto/detalhes-
 import { MenuMotoristaPage } from '../pages/menu-motorista/menu-motorista';
 import { MotoristasPage } from '../pages/motorista/motoristas/motoristas';
 import { PassageirosPage } from '../pages/passageiro/passageiros/passageiros';
+import { CriarPassageiroPage } from '../pages/passageiro/criar-passageiro/criar-passageiro';
 import { VeiculosPage } from '../pages/veiculo/veiculos/veiculos';
 import { ViagensPage } from '../pages/viagem/viagens/viagens';
 import { InstituicoesPage } from '../pages/instituicao/instituicoes/instituicoes';
@@ -28,6 +29,7 @@ import { PassageiroServiceProvider } from '../providers/passageiro-service/passa
 import { VeiculoServiceProvider } from '../providers/veiculo-service/veiculo-service';
 import { ViagemServiceProvider } from '../providers/viagem-service/viagem-service';
 import { DetalhesInstituicaoPage } from '../pages/instituicao/detalhes-instituicao/detalhes-instituicao';
+import { CriarLocaisPage } from '../pages/criar-locais/criar-locais';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { DetalhesInstituicaoPage } from '../pages/instituicao/detalhes-instituic
     VeiculosPage,
     MotoristasPage,
     InstituicoesPage,
-    DetalhesInstituicaoPage
+    DetalhesInstituicaoPage,
+    CriarPassageiroPage,
+    CriarLocaisPage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,9 @@ import { DetalhesInstituicaoPage } from '../pages/instituicao/detalhes-instituic
     PassageirosPage,
     VeiculosPage,
     MotoristasPage,
-    InstituicoesPage
+    InstituicoesPage,
+    CriarPassageiroPage,
+    CriarLocaisPage
   ],
   providers: [
     StatusBar,
