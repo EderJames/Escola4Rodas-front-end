@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>criar-viagem</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h1>
+          Cadastro de viagem
+        </h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              Motorista
+            </ion-label>
+            <ion-select name="cmbMotorista" [(ngModel)]="viagemModel.VeiculoViagem.motorista" aria-placeholder="Mostoristas">
+              <ion-option *ngFor="let motorista of motoristasDisponiveis" [value]="motorista.usuario.codigo">
+                {{motorista.usuario.nome}}
+              </ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Veículo
+            </ion-label>
+            <ion-select name="cmbViagem" [(ngModel)]="viagemModel.VeiculoViagem" aria-placeholder="Viagens">
+              <ion-option *ngFor="let veiculo of veiculosDisponiveis" [value]="veiculo.codigo">
+                {{veiculo.nome}}
+              </ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Horário</ion-label>
+            <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="viagemModel.Data_Inicio">
+            </ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Tipo viagem</ion-label>
+            <ion-select name="cmbTipo" [(ngModel)]="viagemModel.tipoViagem" aria-placeholder="Viagens">
+              <ion-option *ngFor="let tipoViagem of tiposViagensDisponiveis" [value]="tipoViagem">
+                {{tipoViagem}}
+              </ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Instituicoes</ion-label>
+            <ion-select [(ngModel)]="viagemModel.Instituicoes" aria-placeholder="Instituicoes">
+              <ion-option *ngFor="let instituicao of viagemModel.Instituicoes" [value]="instituicao.codigo">
+                {{instituicao.nome}}
+              </ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Dias de semana</ion-label>
+            <ion-select multiple="true" [(ngModel)]="viagemModel.Instituicoes" aria-placeholder="Dias semana">
+              <ion-option *ngFor="let diaSemana of diasSemana" [value]="diaSemana.codigo">
+                {{diaSemana.diaSemana}}
+              </ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <div class="btnTextoCentralizado">
+              <button ion-button class="btnOcuparTodaTela">
+                Cadastrar
+              </button>
+            </div>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

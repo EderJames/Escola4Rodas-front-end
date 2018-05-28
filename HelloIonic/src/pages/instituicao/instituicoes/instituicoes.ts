@@ -4,6 +4,7 @@ import { DetalhesInstituicaoPage } from '../detalhes-instituicao/detalhes-instit
 import { PaginaBase } from '../../../infraestrutura/PaginaBase';
 import { InstituicaoModel } from '../../../models/InstituicaoModel';
 import { InstituicaoServiceProvider } from '../../../providers/instituicao-service/instituicao-service';
+import { CriarInstituicaoPage } from '../criar-instituicao/criar-instituicao';
 
 
 @IonicPage()
@@ -39,6 +40,10 @@ export class InstituicoesPage extends PaginaBase {
     this.navCtrl.push(DetalhesInstituicaoPage, {
       instituicao: instituicao
     });
+  }
+
+  novaInstituicao(){
+    this.navCtrl.setRoot(CriarInstituicaoPage, {}, {animate: true, direction: 'forward'});
   }
 
 }

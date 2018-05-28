@@ -34,6 +34,7 @@ export class PassageirosPage extends PaginaBase {
       resposta => {
         this.esconderLoading();
         this.passageiros = resposta;
+        
       },
       erro => {
         this.esconderLoading();

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h1>
+          Criar instituição
+        </h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Nome</ion-label>
+          <ion-input type="text" name="txtNome" [(ngModel)]="instituicaoModel.nome">
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Localização
+          </ion-label>
+          <ion-input type="text" name="txtLocalizacao" [(ngModel)]="localInstituicao"></ion-input>
+        </ion-item>
+        <ion-item>
+          <button ion-button icon-left class="btnTextoCentralizado btnOcuparTodaTela">
+            <ion-icon name="locate">
+              Obter Localização
+            </ion-icon>
+          </button>
+        </ion-item>
+        <ion-item>
+          <button ion-button icon-left (click)="novaInstituicao()" class="btnTextoCentralizado btnOcuparTodaTela">
+            Cadastrar
+          </button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

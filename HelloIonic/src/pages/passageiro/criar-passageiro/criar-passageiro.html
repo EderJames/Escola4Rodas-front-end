@@ -7,6 +7,9 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Criar passageiro</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
@@ -70,7 +73,7 @@
                 </ion-item>
                 <ion-item>
                   <div class="btnTextoCentralizado">
-                    <button ion-button class="btnOcuparTodaTela">
+                    <button ion-button class="btnOcuparTodaTela" (click)="adicionarLocalPartida()">
                       +
                     </button>
                   </div>
@@ -84,7 +87,14 @@
                 </ion-item>
                 <ion-item>
                   <div class="btnTextoCentralizado">
-                    <button ion-button color="secondary">
+                    <button ion-button class="btnOcuparTodaTela" (click)="alocarAlunoEmInstituicao()">
+                      +
+                    </button>
+                  </div>
+                </ion-item>
+                <ion-item>
+                  <div class="btnTextoCentralizado">
+                    <button ion-button color="secondary" class="btnOcuparTodaTela">
                       Forma de pagamento
                     </button>
                   </div>

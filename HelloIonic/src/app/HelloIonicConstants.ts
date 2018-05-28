@@ -83,4 +83,9 @@ export class HelloIonicConstants{
         PUT: 'proxyviagem',
         DELETE: 'proxyviagem'
     }
+
+    static readonly tiposViagem = {
+        SEMANAL: 'Semanal',
+        DIARIA: 'Diária'
+    } 
 }

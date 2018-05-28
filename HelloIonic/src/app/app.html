@@ -1,1 +1,30 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="meuConteudo" id="menuMotorista">
+    <ion-content padding>
+        <h1>Meu menu</h1>
+        <ion-list>
+            <button ion-item (click)="abrirPagina(homeTab)">
+                Home
+            </button>
+            <button ion-item (click)="abrirPagina(viagensTab)">
+                Viagens
+            </button>
+            <button persistent="true" ion-item (click)="abrirPagina(passageirosTab)">
+                Passageiros
+            </button>
+            <button ion-item (click)="abrirPagina(veiculosTab)">
+                Veículos
+            </button>
+            <button ion-item (click)="abrirPagina(motoristasTab)">
+                Motoristas
+            </button>
+            <button ion-item (click)="abrirPagina(instituicoesTab)">
+                Instituições
+            </button>
+            <button ion-item (click)="abrirPagina(loginTab)">
+                Sair
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #meuConteudo></ion-nav>

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { ErrorHandler, NgModule, ViewChild } from '@angular/core';
+import { IonicApp, IonicErrorHandler, IonicModule, Nav, NavController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
@@ -11,8 +11,8 @@ import { IAutenticacaoService } from '../providers.interfaces/IAutenticacaoServi
 import { HttpModule } from '@angular/http';
 import { NativeStorage } from '@ionic-native/native-storage';
 
-import{ TabsPage } from '../pages/produto/tabs/tabs';
-import{ ProdutosPage } from '../pages/produto/produtos/produtos';
+import { TabsPage } from '../pages/produto/tabs/tabs';
+import { ProdutosPage } from '../pages/produto/produtos/produtos';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { ProdutoServiceProvider } from '../providers/produto-service/produto-service';
 import { DetalhesProdutoPage } from '../pages/produto/detalhes-produto/detalhes-produto';
@@ -30,6 +30,9 @@ import { VeiculoServiceProvider } from '../providers/veiculo-service/veiculo-ser
 import { ViagemServiceProvider } from '../providers/viagem-service/viagem-service';
 import { DetalhesInstituicaoPage } from '../pages/instituicao/detalhes-instituicao/detalhes-instituicao';
 import { CriarLocaisPage } from '../pages/criar-locais/criar-locais';
+import { CriarViagemPage } from '../pages/viagem/criar-viagem/criar-viagem';
+import { CriarInstituicaoPage } from '../pages/instituicao/criar-instituicao/criar-instituicao';
+import { CriarMotoristaPage } from '../pages/motorista/criar-motorista/criar-motorista';
 
 @NgModule({
   declarations: [
@@ -48,12 +51,59 @@ import { CriarLocaisPage } from '../pages/criar-locais/criar-locais';
     InstituicoesPage,
     DetalhesInstituicaoPage,
     CriarPassageiroPage,
-    CriarLocaisPage
+    CriarLocaisPage,
+    CriarViagemPage,
+    CriarInstituicaoPage,
+    CriarMotoristaPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+       monthNames: ['Janeiro', 
+                    'Fevereiro', 
+                    'Março',
+                    'Abril',
+                    'Maio', 
+                    'Junho', 
+                    'Julho', 
+                    'Agosto', 
+                    'Setembro', 
+                    'Outubro', 
+                    'Novembro', 
+                    'Dezembro' 
+                  ],
+      monthShortNames: ['jan', 
+                        'fev', 
+                        'mar',
+                        'abr',
+                        'mai',
+                        'jun',
+                        'jul',
+                        'ago',
+                        'set',
+                        'out',
+                        'nov',
+                        'dez'
+                      ],
+      dayNames: ['domingo', 
+                 'segunda-feira',
+                 'terça-feira',
+                 'quarta-feira',
+                 'quinta-feira',
+                 'sexta-feira',
+                 'sábado' 
+                ],
+      dayShortNames: ['dom', 
+                      'seg', 
+                      'ter',
+                      'qua',
+                      'qui',
+                      'sex',
+                      'sab' 
+                    ] 
+    }),
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -71,13 +121,16 @@ import { CriarLocaisPage } from '../pages/criar-locais/criar-locais';
     MotoristasPage,
     InstituicoesPage,
     CriarPassageiroPage,
-    CriarLocaisPage
+    CriarLocaisPage,
+    CriarViagemPage,
+    CriarInstituicaoPage,
+    CriarMotoristaPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: 'IAutenticacaoService', useClass: AutenticacaoService},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: 'IAutenticacaoService', useClass: AutenticacaoService },
     NativeStorage,
     ProdutoServiceProvider,
     InstituicaoServiceProvider,
@@ -87,4 +140,4 @@ import { CriarLocaisPage } from '../pages/criar-locais/criar-locais';
     ViagemServiceProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }

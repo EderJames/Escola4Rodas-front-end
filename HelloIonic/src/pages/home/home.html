@@ -1,15 +1,46 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Bem-vindo, {{nomeUsuario}}
+      Home
     </ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-  <p>Token atual: {{token}}</p>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 class="logo-col">
+       <h1>
+          Bem-vindo, {{nomeUsuario}}
+       </h1> 
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-label>
+          Próximas viagens:
+        </ion-label>
+
+
+
+        <ion-list>
+          <button ion-item *ngFor="let viagem of proximasViagens">
+            <ion-icon name="bus"></ion-icon>
+            {{viagem.Nome}}
+          </button>
+        </ion-list>
+
+        <ion-label>
+          Documentos a vencer:
+        </ion-label>
+        <ion-list>
+          <button ion-item *ngFor="let documento of documentosVencer">
+            <ion-icon name="document"></ion-icon>
+            {{documento.nomeDocumento}}
+          </button>
+        </ion-list>
+        <p>Token atual: {{token}}</p>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

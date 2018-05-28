@@ -4,6 +4,7 @@ import { ViagemModel } from '../../../models/ViagemModel';
 import { PaginaBase } from '../../../infraestrutura/PaginaBase';
 import { IViagemService } from '../../../providers.interfaces/IViagemService';
 import { ViagemServiceProvider } from '../../../providers/viagem-service/viagem-service';
+import { CriarViagemPage } from '../criar-viagem/criar-viagem';
 
 /**
  * Generated class for the ViagensPage page.
@@ -46,4 +47,7 @@ export class ViagensPage extends PaginaBase {
     //  viagem: viagem
   //});
   
+  adicionarViagem(){
+    this.navCtrl.setRoot(CriarViagemPage, {}, {animate: true, direction: 'forward'});
+  }
 }

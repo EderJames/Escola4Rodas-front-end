@@ -7,6 +7,7 @@ import { UsuarioModel } from '../../../models/UsuarioModel';
 import { LocalPassageiroModel } from '../../../models/LocalPassageiroModel';
 import { InstituicaoModel } from '../../../models/InstituicaoModel';
 import { CriarLocaisPage } from '../../criar-locais/criar-locais';
+import { MenuController } from 'ionic-angular';
 
 
 @IonicPage()
@@ -21,7 +22,8 @@ export class CriarPassageiroPage extends PaginaBase {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public alertCtrl : AlertController, public loadingCtrl: LoadingController,
-              public toastCtrl : ToastController, public formBulder: FormBuilder) {
+              public toastCtrl : ToastController, public formBulder: FormBuilder,
+              public menuCtrl : MenuController) {
     super({formBuilder: formBulder, alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl});
     this.passageiroModel = new PassageiroModel();
     this.passageiroModel.usuario = new UsuarioModel();
@@ -39,5 +41,9 @@ export class CriarPassageiroPage extends PaginaBase {
 
   adicionarLocalSaida(){
     this.navCtrl.setRoot(CriarLocaisPage, {}, {animate: true, direction: 'forward'});
+  }
+
+  alocarAlunoEmInstituicao(){
+    
   }
 }

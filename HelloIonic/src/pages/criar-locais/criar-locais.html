@@ -34,14 +34,9 @@
                   </div>
                 </ion-item>
                 <ion-item>
-                  <ion-label>
-                    Data
-                  </ion-label>
-                  <div>
-                    <ion-datetime name="txtData"
-                     displayFormat="MM/DD/YYYY" [(ngModel)]="localPassageiroModel.local.dthr">
-                    </ion-datetime>
-                  </div>
+                  <ion-label>Horário</ion-label>
+                  <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="localPassageiroModel.local.dthr">
+                  </ion-datetime>
                 </ion-item>
                 <ion-item>
                   <ion-label>

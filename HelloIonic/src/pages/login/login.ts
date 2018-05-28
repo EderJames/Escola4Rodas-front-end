@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { PaginaBase } from '../../infraestrutura/PaginaBase';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { HelloIonicValidadores } from '../../validadores/HelloIonicValidadores';
@@ -24,12 +24,12 @@ export class LoginPage extends PaginaBase {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, 
     public alertCtrl : AlertController, @Inject('IAutenticacaoService') public autenticacaoService: IAutenticacaoService,
-    public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
+    public loadingCtrl: LoadingController, public toastCtrl: ToastController, public menuCtrl: MenuController) {
     super({ formBuilder: formBuilder, alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl});
     this.foiSubmetido = false;
     this.loginModel = new LoginModel();
 
-    
+    this.desativarMenu();
   }
 
   ionViewDidLoad() {
@@ -42,11 +42,11 @@ export class LoginPage extends PaginaBase {
     
     if(this.loginFrmGroup.valid){
       this.mostrarLoading("Fazendo login....");
-      this.navCtrl.setRoot(MenuMotoristaPage, {}, {animate: true, direction: 'forward'});
+      this.navCtrl.setRoot(HomePage, {}, {animate: true, direction: 'forward'});
       this.autenticacaoService.login(this.loginModel).subscribe(
         data => {
           this.esconderLoading();
-          this.navCtrl.setRoot(MenuMotoristaPage, {}, {animate: true, direction: 'forward'});
+          //this.navCtrl.setRoot(MenuMotoristaPage, {}, {animate: true, direction: 'forward'});
           this.mostrarToast('Login realizado com sucesso');
         },
         err => {
@@ -65,5 +65,8 @@ export class LoginPage extends PaginaBase {
     })
   }
 
+  desativarMenu() {
+    this.menuCtrl.enable(false);
+  }
   
 }

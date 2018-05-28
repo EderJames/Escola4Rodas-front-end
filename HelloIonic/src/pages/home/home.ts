@@ -1,24 +1,103 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import {NativeStorage} from '@ionic-native/native-storage';
+import { NavController, MenuController, AlertController, LoadingController, ToastController, DateTime } from 'ionic-angular';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { ViagemModel } from '../../models/ViagemModel';
+import { PaginaBase } from '../../infraestrutura/PaginaBase';
+import { ViagemServiceProvider } from '../../providers/viagem-service/viagem-service';
+import { DocumentoVeiculoModel } from '../../models/DocumentoVeiculoModel';
+import { VeiculoServiceProvider } from '../../providers/veiculo-service/veiculo-service';
+import { VeiculoModel } from '../../models/VeiculoModel';
 
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage extends PaginaBase {
 
   token: string;
-  nomeUsuario : string = "Tio Eder";
+  nomeUsuario: string = "Tio Eder";
+  proximasViagens: Array<ViagemModel>;
+  documentosVencer: Array<DocumentoVeiculoModel>;
+  veiculos: Array<VeiculoModel>;
 
-  constructor(public navCtrl: NavController, private nativeStorage: NativeStorage) {
+  constructor(public navCtrl: NavController, private nativeStorage: NativeStorage,
+    public menuCtrl: MenuController, public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController, toastCtrl: ToastController,
+    private viagemService: ViagemServiceProvider, private veiculoService: VeiculoServiceProvider) {
+
+    super({ alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl });
+
     this.nativeStorage.getItem('token_autenticacao')
-        .then(
-          data => {this.token = data.token},
-          erro => this.token = '<sem token>'
-        );
-       
+      .then(
+        data => { this.token = data.token },
+        erro => this.token = '<sem token>'
+      );
+
+
+    menuCtrl.enable(true);
+    this.proximasViagens = new Array<ViagemModel>();
+    this.documentosVencer = new Array<DocumentoVeiculoModel>();
+    this.veiculos = new Array<VeiculoModel>();
+
+    this.povoarArrayProximasViagens();
+    this.povoarArrayDocumentosAVencer();
   }
 
+  povoarArrayProximasViagens() {
+    /*this.mostrarLoading("Buscando viagens");
+    this.viagemService.listarViagens().subscribe(
+      resposta => {
+        this.esconderLoading();
+        this.proximasViagens = resposta;
+      },
+      erro => {
+        this.esconderLoading();
+        this.mostrarMensagemErro(`Erro ao buscar os produtos: ${erro}`);
+      });*/
+
+    let viagem1 = new ViagemModel();
+    viagem1.Codigo = 1;
+    viagem1.Nome = "Cristóvão de mendoza";
+
+    let viagem2 = new ViagemModel();
+    viagem2.Codigo = 2;
+    viagem2.Nome = "Maria Araci";
+
+    this.proximasViagens.push(viagem1);
+    this.proximasViagens.push(viagem2);
+  }
+
+  povoarArrayDocumentosAVencer(){
+    /*this.mostrarLoading("Buscando documentos");
+    this.veiculoService.listarVeiculos().subscribe(
+      resposta => {
+        this.esconderLoading();
+        this.veiculos = resposta;
+      },
+      erro => {
+        this.esconderLoading();
+        this.mostrarMensagemErro(`Erro ao buscar os produtos: ${erro}`);
+      });*/
+
+    let documento1 = new DocumentoVeiculoModel();
+    documento1.codigo = 1;
+    documento1.codigoTipoDocumento = 1;
+    documento1.nomeDocumento = "Seguro obrigatório Van Andorinha";
+
+    let documento2 = new DocumentoVeiculoModel();
+    documento2.codigo = 2;
+    documento2.codigoTipoDocumento = 1;
+    documento2.nomeDocumento = "Seguro dos passageiros";
+
+    let documento3 = new DocumentoVeiculoModel();
+    documento3.codigo = 3;
+    documento3.codigoTipoDocumento = 1;
+    documento3.nomeDocumento = "IPVA";
+
+    this.documentosVencer.push(documento1);
+    this.documentosVencer.push(documento2);
+    this.documentosVencer.push(documento3);
+  } 
+  
 }
