@@ -13,7 +13,7 @@ export class AutenticacaoService implements IAutenticacaoService {
 
   token : string;
   constructor(public http: Http, private nativeStorage: NativeStorage) {
-
+    
     console.log("Hello AutenticacaoService Provider");
   }
 
@@ -36,15 +36,16 @@ export class AutenticacaoService implements IAutenticacaoService {
      var dados = p.join('&');
 
     let headers : Headers = new Headers();
-    headers.append('Access-Control-Allow-Origin' , '*');
-    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-    headers.append('Accept','application/json');
+    //headers.append('Access-Control-Allow-Origin' , 'escola4rodas.azurewebsites.net/');
+    //headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    //headers.append('Accept','application/json');
     headers.append('Content-type','application/x-www-form-urlencoded');
-
+      alert(dados);
     return this.http.post(HelloIonicConstants.TOKEN_URL  + HelloIonicConstants.Auth.Token, 
       dados, { headers: headers} )
       .map(response => {
         let resp = response.json();
+        
         this.nativeStorage.setItem('token_autenticacao', {token: resp.access_token})
                           .then(
                             () => console.log('Token armazenado'),

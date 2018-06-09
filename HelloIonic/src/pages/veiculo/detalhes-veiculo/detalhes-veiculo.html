@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Veículo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h1>Veículo</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <form>
+        <ion-col>
+          <ion-item>
+            <ion-label>
+              Nome
+            </ion-label>
+            <ion-input [disabled]="detalharVeiculo" name="txtNomeVeiculo" type="text" [(ngModel)]="veiculoModel.nome"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Placa
+            </ion-label>
+            <ion-input [disabled]="detalharVeiculo" name="txtPlacaVeiculo" type="text" [(ngModel)]="veiculoModel.placa"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Carga máxima
+            </ion-label>
+            <ion-input [disabled]="detalharVeiculo" name="txtCargaMaxima" type="number" [(ngModel)]="veiculoModel.cargaMaxima"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Motorista
+            </ion-label>
+            <ion-select [disabled]="detalharVeiculo" name="cmbMotorista" name="motoristaSelecionado" 
+              [(ngModel)]="veiculoModel.motorista.usuario.codigo" aria-placeholder="Mostoristas">
+              <ion-option *ngFor="let motorista of motoristasDisponiveis" value="motorista.usuario.codigo">
+                {{motorista.usuario.nome}}
+              </ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </form>
+    </ion-row>
+    <ion-row>
+      <div [hidden]="detalharVeiculo" class="btnTextoCentralizado">
+        <button ion-button class="btnOcuparTodaTela" (click)="habilitarEdicao()">
+          Editar
+        </button>
+      </div>
+      <div [class.hidden]="exibicaoBtnGravar" class="btnTextoCentralizado">
+        <button ion-button class="btnOcuparTodaTela" (click)="gravarEdicao()">
+          Gravar
+        </button>
+      </div>
+    </ion-row>
+  </ion-grid>
+</ion-content>

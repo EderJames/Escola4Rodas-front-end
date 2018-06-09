@@ -3,13 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController, ToastController
 import { PaginaBase } from '../../../infraestrutura/PaginaBase';
 import { MotoristaModel } from '../../../models/MotoristaModel';
 import { MotoristaServiceProvider } from '../../../providers/motorista-service/motorista-service';
-
-/**
- * Generated class for the MotoristasPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { CriarMotoristaPage } from '../criar-motorista/criar-motorista';
 
 @IonicPage()
 @Component({
@@ -45,4 +39,7 @@ export class MotoristasPage  extends PaginaBase {
     //});
   }
 
+  adicionarMotorista(){
+    this.navCtrl.setRoot(CriarMotoristaPage, {}, {animate: true, direction: 'forward'});        
+  }
 }

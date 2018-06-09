@@ -3,6 +3,10 @@ import { IonicPage, NavController, NavParams, LoadingController, ToastController
 import { VeiculoModel } from '../../../models/VeiculoModel';
 import { VeiculoServiceProvider } from '../../../providers/veiculo-service/veiculo-service';
 import { PaginaBase } from '../../../infraestrutura/PaginaBase';
+import { CriarVeiculoPage } from '../criar-veiculo/criar-veiculo';
+import { DetalhesInstituicaoPage } from '../../instituicao/detalhes-instituicao/detalhes-instituicao';
+import { DetalhesVeiculoPage } from '../detalhes-veiculo/detalhes-veiculo';
+
 
 /**
  * Generated class for the VeiculosPage page.
@@ -17,14 +21,15 @@ import { PaginaBase } from '../../../infraestrutura/PaginaBase';
   templateUrl: 'veiculos.html',
 })
 export class VeiculosPage extends PaginaBase {
-
+  botaoEditar: Boolean;
   veiculos: VeiculoModel[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-      public loadingCtrl: LoadingController, public toastCtrl: ToastController,
-      public alertCtrl: AlertController, private veiculoService : VeiculoServiceProvider) {
-    
-        super({alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl});
+    public loadingCtrl: LoadingController, public toastCtrl: ToastController,
+    public alertCtrl: AlertController, private veiculoService: VeiculoServiceProvider) {
+
+    super({ alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl });
+    this.botaoEditar = false;
   }
 
   ionViewDidLoad() {
@@ -40,9 +45,14 @@ export class VeiculosPage extends PaginaBase {
       });
   }
 
-  //mostrarDetalhesProduto(viagem: ViagemModel){
-    //this.navCtrl.push(DetalhesViagemPage, {
-    //  viagem: viagem
-  //});
+  novoVeiculo() {
+    this.navCtrl.setRoot(CriarVeiculoPage, {}, { animate: true, direction: 'forward' });
+  }
 
+  mostrarDetalhesVeiculo(veiculo: VeiculoModel) {
+    console.log(veiculo);
+    console.log(veiculo.motorista);
+   
+    this.navCtrl.push(DetalhesVeiculoPage, {veiculo: veiculo});
+  }
 }

@@ -5,11 +5,12 @@ import { ViagemModel } from "./ViagemModel";
 import { UsuarioModel } from "./UsuarioModel";
 
 export class MotoristaModel{
-    usuario: UsuarioModel;
-    codigoUsuario: number;
-    cnh: number;
-    viagens: ViagemModel[];
-    instituicoes: InstituicaoModel[];
-    passageiros: PassageiroModel[];
-    veiculos: VeiculoModel[];
+    Id: number;
+    Usuario: UsuarioModel;
+    Codigo_Usuario: number;
+    Cnh: number;
+    Viagens: ViagemModel[];
+    Instituicoes: InstituicaoModel[];
+    Passageiros: PassageiroModel[];
+    Veiculos: VeiculoModel[];
 }

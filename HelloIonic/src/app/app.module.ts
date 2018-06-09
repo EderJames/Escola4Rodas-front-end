@@ -33,6 +33,9 @@ import { CriarLocaisPage } from '../pages/criar-locais/criar-locais';
 import { CriarViagemPage } from '../pages/viagem/criar-viagem/criar-viagem';
 import { CriarInstituicaoPage } from '../pages/instituicao/criar-instituicao/criar-instituicao';
 import { CriarMotoristaPage } from '../pages/motorista/criar-motorista/criar-motorista';
+import { CriarVeiculoPage } from '../pages/veiculo/criar-veiculo/criar-veiculo';
+import { DetalhesVeiculoPage } from '../pages/veiculo/detalhes-veiculo/detalhes-veiculo';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +57,9 @@ import { CriarMotoristaPage } from '../pages/motorista/criar-motorista/criar-mot
     CriarLocaisPage,
     CriarViagemPage,
     CriarInstituicaoPage,
-    CriarMotoristaPage
+    CriarMotoristaPage,
+    CriarVeiculoPage,
+    DetalhesVeiculoPage
   ],
   imports: [
     BrowserModule,
@@ -124,7 +129,9 @@ import { CriarMotoristaPage } from '../pages/motorista/criar-motorista/criar-mot
     CriarLocaisPage,
     CriarViagemPage,
     CriarInstituicaoPage,
-    CriarMotoristaPage
+    CriarMotoristaPage,
+    CriarVeiculoPage,
+    DetalhesVeiculoPage
   ],
   providers: [
     StatusBar,

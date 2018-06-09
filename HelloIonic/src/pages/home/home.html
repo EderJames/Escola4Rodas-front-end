@@ -1,5 +1,8 @@
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>
       Home
     </ion-title>
@@ -19,9 +22,6 @@
         <ion-label>
           Próximas viagens:
         </ion-label>
-
-
-
         <ion-list>
           <button ion-item *ngFor="let viagem of proximasViagens">
             <ion-icon name="bus"></ion-icon>

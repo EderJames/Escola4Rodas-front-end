@@ -29,6 +29,8 @@ export class LoginPage extends PaginaBase {
     this.foiSubmetido = false;
     this.loginModel = new LoginModel();
 
+    this.loginModel.email = "edeleno12@gmail.com";
+    this.loginModel.senha = "123456";
     this.desativarMenu();
   }
 
