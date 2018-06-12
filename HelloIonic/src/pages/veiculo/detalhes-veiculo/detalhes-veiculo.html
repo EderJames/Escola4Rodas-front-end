@@ -33,7 +33,7 @@
             </ion-label>
             <ion-input [disabled]="detalharVeiculo" name="txtCargaMaxima" type="number" [(ngModel)]="veiculoModel.Carga_Maxima"></ion-input>
           </ion-item>
-          <ion-item >
+          <ion-item [hidden]="exibicaoBtnEditar">
             <ion-label>
               Motorista
             </ion-label>
@@ -51,6 +51,11 @@
       <div [hidden]="exibicaoBtnEditar" class="btnTextoCentralizado">
         <button ion-button class="btnOcuparTodaTela" (click)="habilitarEdicao()">
           Editar
+        </button>
+      </div>
+      <div [hidden]="exibicaoBtnEditar" class="btnTextoCentralizado">
+        <button ion-button class="btnOcuparTodaTela" (click)="deletarVeiculo()">
+          Excluir
         </button>
       </div>
       <div [hidden]="exibicaoBtnGravar" class="btnTextoCentralizado">

@@ -7,6 +7,7 @@ import { VeiculoModel } from '../../../models/VeiculoModel';
 import { UsuarioModel } from '../../../models/UsuarioModel';
 import { MotoristaModel } from '../../../models/MotoristaModel';
 import { MotoristaServiceProvider } from '../../../providers/motorista-service/motorista-service';
+import { ViagemModel } from '../../../models/ViagemModel';
 
 @IonicPage()
 @Component({
@@ -82,7 +83,34 @@ export class DetalhesVeiculoPage extends PaginaBase {
       erro => {
         debugger
         this.esconderLoading();
-        this.mostrarMensagemErro(`Erro ao buscar os motoristas: ${erro}`);
+        this.mostrarMensagemErro(`Erro ao editar o veículo: ${this.veiculoModel.Nome}`);
       });
+  }
+  deletarVeiculo(){
+    this.validarExclusaoVeiculo();
+    this.veiculoService.deletarVeiculo(this.veiculoModel).subscribe(
+      resposta => {
+        debugger
+        this.esconderLoading();
+        let teste = resposta;
+      },
+      erro => {
+        debugger
+        this.esconderLoading();
+        this.mostrarMensagemErro(`Erro ao deletar o veículo: ${this.veiculoModel.Nome}`);
+      });
+  }
+
+  validarExclusaoVeiculo(){
+    if(this.veiculoModel.Motorista){
+      this.mostrarMensagemErro(`O veículo está vinculado ao motorista: 
+      ${this.veiculoModel.Motorista.Usuario.Nome}`);
+    }
+    else if(this.veiculoModel.Viagens){
+      let viagensVinculadasVeiculo: ViagemModel[];
+      
+     
+      this.mostrarMensagemErro(`O veículo está vinculado as viagens:`);
+    }
   }
 }

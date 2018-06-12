@@ -63,6 +63,7 @@ export class VeiculoServiceProvider implements IVeiculoService {
   }
 
   buscarPorCodigo(codigo: number): Observable<VeiculoModel> {
+    debugger
     let tokenObservable = Observable.fromPromise(
       this.nativeStorage.getItem('token_autenticacao')
         .then(
@@ -102,7 +103,7 @@ export class VeiculoServiceProvider implements IVeiculoService {
 
   atualizarVeiculo(veiculoModel: VeiculoModel): Observable<string> {
     debugger
-
+    veiculoModel.Codigo_Motorista = veiculoModel.Motorista.Codigo_Usuario;
     let tokenObservable = Observable.fromPromise(
       this.nativeStorage.getItem('token_autenticacao')
         .then(
@@ -149,6 +150,32 @@ export class VeiculoServiceProvider implements IVeiculoService {
         .map(response => {
           debugger;
           return response.toString();//response.json();
+        });
+
+    });
+  }
+
+  deletarVeiculo(veiculoModel: VeiculoModel): Observable<string> {
+    debugger
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
+
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
+
+      return this.http.delete(HelloIonicConstants.BASE_URL + HelloIonicConstants.Veiculo.DELETE + "/" + veiculoModel.Codigo_Veiculo,
+         { headers: headers })
+        .map(response => {
+          debugger;
+          return response.toString();
         });
 
     });
