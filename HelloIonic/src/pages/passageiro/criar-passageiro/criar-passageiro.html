@@ -81,7 +81,7 @@
                 <ion-item>
                   <ion-label>Instituição</ion-label>
                   <ion-select name="cmbInstituicao" multiple="true" [(ngModel)]="passageiroModel.instituicoes" okText="Ok!" cancelText="Cancelar">
-                    <ion-option *ngFor="let instituicao of instituicoes">
+                    <ion-option *ngFor="let instituicao of instituicoes" [value]="instituicao.nome">
                     </ion-option>
                   </ion-select>
                 </ion-item>

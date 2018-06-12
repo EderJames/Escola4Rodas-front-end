@@ -16,11 +16,12 @@ import { UsuarioModel } from '../../models/UsuarioModel';
 @Injectable()
 export class VeiculoServiceProvider implements IVeiculoService {
 
-  constructor(public http: Http, private nativeStorage : NativeStorage) {
+  constructor(public http: Http, private nativeStorage: NativeStorage) {
     console.log('Hello VeiculoServiceProvider Provider');
   }
 
   listarVeiculos(): Observable<VeiculoModel[]> {
+    debugger
     let tokenObservable = Observable.fromPromise(
       this.nativeStorage.getItem('token_autenticacao')
         .then(
@@ -30,46 +31,33 @@ export class VeiculoServiceProvider implements IVeiculoService {
     );
 
     return tokenObservable.flatMap(token => {
-      let headers : Headers = new Headers();
-      headers.set('Authorization',  `Bearer ${token}`);
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
 
       //caminho da url da minha webapi - instituicoes/get
-      return this.http.get(HelloIonicConstants.BASE_URL  + HelloIonicConstants.Veiculo.GET, {
-        headers : headers
+      return this.http.get(HelloIonicConstants.BASE_URL + HelloIonicConstants.Veiculo.GET, {
+        headers: headers
       }).map(response => {
-        
-       let resp = response.json();
-       let resultado: VeiculoModel[] = resp.map(function (veiculo, index, arr){
-          
-       
-       alert(JSON.stringify(veiculo.Motorista.Usuario));
-        let v : VeiculoModel = new VeiculoModel();
-          v.codigoVeiculo = veiculo.Codigo_Veiculo;
-          v.nome = veiculo.Nome;
-          v.placa = veiculo.Placa;
-          v.cargaMaxima = veiculo.Carga_Maxima;
-          v.codigoMotorista = veiculo.Codigo_Motorista;
-          v.dthr = veiculo.Dthr;
-          v.motorista = veiculo.Motorista;
-          //não está setando o motorista v.motorista.usuario = new UsuarioModel();
-          
-          let usuario : UsuarioModel;
-          usuario = new  UsuarioModel();
 
-          usuario.Codigo = veiculo.Motorista.Usuario.Codigo;
-          usuario.Nome = veiculo.Motorista.Usuario.Nome;
-          usuario.Idade = veiculo.Motorista.Usuario.Idade;
-          usuario.Telefone = veiculo.Motorista.Usuario.Telefone;
-          usuario.Login = veiculo.Motorista.Usuario.Login;
-          usuario.Senha = "";
-          usuario.Email = veiculo.Motorista.Usuario.Email;
-          usuario.Dthr = veiculo.Motorista.Usuario.Dthr;
-          v.documentos = veiculo.Documentos;
-          v.viagens = veiculo.Viagens;
-          return v;
-       });
+        let resp = response.json();
+        let resultado: VeiculoModel[] = resp.map(function (veiculo, index, arr) {
 
-       return resultado;
+          debugger;
+          let v: VeiculoModel = new VeiculoModel();
+          if (veiculo && veiculo.Motorista) {
+            v.Codigo_Veiculo = veiculo.Codigo_Veiculo;
+            v.Nome = veiculo.Nome;
+            v.Placa = veiculo.Placa;
+            v.Carga_Maxima = veiculo.Carga_Maxima;
+            v.Codigo_Motorista = veiculo.Codigo_Motorista;
+            v.Dthr = veiculo.Dthr;
+            v.Motorista = veiculo.Motorista;
+            v.Documentos = veiculo.Documentos;
+            v.Viagens = veiculo.Viagens;
+            return v;
+          }
+        });
+        return resultado;
       });
     });
   }
@@ -84,50 +72,85 @@ export class VeiculoServiceProvider implements IVeiculoService {
     );
 
     return tokenObservable.flatMap(token => {
-      let headers : Headers = new Headers();
-      headers.set('Authorization',  `Bearer ${token}`);
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
 
-      return this.http.get(HelloIonicConstants.BASE_URL  + HelloIonicConstants.Veiculo.GET + "/" + codigo, {
-        headers : headers
+      return this.http.get(HelloIonicConstants.BASE_URL + HelloIonicConstants.Veiculo.GET + "/" + codigo, {
+        headers: headers
       }).map(response => {
-       let resp = response.json();
-       
-       let resultado: VeiculoModel = resp.map(function (veiculo){
-          let v : VeiculoModel = new VeiculoModel();
-          v.codigoVeiculo = veiculo.Codigo_Veiculo;
-          v.nome = veiculo.Nome;
-          v.placa = veiculo.Placa;
-          v.cargaMaxima = veiculo.Carga_Maxima;
-          v.codigoMotorista = veiculo.Codigo_Motorista;
-          v.dthr = veiculo.Dthr;
-          v.motorista = veiculo.Motorista;
-          v.documentos = veiculo.Documentos;
-          v.viagens = veiculo.Viagens;
-          
-          return v;
-       });
+        let resp = response.json();
 
-       return resultado;
+        let resultado: VeiculoModel = resp.map(function (veiculo) {
+          let v: VeiculoModel = new VeiculoModel();
+          v.Codigo_Veiculo = veiculo.Codigo_Veiculo;
+          v.Nome = veiculo.Nome;
+          v.Placa = veiculo.Placa;
+          v.Carga_Maxima = veiculo.Carga_Maxima;
+          v.Carga_Maxima = veiculo.Codigo_Motorista;
+          v.Dthr = veiculo.Dthr;
+          v.Motorista = veiculo.Motorista;
+          v.Documentos = veiculo.Documentos;
+          v.Viagens = veiculo.Viagens;
+
+          return v;
+        });
+
+        return resultado;
       });
     });
   }
 
-  inserirVeiculo(veiculoModel: VeiculoModel): Observable<void> {
-    
-    let corpoRequisicao = {
-      codigoMotorista: veiculoModel.codigoMotorista,
-      cargaMaxima: veiculoModel.cargaMaxima,
-      //dataInicio: veiculoModel.documentos,
-      dthr: veiculoModel.dthr,
-      nome: veiculoModel.nome,
-      placa: veiculoModel.placa,
-      //veiculo: viagemModel.veiculo
-    }
+  atualizarVeiculo(veiculoModel: VeiculoModel): Observable<string> {
+    debugger
 
-    return this.http.post(HelloIonicConstants.BASE_URL  + HelloIonicConstants.Veiculo.POST, corpoRequisicao)
-      .map(response => {
-        let resp = response.json();
-        
-      });
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
+
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
+
+      return this.http.put(HelloIonicConstants.BASE_URL + HelloIonicConstants.Veiculo.POST,
+        JSON.stringify(veiculoModel), { headers: headers })
+        .map(response => {
+          debugger;
+          return response.toString();
+        });
+
+    });
+  }
+
+  inserirVeiculo(veiculoModel: VeiculoModel): Observable<string> {
+    debugger
+
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
+
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
+
+      return this.http.post(HelloIonicConstants.BASE_URL + HelloIonicConstants.Veiculo.POST,
+        JSON.stringify(veiculoModel), { headers: headers })
+        .map(response => {
+          debugger;
+          return response.toString();//response.json();
+        });
+
+    });
   }
 }

@@ -4,15 +4,15 @@ import { ViagemModel } from "./ViagemModel";
 
 export class VeiculoModel{
     
-    codigoVeiculo: number;
-    nome: string;
-    placa: string;
-    cargaMaxima: number;
-    codigoMotorista: number;
-    dthr: Date;
+    Codigo_Veiculo: number;
+    Nome: string;
+    Placa: string;
+    Carga_Maxima: number;
+    Codigo_Motorista: number;
+    Dthr: Date;
 
-    motorista: MotoristaModel;
-    documentos: DocumentoVeiculoModel[];
-    viagens: ViagemModel[];
+    Motorista: MotoristaModel;
+    Documentos: DocumentoVeiculoModel[];
+    Viagens: ViagemModel[];
 
 }

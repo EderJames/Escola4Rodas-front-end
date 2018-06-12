@@ -7,14 +7,6 @@ import { CriarVeiculoPage } from '../criar-veiculo/criar-veiculo';
 import { DetalhesInstituicaoPage } from '../../instituicao/detalhes-instituicao/detalhes-instituicao';
 import { DetalhesVeiculoPage } from '../detalhes-veiculo/detalhes-veiculo';
 
-
-/**
- * Generated class for the VeiculosPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-veiculos',
@@ -50,9 +42,6 @@ export class VeiculosPage extends PaginaBase {
   }
 
   mostrarDetalhesVeiculo(veiculo: VeiculoModel) {
-    console.log(veiculo);
-    console.log(veiculo.motorista);
-   
     this.navCtrl.push(DetalhesVeiculoPage, {veiculo: veiculo});
   }
 }

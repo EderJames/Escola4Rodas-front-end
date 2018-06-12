@@ -5,6 +5,8 @@ import { FormBuilder } from '@angular/forms';
 import { VeiculoServiceProvider } from '../../../providers/veiculo-service/veiculo-service';
 import { VeiculoModel } from '../../../models/VeiculoModel';
 import { UsuarioModel } from '../../../models/UsuarioModel';
+import { MotoristaModel } from '../../../models/MotoristaModel';
+import { MotoristaServiceProvider } from '../../../providers/motorista-service/motorista-service';
 
 @IonicPage()
 @Component({
@@ -17,28 +19,39 @@ export class DetalhesVeiculoPage extends PaginaBase {
   exibicaoBtnGravar: boolean;
   veiculoModel: VeiculoModel;
   detalharVeiculo: boolean;
+  motoristasDisponiveis = new Array<MotoristaModel>();
+  motoristaAtual: MotoristaModel;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public formBuilder: FormBuilder, alertCtrl: AlertController, 
               public loadingCtrl: LoadingController, toastCtrl: ToastController,
-              public veiculoService: VeiculoServiceProvider) {
+              public veiculoService: VeiculoServiceProvider, public motoristaService: MotoristaServiceProvider) {
     super({ formBuilder: formBuilder, alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl});
     
     this.verificarCarregamentoTela();
-    
+    this.motoristaAtual = new MotoristaModel();
+    this.motoristaAtual.Usuario = new UsuarioModel();
   }
 
   verificarCarregamentoTela(){
-    
+    debugger
     this.veiculoModel = this.navParams.data.veiculo;
+    if(this.veiculoModel.Motorista && this.veiculoModel.Motorista.Usuario){
+      this.motoristaAtual = this.veiculoModel.Motorista;
+    }
+    this.desabilitarEdicao();
     
-    let usuarioMotorista: UsuarioModel;
-    usuarioMotorista = new UsuarioModel();
-    usuarioMotorista.Codigo = this.veiculoModel.motorista.Codigo_Usuario;
+    this.motoristaService.listarMotoristas().subscribe(
+      resposta => {
+        debugger
+        this.esconderLoading();
+        this.motoristasDisponiveis = resposta;
+      },
+      erro => {
+        this.esconderLoading();
+        this.mostrarMensagemErro(`Erro ao buscar os motoristas: ${erro}`);
+      });
     
-    this.veiculoModel.motorista.Usuario
-    this.exibicaoBtnGravar = false;
-    this.exibicaoBtnEditar = true;
   }
 
   ionViewDidLoad() {
@@ -46,14 +59,30 @@ export class DetalhesVeiculoPage extends PaginaBase {
   }
 
   habilitarEdicao(){
-    this.exibicaoBtnGravar = true;
-    this.exibicaoBtnEditar = false;
+    this.exibicaoBtnGravar = false;
+    this.exibicaoBtnEditar = true;
     this.detalharVeiculo = false;
   }
 
-  gravarEdicao(){
-    this.exibicaoBtnGravar = false;
-    this.exibicaoBtnEditar = true;
+  desabilitarEdicao(){
+    this.exibicaoBtnGravar = true;
+    this.exibicaoBtnEditar = false;
     this.detalharVeiculo = true;
+  }
+  gravarEdicao(){
+    this.desabilitarEdicao();
+    debugger
+    this.veiculoModel.Codigo_Motorista = this.veiculoModel.Motorista.Codigo_Usuario;
+    this.veiculoService.atualizarVeiculo(this.veiculoModel).subscribe(
+      resposta => {
+        debugger
+        this.esconderLoading();
+        let teste = resposta;
+      },
+      erro => {
+        debugger
+        this.esconderLoading();
+        this.mostrarMensagemErro(`Erro ao buscar os motoristas: ${erro}`);
+      });
   }
 }

@@ -20,42 +20,37 @@
             <ion-label>
               Nome
             </ion-label>
-            <ion-input name="nome" type="text" [(ngModel)]="veiculoModel.nome"></ion-input>
+            <ion-input name="nome" type="text" [(ngModel)]="veiculoModel.Nome"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label>
               Placa
             </ion-label>
-            <ion-input name="placa" type="text" [(ngModel)]="veiculoModel.placa"></ion-input>
+            <ion-input name="placa" type="text" [(ngModel)]="veiculoModel.Placa"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label>
               Carga máxima
             </ion-label>
-            <ion-input name="cargaMaxima" type="text" [(ngModel)]="veiculoModel.cargaMaxima"></ion-input>
+            <ion-input name="cargaMaxima" type="text" [(ngModel)]="veiculoModel.Carga_Maxima"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label>
               Motorista
             </ion-label>
-            <ion-select name="cmbMotorista" [(ngModel)]="veiculoModel.motorista.codigoUsuario" aria-placeholder="Mostoristas">
-              <ion-option *ngFor="let motorista of motoristasDisponiveis" value="motorista.codigoUsuario">
-                {{motorista.codigoUsuario}}
+            <ion-select name="cmbMotorista" [(ngModel)]="veiculoModel.Motorista" aria-placeholder="Mostoristas">
+              <ion-option *ngFor="let motorista of motoristasDisponiveis" [value]="motorista">
+                {{motorista.Usuario.Nome}}
               </ion-option>
             </ion-select>
-          </ion-item>
+         </ion-item>
         </ion-col>
       </form>
     </ion-row>
     <ion-row>
       <div class="btnTextoCentralizado">
-        <button ion-button class="btnOcuparTodaTela">
+        <button ion-button class="btnOcuparTodaTela" (click)="gravarEdicao()">
           Cadastrar
-        </button>
-      </div>
-      <div *ngIf="exibicaoBtnEditar" class="btnTextoCentralizado">
-        <button ion-button class="btnOcuparTodaTela">
-          Editar
         </button>
       </div>
     </ion-row>

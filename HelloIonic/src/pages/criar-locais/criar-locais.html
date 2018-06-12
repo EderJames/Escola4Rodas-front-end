@@ -43,7 +43,7 @@
                     Dias de Semana
                   </ion-label>
                   <ion-select name="cmbDiaSemana" multiple="true" [(ngModel)]="localPassageiroModel.diasSemana" okText="Ok!" cancelText="Cancelar">
-                    <ion-option *ngFor="let dia of diasSemana" value="dia.diaSemana" >
+                    <ion-option *ngFor="let dia of diasSemana" [value]="dia.diaSemana" >
                       {{dia.diaSemana}}
                     </ion-option>
                   </ion-select>

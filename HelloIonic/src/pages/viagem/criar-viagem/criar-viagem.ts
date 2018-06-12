@@ -37,28 +37,28 @@ export class CriarViagemPage extends PaginaBase {
 
     this.viagemModel = new ViagemModel();
     this.viagemModel.VeiculoViagem = new VeiculoModel();
-    this.viagemModel.VeiculoViagem.motorista = new MotoristaModel();
+    this.viagemModel.VeiculoViagem.Motorista = new MotoristaModel();
 
     this.motoristasDisponiveis = new Array<MotoristaModel>();
     this.veiculosDisponiveis = new Array<VeiculoModel>();
 
     let usuario = new UsuarioModel();
-    usuario.codigo = 1;
-    usuario.nome = "Tio Eder";
+    usuario.Codigo = 1;
+    usuario.Nome = "Tio Eder";
 
     let usuario2  = new UsuarioModel();
-    usuario2.codigo = 2;
-    usuario2.nome = "Tio Teste";
+    usuario2.Codigo = 2;
+    usuario2.Nome = "Tio Teste";
     
     let motorista1 = new MotoristaModel();
-    motorista1.codigoUsuario = 1;
-    motorista1.cnh = 123456789;
-    motorista1.usuario = usuario;
+    motorista1.Codigo_Usuario = 1;
+    motorista1.Cnh = 123456789;
+    motorista1.Usuario = usuario;
 
     let motorista2 = new MotoristaModel();
-    motorista1.codigoUsuario = 2;
-    motorista2.cnh = 965413578;
-    motorista2.usuario = usuario2;
+    motorista1.Codigo_Usuario = 2;
+    motorista2.Cnh = 965413578;
+    motorista2.Usuario = usuario2;
     
     
     this.tiposViagensDisponiveis = new Array<string>();

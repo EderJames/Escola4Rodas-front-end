@@ -23,9 +23,9 @@
               <ion-label>
                 Motorista
               </ion-label>
-              <ion-select name="cmbMotorista" [(ngModel)]="viagemModel.VeiculoViagem.motorista" aria-placeholder="Mostoristas">
-                <ion-option *ngFor="let motorista of motoristasDisponiveis" [value]="motorista.usuario.codigo">
-                  {{motorista.usuario.nome}}
+              <ion-select name="cmbMotorista" [(ngModel)]="viagemModel.VeiculoViagem.Motorista" aria-placeholder="Mostoristas">
+                <ion-option *ngFor="let motorista of motoristasDisponiveis" [value]="motorista.Usuario.Codigo_Usuario">
+                  {{motorista.Usuario.Nome}}
                 </ion-option>
               </ion-select>
             </ion-item>
@@ -33,8 +33,8 @@
               <ion-label>
                 Veículo
               </ion-label>
-              <ion-select name="cmbViagem" [(ngModel)]="viagemModel.VeiculoViagem" aria-placeholder="Viagens">
-                <ion-option *ngFor="let veiculo of veiculosDisponiveis" [value]="veiculo.codigo">
+              <ion-select name="cmbViagem" [(ngModel)]="viagemModel.VeiculoViagem.Codigo_Veiculo" aria-placeholder="Viagens">
+                <ion-option *ngFor="let veiculo of veiculosDisponiveis" [value]="veiculo.Codigo_Veiculo">
                   {{veiculo.nome}}
                 </ion-option>
               </ion-select>

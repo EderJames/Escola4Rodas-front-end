@@ -3,5 +3,6 @@ import { Observable } from "rxjs/Observable";
 
 export interface IVeiculoService{
     listarVeiculos(): Observable<VeiculoModel[]>;   
-    inserirVeiculo(VeiculoModel: VeiculoModel): Observable<void>;
+    atualizarVeiculo(veiculoModel: VeiculoModel): Observable<string>;
+    inserirVeiculo(veiculoModel: VeiculoModel): Observable<string>;
 }
