@@ -8,6 +8,8 @@ import { UsuarioModel } from '../../../models/UsuarioModel';
 import { MotoristaModel } from '../../../models/MotoristaModel';
 import { MotoristaServiceProvider } from '../../../providers/motorista-service/motorista-service';
 import { ViagemModel } from '../../../models/ViagemModel';
+import { DocumentosVeiculoPage } from '../../documentos/documentos-veiculo/documentos-veiculo';
+
 
 @IonicPage()
 @Component({
@@ -52,7 +54,12 @@ export class DetalhesVeiculoPage extends PaginaBase {
         this.esconderLoading();
         this.mostrarMensagemErro(`Erro ao buscar os motoristas: ${erro}`);
       });
-    
+  }
+
+  listarDocumentosVan(){
+    debugger
+    let veiculoParaDocumentos = this.veiculoModel;
+    this.navCtrl.push(DocumentosVeiculoPage, {veiculoParaDocumentos});
   }
 
   ionViewDidLoad() {
@@ -70,6 +77,7 @@ export class DetalhesVeiculoPage extends PaginaBase {
     this.exibicaoBtnEditar = false;
     this.detalharVeiculo = true;
   }
+
   gravarEdicao(){
     this.desabilitarEdicao();
     debugger
@@ -86,6 +94,7 @@ export class DetalhesVeiculoPage extends PaginaBase {
         this.mostrarMensagemErro(`Erro ao editar o veículo: ${this.veiculoModel.Nome}`);
       });
   }
+  
   deletarVeiculo(){
     this.validarExclusaoVeiculo();
     this.veiculoService.deletarVeiculo(this.veiculoModel).subscribe(

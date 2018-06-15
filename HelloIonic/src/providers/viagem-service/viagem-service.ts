@@ -37,7 +37,7 @@ export class ViagemServiceProvider implements IViagemService {
         headers : headers
       }).map(response => {
        let resp = response.json();
-       alert("" + resp);
+       
        let resultado: ViagemModel[] = resp.map(function (viagem, index, arr){
           let v : ViagemModel = new ViagemModel();
           v.Codigo = viagem.Codigo;

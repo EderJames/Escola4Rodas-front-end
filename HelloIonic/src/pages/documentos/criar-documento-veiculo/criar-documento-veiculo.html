@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Criar documento</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <form>
+          <ion-list>
+            <ion-item>
+              <ion-label>
+                Documento
+              </ion-label>
+              <ion-select name="cmbDocumento" [(ngModel)]="veiculoModel.TipoDocumento" aria-placeholder="Documento">
+                <ion-option *ngFor="let documentosDisponivel of tiposDocumentos" [value]="documentosDisponivel.Codigo">
+                  {{documentosDisponivel.Nome}}
+                </ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Apelido
+              </ion-label>
+              <ion-input [disabled]="detalharVeiculo" name="txtApelido" type="text" [(ngModel)]="documento.Apelido">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>
+                  Descrição
+                </ion-label>
+                <ion-input [disabled]="detalharVeiculo" name="txtDescricao" type="text" [(ngModel)]="documento.Descricao">
+                </ion-input>
+              </ion-item>
+          </ion-list>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div [hidden]="exibicaoBtnEditar" class="btnTextoCentralizado">
+          <button ion-button class="btnOcuparTodaTela" (click)="habilitarEdicao()">
+            Editar
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div [hidden]="exibicaoBtnGravar" class="btnTextoCentralizado">
+          <button ion-button class="btnOcuparTodaTela" (click)="gravarEdicao()">
+            Gravar
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div [hidden]="exibicaoBtnEditar" class="btnTextoCentralizado">
+          <button ion-button class="btnOcuparTodaTela" (click)="deletarVeiculo()">
+            Excluir
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

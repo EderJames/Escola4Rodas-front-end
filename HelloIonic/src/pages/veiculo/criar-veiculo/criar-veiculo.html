@@ -10,42 +10,39 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <h1>Criar veículo</h1>
+        <form>
+          <ion-list>
+            <ion-item>
+              <ion-label>
+                Nome
+              </ion-label>
+              <ion-input name="nome" type="text" [(ngModel)]="veiculoModel.Nome"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Placa
+              </ion-label>
+              <ion-input name="placa" type="text" [(ngModel)]="veiculoModel.Placa"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Carga máxima
+              </ion-label>
+              <ion-input name="cargaMaxima" type="text" [(ngModel)]="veiculoModel.Carga_Maxima"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Motorista
+              </ion-label>
+              <ion-select name="cmbMotorista" [(ngModel)]="veiculoModel.Motorista" aria-placeholder="Mostoristas">
+                <ion-option *ngFor="let motorista of motoristasDisponiveis" [value]="motorista">
+                  {{motorista.Usuario.Nome}}
+                </ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </form>
       </ion-col>
-    </ion-row>
-    <ion-row>
-      <form>
-        <ion-col>
-          <ion-item>
-            <ion-label>
-              Nome
-            </ion-label>
-            <ion-input name="nome" type="text" [(ngModel)]="veiculoModel.Nome"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>
-              Placa
-            </ion-label>
-            <ion-input name="placa" type="text" [(ngModel)]="veiculoModel.Placa"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>
-              Carga máxima
-            </ion-label>
-            <ion-input name="cargaMaxima" type="text" [(ngModel)]="veiculoModel.Carga_Maxima"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>
-              Motorista
-            </ion-label>
-            <ion-select name="cmbMotorista" [(ngModel)]="veiculoModel.Motorista" aria-placeholder="Mostoristas">
-              <ion-option *ngFor="let motorista of motoristasDisponiveis" [value]="motorista">
-                {{motorista.Usuario.Nome}}
-              </ion-option>
-            </ion-select>
-         </ion-item>
-        </ion-col>
-      </form>
     </ion-row>
     <ion-row>
       <div class="btnTextoCentralizado">

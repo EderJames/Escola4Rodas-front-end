@@ -35,6 +35,11 @@ import { CriarInstituicaoPage } from '../pages/instituicao/criar-instituicao/cri
 import { CriarMotoristaPage } from '../pages/motorista/criar-motorista/criar-motorista';
 import { CriarVeiculoPage } from '../pages/veiculo/criar-veiculo/criar-veiculo';
 import { DetalhesVeiculoPage } from '../pages/veiculo/detalhes-veiculo/detalhes-veiculo';
+import { DetalhesDocumentoVeiculoPage } from '../pages/documentos/detalhes-documento-veiculo/detalhes-documento-veiculo';
+import { CriarDocumentoVeiculoPage } from '../pages/documentos/criar-documento-veiculo/criar-documento-veiculo';
+import { DocumentosVeiculoPage } from '../pages/documentos/documentos-veiculo/documentos-veiculo';
+import { DocumentoVeiculoServiceProvider } from '../providers/documento-veiculo-service/documento-veiculo-service';
+
 
 
 @NgModule({
@@ -59,7 +64,10 @@ import { DetalhesVeiculoPage } from '../pages/veiculo/detalhes-veiculo/detalhes-
     CriarInstituicaoPage,
     CriarMotoristaPage,
     CriarVeiculoPage,
-    DetalhesVeiculoPage
+    DetalhesVeiculoPage,
+    DocumentosVeiculoPage,
+    DetalhesDocumentoVeiculoPage,
+    CriarDocumentoVeiculoPage
   ],
   imports: [
     BrowserModule,
@@ -131,7 +139,10 @@ import { DetalhesVeiculoPage } from '../pages/veiculo/detalhes-veiculo/detalhes-
     CriarInstituicaoPage,
     CriarMotoristaPage,
     CriarVeiculoPage,
-    DetalhesVeiculoPage
+    DetalhesVeiculoPage,
+    DocumentosVeiculoPage,
+    DetalhesDocumentoVeiculoPage,
+    CriarDocumentoVeiculoPage
   ],
   providers: [
     StatusBar,
@@ -144,7 +155,9 @@ import { DetalhesVeiculoPage } from '../pages/veiculo/detalhes-veiculo/detalhes-
     MotoristaServiceProvider,
     PassageiroServiceProvider,
     VeiculoServiceProvider,
-    ViagemServiceProvider
+    ViagemServiceProvider,
+    DocumentoVeiculoServiceProvider,
+    DocumentoVeiculoServiceProvider
   ]
 })
 export class AppModule { }

@@ -1,3 +1,5 @@
+import { TipoDocumento } from "../models/TipoDocumento";
+
 export class HelloIonicConstants{
     static readonly BASE_URL: string = "http://localhost:59974/api/";//"https://escola4rodas.azurewebsites.net/api/";
     static readonly TOKEN_URL: string = "http://localhost:59974/";//"https://escola4rodas.azurewebsites.net/";
@@ -63,6 +65,13 @@ export class HelloIonicConstants{
         DELETE: 'veiculo'
     }
 
+    static readonly DocumentoVeiculo = {
+        GET: 'documentoveiculo',
+        POST:'documentoveiculo',
+        PUT: 'documentoveiculo',
+        DELETE: 'documentoveiculo'
+    }
+
     static readonly proxyVeiculo = {
         GET: 'proxyveiculo',
         POST:'proxyveiculo',
@@ -88,4 +97,6 @@ export class HelloIonicConstants{
         SEMANAL: 'Semanal',
         DIARIA: 'Diária'
     } 
+
+    
 }

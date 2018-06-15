@@ -113,12 +113,11 @@ export class VeiculoServiceProvider implements IVeiculoService {
     );
     return tokenObservable.flatMap(token => {
       let headers: Headers = new Headers();
-      headers.set('Authorization', `Bearer ${token}`);
 
       headers.append('Content-type', 'application/json');
       headers.set('Authorization', `Bearer ${token}`);
 
-      return this.http.put(HelloIonicConstants.BASE_URL + HelloIonicConstants.Veiculo.POST,
+      return this.http.put(HelloIonicConstants.BASE_URL + HelloIonicConstants.Veiculo.PUT,
         JSON.stringify(veiculoModel), { headers: headers })
         .map(response => {
           debugger;

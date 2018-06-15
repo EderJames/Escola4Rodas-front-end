@@ -39,6 +39,17 @@ export abstract class PaginaBase {
         }
     }
 
+    protected mostrarMensagemSucesso(mensagem: string){
+        if(this._alertCtrl !=  null){
+            let alert =  this._alertCtrl.create({
+                title: "Sucesso!",
+                subTitle: mensagem,
+                buttons: ["Ok"]
+            });
+            alert.present();
+        }
+    }
+
     protected mostrarLoading(mensagem: string, duracao: number = 0){
         if(duracao == 0){
             this._loading = this._loadingCtrl.create({
