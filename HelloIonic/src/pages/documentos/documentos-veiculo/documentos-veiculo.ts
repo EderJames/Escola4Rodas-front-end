@@ -5,6 +5,7 @@ import { PaginaBase } from '../../../infraestrutura/PaginaBase';
 import { VeiculoModel } from '../../../models/VeiculoModel';
 import { DocumentoVeiculoModel } from '../../../models/DocumentoVeiculoModel';
 import { DetalhesDocumentoVeiculoPage } from '../detalhes-documento-veiculo/detalhes-documento-veiculo';
+import { CriarDocumentoVeiculoPage } from '../criar-documento-veiculo/criar-documento-veiculo';
 
 @IonicPage()
 @Component({
@@ -34,7 +35,13 @@ export class DocumentosVeiculoPage extends PaginaBase {
     debugger
   }
 
+  novoDocumento(){
+    let veiculoEnviar = this.veiculoModel;
+    this.navCtrl.push(CriarDocumentoVeiculoPage, {veiculoEnviar});
+  }
+
   detalhesDocumentoVeiculo(documentoVeiculo : DocumentoVeiculoModel){
-    this.navCtrl.push(DetalhesDocumentoVeiculoPage, {documentoVeiculo: DocumentoVeiculoModel});
+    debugger
+    this.navCtrl.push(DetalhesDocumentoVeiculoPage, {documentoVeiculo});
   }
 }

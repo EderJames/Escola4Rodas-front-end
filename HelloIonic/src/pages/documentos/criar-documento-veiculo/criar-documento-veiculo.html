@@ -13,7 +13,7 @@
               <ion-label>
                 Documento
               </ion-label>
-              <ion-select name="cmbDocumento" [(ngModel)]="veiculoModel.TipoDocumento" aria-placeholder="Documento">
+              <ion-select name="cmbDocumento" [(ngModel)]="documentoVeiculoModel.Codigo_Tipo_Documento" aria-placeholder="Documento">
                 <ion-option *ngFor="let documentosDisponivel of tiposDocumentos" [value]="documentosDisponivel.Codigo">
                   {{documentosDisponivel.Nome}}
                 </ion-option>
@@ -23,27 +23,26 @@
               <ion-label>
                 Apelido
               </ion-label>
-              <ion-input [disabled]="detalharVeiculo" name="txtApelido" type="text" [(ngModel)]="documento.Apelido">
+              <ion-input name="txtApelido" type="text" [(ngModel)]="documentoVeiculoModel.Nome_Documento">
               </ion-input>
             </ion-item>
             <ion-item>
-                <ion-label>
-                  Descrição
-                </ion-label>
-                <ion-input [disabled]="detalharVeiculo" name="txtDescricao" type="text" [(ngModel)]="documento.Descricao">
-                </ion-input>
-              </ion-item>
+              <ion-label>
+                Descrição
+              </ion-label>
+              <ion-input name="txtDescricao" type="text" [(ngModel)]="documentoVeiculoModel.Descricao">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Validade
+              </ion-label>
+              <ion-datetime [disabled]="detalharDocumentoVeiculo" name="txtValidade" displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY"
+                [(ngModel)]="documentoVeiculoModel.Validade" min="2000" max="2025-12-31">
+              </ion-datetime>
+            </ion-item>
           </ion-list>
         </form>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <div [hidden]="exibicaoBtnEditar" class="btnTextoCentralizado">
-          <button ion-button class="btnOcuparTodaTela" (click)="habilitarEdicao()">
-            Editar
-          </button>
-        </div>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -51,15 +50,6 @@
         <div [hidden]="exibicaoBtnGravar" class="btnTextoCentralizado">
           <button ion-button class="btnOcuparTodaTela" (click)="gravarEdicao()">
             Gravar
-          </button>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <div [hidden]="exibicaoBtnEditar" class="btnTextoCentralizado">
-          <button ion-button class="btnOcuparTodaTela" (click)="deletarVeiculo()">
-            Excluir
           </button>
         </div>
       </ion-col>

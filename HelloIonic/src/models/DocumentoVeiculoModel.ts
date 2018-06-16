@@ -1,13 +1,13 @@
 import { VeiculoModel } from "./VeiculoModel";
+import { DateTime } from "ionic-angular";
 
 export class DocumentoVeiculoModel{
-    codigo: number;
-    nomeDocumento: string;
-    descricao: string;
-    validade: Date;
-    dtrh: Date;
-    codigoTipoDocumento: number;
-    codigoVeiculo: number;
-
+    Codigo: number;
+    Nome_Documento: string;
+    Descricao: string;
+    Validade: DateTime;
+    Dthr: Date;
+    Codigo_Tipo_Documento: number;
+    Codigo_Veiculo: number;
     veiculo: VeiculoModel;
 }

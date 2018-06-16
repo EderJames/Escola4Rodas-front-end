@@ -81,19 +81,19 @@ export class HomePage extends PaginaBase {
       });*/
 
     let documento1 = new DocumentoVeiculoModel();
-    documento1.codigo = 1;
-    documento1.codigoTipoDocumento = 1;
-    documento1.nomeDocumento = "Seguro obrigatório Van Andorinha";
+    documento1.Codigo = 1;
+    documento1.Codigo_Tipo_Documento = 1;
+    documento1.Nome_Documento = "Seguro obrigatório Van Andorinha";
 
     let documento2 = new DocumentoVeiculoModel();
-    documento2.codigo = 2;
-    documento2.codigoTipoDocumento = 1;
-    documento2.nomeDocumento = "Seguro dos passageiros";
+    documento2.Codigo = 2;
+    documento2.Codigo_Tipo_Documento = 1;
+    documento2.Nome_Documento = "Seguro dos passageiros";
 
     let documento3 = new DocumentoVeiculoModel();
-    documento3.codigo = 3;
-    documento3.codigoTipoDocumento = 1;
-    documento3.nomeDocumento = "IPVA";
+    documento3.Codigo = 3;
+    documento3.Codigo_Tipo_Documento = 1;
+    documento3.Nome_Documento = "IPVA";
 
     this.documentosVencer.push(documento1);
     this.documentosVencer.push(documento2);

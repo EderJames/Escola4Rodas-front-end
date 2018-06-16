@@ -80,7 +80,7 @@ export class VeiculoServiceProvider implements IVeiculoService {
         headers: headers
       }).map(response => {
         let resp = response.json();
-
+        debugger
         let resultado: VeiculoModel = resp.map(function (veiculo) {
           let v: VeiculoModel = new VeiculoModel();
           v.Codigo_Veiculo = veiculo.Codigo_Veiculo;

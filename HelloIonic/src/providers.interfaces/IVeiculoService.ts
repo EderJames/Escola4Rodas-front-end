@@ -5,4 +5,5 @@ export interface IVeiculoService{
     listarVeiculos(): Observable<VeiculoModel[]>;   
     atualizarVeiculo(veiculoModel: VeiculoModel): Observable<string>;
     inserirVeiculo(veiculoModel: VeiculoModel): Observable<string>;
+    deletarVeiculo(veiculoModel: VeiculoModel): Observable<string>
 }

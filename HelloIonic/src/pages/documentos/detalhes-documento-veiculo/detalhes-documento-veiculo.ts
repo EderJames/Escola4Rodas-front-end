@@ -7,13 +7,6 @@ import { TipoDocumento } from '../../../models/TipoDocumento';
 import { DocumentoVeiculoModel } from '../../../models/DocumentoVeiculoModel';
 import { DocumentoVeiculoServiceProvider } from '../../../providers/documento-veiculo-service/documento-veiculo-service';
 
-/**
- * Generated class for the DetalhesDocumentoVeiculoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-detalhes-documento-veiculo',
@@ -28,21 +21,19 @@ export class DetalhesDocumentoVeiculoPage extends PaginaBase {
   veiculoModel: VeiculoModel;
   tiposDocumentos: Array<TipoDocumento>;
   documentoVeiculoModel: DocumentoVeiculoModel;
+  tipoDocumentoAtual: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public formBuilder: FormBuilder, alertCtrl: AlertController,
     public loadingCtrl: LoadingController, toastCtrl: ToastController, public documentoVeiculoService: DocumentoVeiculoServiceProvider) {
-
     super({ formBuilder: formBuilder, alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl });
+    debugger
     this.verificarCarregamentoTela();
   }
 
   verificarCarregamentoTela() {
-
-  }
-  
-  ionViewDidLoad() {
     debugger
+    this.desabilitarEdicao();
     this.tiposDocumentos = new
       Array<TipoDocumento>(
         { Codigo: 1, Nome: "Seguro Van" },
@@ -52,6 +43,11 @@ export class DetalhesDocumentoVeiculoPage extends PaginaBase {
         { Codigo: 5, Nome: "Documento Liçença Prefeitura" }
       );
     this.documentoVeiculoModel = this.navParams.data.documentoVeiculo;
+    this.tipoDocumentoAtual = this.documentoVeiculoModel.Nome_Documento;
+  }
+
+  ionViewDidLoad() {
+    
   }
 
   habilitarEdicao() {
@@ -69,7 +65,7 @@ export class DetalhesDocumentoVeiculoPage extends PaginaBase {
   gravarEdicao() {
     this.desabilitarEdicao();
     debugger
-    this.veiculoModel.Codigo_Motorista = this.veiculoModel.Motorista.Codigo_Usuario;
+    
     this.documentoVeiculoService.atualizarDocumentoVeiculo(this.documentoVeiculoModel).subscribe(
       resposta => {
         debugger
@@ -79,14 +75,13 @@ export class DetalhesDocumentoVeiculoPage extends PaginaBase {
       erro => {
         debugger
         this.esconderLoading();
-        this.mostrarMensagemErro(`Erro ao editar o veículo: ${this.veiculoModel.Nome}`);
+        this.mostrarMensagemErro(`Erro ao editar o documento: ${this.documentoVeiculoModel.Nome_Documento}`);
       });
   }
 
   deletarDocumentoVeiculo() {
     this.desabilitarEdicao();
     debugger
-    this.veiculoModel.Codigo_Motorista = this.veiculoModel.Motorista.Codigo_Usuario;
     this.documentoVeiculoService.deletarDocumentoVeiculo(this.documentoVeiculoModel).subscribe(
       resposta => {
         debugger

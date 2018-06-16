@@ -53,7 +53,6 @@ export class LoginPage extends PaginaBase {
         },
         err => {
           this.esconderLoading();
-          alert(err);
           this.mostrarToast('Não foi possível realizar o login');
         }
       );

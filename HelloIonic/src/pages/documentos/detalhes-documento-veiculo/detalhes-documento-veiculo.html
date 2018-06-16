@@ -15,35 +15,44 @@
       <ion-col>
         <form>
           <ion-list>
-            <ion-item>
+            <ion-item [hidden]="detalharDocumentoVeiculo">
               <ion-label>
                 Documento
               </ion-label>
-              <ion-select name="cmbDocumento" [(ngModel)]="documentoVeiculoModel.TipoDocumento" aria-placeholder="Documento">
-                <ion-option *ngFor="let documentoDisponivel of tiposDocumentos" [value]="documentoDisponivel">
+              <ion-select  name="cmbDocumento" [(ngModel)]="documentoVeiculoModel.Codigo_Tipo_Documento" aria-placeholder="Documento">
+                <ion-option *ngFor="let documentoDisponivel of tiposDocumentos" [value]="documentoDisponivel.Codigo">
                   {{documentoDisponivel.Nome}}
                 </ion-option>
               </ion-select>
             </ion-item>
+            <ion-item [hidden]="!detalharDocumentoVeiculo">
+                <ion-label>
+                  Documento
+                </ion-label>
+                <ion-label>
+                    {{tipoDocumentoAtual}}
+                  </ion-label>
+              </ion-item>
             <ion-item>
               <ion-label>
                 Apelido
               </ion-label>
-              <ion-input [disabled]="detalharDocumentoVeiculo" name="txtApelido" type="text" [(ngModel)]="documentoVeiculoModel.nomeDocumento">
+              <ion-input [disabled]="detalharDocumentoVeiculo" name="txtApelido" type="text" [(ngModel)]="documentoVeiculoModel.Nome_Documento">
               </ion-input>
             </ion-item>
             <ion-item>
               <ion-label>
                 Descrição
               </ion-label>
-              <ion-input [disabled]="detalharDocumentoVeiculo" name="txtDescricao" type="text" [(ngModel)]="documentoVeiculoModel.descricao">
+              <ion-input [disabled]="detalharDocumentoVeiculo" name="txtDescricao" type="text" [(ngModel)]="documentoVeiculoModel.Descricao">
               </ion-input>
             </ion-item>
             <ion-item>
               <ion-label>
                 Horário
               </ion-label>
-              <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="documentoVeiculoModel.validade">
+              <ion-datetime [disabled]="detalharDocumentoVeiculo" name="txtValidade" displayFormat="DD/MM/YYYY" pickerFormat="DD MMMM YYYY" 
+              [(ngModel)]="documentoVeiculoModel.Validade" min="2000" max="2025-12-31">
               </ion-datetime>
             </ion-item>
           </ion-list>
@@ -68,6 +77,15 @@
         </div>
       </ion-col>
     </ion-row>
+    <ion-row>
+        <ion-col>
+          <div [hidden]="exibicaoBtnGravar" class="btnTextoCentralizado">
+            <button ion-button class="btnOcuparTodaTela" (click)="desabilitarEdicao()">
+              Voltar
+            </button>
+          </div>
+        </ion-col>
+      </ion-row>
     <ion-row>
       <ion-col>
         <div [hidden]="exibicaoBtnEditar" class="btnTextoCentralizado">

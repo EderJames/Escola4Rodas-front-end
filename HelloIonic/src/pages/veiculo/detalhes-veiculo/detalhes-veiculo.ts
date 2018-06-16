@@ -117,8 +117,6 @@ export class DetalhesVeiculoPage extends PaginaBase {
     }
     else if(this.veiculoModel.Viagens){
       let viagensVinculadasVeiculo: ViagemModel[];
-      
-     
       this.mostrarMensagemErro(`O veículo está vinculado as viagens:`);
     }
   }

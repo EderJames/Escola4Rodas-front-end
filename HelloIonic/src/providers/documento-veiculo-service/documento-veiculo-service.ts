@@ -40,13 +40,13 @@ export class DocumentoVeiculoServiceProvider implements IDocumentoService {
        
        let resultado: DocumentoVeiculoModel[] = resp.map(function (documento, index, arr){
           let documentoVeiculoModel : DocumentoVeiculoModel = new DocumentoVeiculoModel();
-          documentoVeiculoModel.codigo = documento.Codigo;
-          documentoVeiculoModel.codigoTipoDocumento = documento.TipoDocumento;
-          documentoVeiculoModel.codigoVeiculo = documento.Codigo_Veiculo;
-          documentoVeiculoModel.descricao = documento.Descricao;
-          documentoVeiculoModel.dtrh = documento.Dthr;
-          documentoVeiculoModel.nomeDocumento = documento.Nome_Documento;
-          documentoVeiculoModel.validade = documento.Validade;
+          documentoVeiculoModel.Codigo = documento.Codigo;
+          documentoVeiculoModel.Codigo_Tipo_Documento = documento.TipoDocumento;
+          documentoVeiculoModel.Codigo_Veiculo = documento.Codigo_Veiculo;
+          documentoVeiculoModel.Descricao = documento.Descricao;
+          documentoVeiculoModel.Dthr = documento.Dthr;
+          documentoVeiculoModel.Nome_Documento = documento.Nome_Documento;
+          documentoVeiculoModel.Validade = documento.Validade;
           documentoVeiculoModel.veiculo = documento.Veiculo;
 
           return documentoVeiculoModel;
@@ -73,7 +73,7 @@ export class DocumentoVeiculoServiceProvider implements IDocumentoService {
       headers.append('Content-type', 'application/json');
       headers.set('Authorization', `Bearer ${token}`);
 
-      return this.http.put(HelloIonicConstants.BASE_URL + HelloIonicConstants.Veiculo.PUT,
+      return this.http.put(HelloIonicConstants.BASE_URL + HelloIonicConstants.DocumentoVeiculo.PUT,
         JSON.stringify(documentoVeiculoModel), { headers: headers })
         .map(response => {
           debugger;
@@ -125,7 +125,7 @@ export class DocumentoVeiculoServiceProvider implements IDocumentoService {
       headers.append('Content-type', 'application/json');
       headers.set('Authorization', `Bearer ${token}`);
 
-      return this.http.delete(HelloIonicConstants.BASE_URL + HelloIonicConstants.DocumentoVeiculo.DELETE + "/" + documentoVeiculoModel.codigo,
+      return this.http.delete(HelloIonicConstants.BASE_URL + HelloIonicConstants.DocumentoVeiculo.DELETE + "/" + documentoVeiculoModel.Codigo,
          { headers: headers })
         .map(response => {
           debugger;
