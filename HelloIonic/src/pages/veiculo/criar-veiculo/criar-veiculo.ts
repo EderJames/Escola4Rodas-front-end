@@ -37,21 +37,17 @@ export class CriarVeiculoPage extends PaginaBase {
   gravarEdicao() {
     debugger
     this.mostrarLoading(`Inserindo veículo ${this.veiculoModel.Nome}`);
-    this.veiculoModel.Codigo_Motorista = this.veiculoModel.Motorista.Codigo_Usuario;
-    this.veiculoModel.Motorista.Passageiros = null;
-    this.veiculoModel.Motorista.Veiculos = null;
-    this.veiculoModel.Motorista.Viagens = null;
-    this.veiculoModel.Motorista.Instituicoes = null;
+    this.veiculoModel.Motorista = null;
     this.veiculoService.inserirVeiculo(this.veiculoModel).subscribe(
       resposta => {
         debugger
         this.esconderLoading();
-        this.mostrarMensagemErro(`Motorista inserido com sucesso: ${resposta}`);
+        this.mostrarMensagemErro(`Veículo inserido com sucesso: ${resposta}`);
       },
       erro => {
         debugger
         this.esconderLoading();
-        this.mostrarMensagemErro(`Erro ao buscar os motoristas: ${erro}`);
+        this.mostrarMensagemErro(`Erro ao inserir o veículo: ${this.veiculoModel.Nome}`);
       });
   }
 

@@ -32,16 +32,13 @@ export class DetalhesVeiculoPage extends PaginaBase {
     super({ formBuilder: formBuilder, alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl});
     
     this.verificarCarregamentoTela();
-    this.motoristaAtual = new MotoristaModel();
-    this.motoristaAtual.Usuario = new UsuarioModel();
+    
   }
 
   verificarCarregamentoTela(){
     debugger
     this.veiculoModel = this.navParams.data.veiculo;
-    if(this.veiculoModel.Motorista && this.veiculoModel.Motorista.Usuario){
-      this.motoristaAtual = this.veiculoModel.Motorista;
-    }
+    this.motoristaAtual = this.veiculoModel.Motorista;
     this.desabilitarEdicao();
     
     this.motoristaService.listarMotoristas().subscribe(
@@ -87,6 +84,7 @@ export class DetalhesVeiculoPage extends PaginaBase {
         debugger
         this.esconderLoading();
         let teste = resposta;
+        this.motoristaAtual = this.veiculoModel.Motorista;
       },
       erro => {
         debugger

@@ -25,18 +25,13 @@ export class CriarMotoristaPage extends PaginaBase {
     public alertCtrl: AlertController, private motoristaService: MotoristaServiceProvider) {
     super({ alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl });
 
-    let usuario: UsuarioModel;
-    usuario = new UsuarioModel();
-    usuario.Codigo = 1;
-    usuario.Nome = "Tio Eder";
+    this.verificarCarregamentoTela();
+  }
 
-    let motorista1: MotoristaModel;
-    motorista1 = new MotoristaModel();
-    motorista1.Codigo_Usuario = 1;
-    motorista1.Cnh = 123456789;
-    motorista1.Usuario = usuario;
-
-    this.motoristaModel = motorista1;
+  verificarCarregamentoTela() {
+    debugger
+    this.motoristaModel = new MotoristaModel();
+    this.motoristaModel.Usuario = new UsuarioModel();
   }
 
   ionViewDidLoad() {
@@ -44,6 +39,13 @@ export class CriarMotoristaPage extends PaginaBase {
   }
 
   adicionarMotorista() {
-    alert("123");
+    debugger
+    this.motoristaService.inserirMotorista(this.motoristaModel).subscribe(
+      resposta => {
+        this.mostrarMensagemSucesso(`Motorista ${this.motoristaModel.Usuario.Nome} adicionado com sucesso`);
+      },
+      erro => {
+        this.mostrarMensagemErro(`Não foi possível adicionar o motorista ${this.motoristaModel.Usuario.Nome}`);
+      });
   }
 }

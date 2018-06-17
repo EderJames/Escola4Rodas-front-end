@@ -4,6 +4,7 @@ import { PaginaBase } from '../../../infraestrutura/PaginaBase';
 import { MotoristaModel } from '../../../models/MotoristaModel';
 import { MotoristaServiceProvider } from '../../../providers/motorista-service/motorista-service';
 import { CriarMotoristaPage } from '../criar-motorista/criar-motorista';
+import { DetalhesMotoristaPage } from '../detalhes-motorista/detalhes-motorista';
 
 @IonicPage()
 @Component({
@@ -21,7 +22,7 @@ export class MotoristasPage  extends PaginaBase {
   }
 
   ionViewDidLoad() {
-    this.mostrarLoading("Buscando produtos");
+    this.mostrarLoading("Buscando motoristas");
     this.motoristaService.listarMotoristas().subscribe(
       resposta => {
         this.esconderLoading();
@@ -29,17 +30,15 @@ export class MotoristasPage  extends PaginaBase {
       },
       erro => {
         this.esconderLoading();
-        this.mostrarMensagemErro(`Erro ao buscar os produtos: ${erro}`);
+        this.mostrarMensagemErro(`Erro ao buscar os motoristas: ${erro}`);
       });
   }
 
-  mostrarDetalhesProduto(produto: MotoristaModel){
-    //this.navCtrl.push(DetalhesMotorista, {
-    //  produto: produto
-    //});
+  detalharMotorista(motorista: MotoristaModel){
+    this.navCtrl.push(DetalhesMotoristaPage, {motorista});
   }
 
   adicionarMotorista(){
-    this.navCtrl.setRoot(CriarMotoristaPage, {}, {animate: true, direction: 'forward'});        
+    this.navCtrl.push(CriarMotoristaPage, {});        
   }
 }

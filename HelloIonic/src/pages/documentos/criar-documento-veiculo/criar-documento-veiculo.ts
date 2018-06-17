@@ -56,8 +56,6 @@ export class CriarDocumentoVeiculoPage extends PaginaBase {
         this.esconderLoading();
         this.mostrarMensagemErro(`Erro ao editar o documento: ${this.documentoVeiculoModel.Nome_Documento}`);
       });
-
-    
   }
 
   ionViewDidLoad() {

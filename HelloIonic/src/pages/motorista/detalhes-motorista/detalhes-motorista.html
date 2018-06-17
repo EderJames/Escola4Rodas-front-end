@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Detalhes motorista {{motoristaModel.Usuario.Nome}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <form>
+          <ion-list>
+            <ion-item>
+              <ion-label>
+                Nome:
+              </ion-label>
+              <ion-input [disabled]="detalharMotorista" type="text" name="txtNome" [(ngModel)]="motoristaModel.Usuario.Nome">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Idade:
+              </ion-label>
+              <ion-input [disabled]="detalharMotorista" type="number" name="txtIdade" [(ngModel)]="motoristaModel.Usuario.Idade">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Cnh:
+              </ion-label>
+              <ion-input [disabled]="detalharMotorista" type="number" name="txtCnh" [(ngModel)]="motoristaModel.Cnh">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                E-mail:
+              </ion-label>
+              <ion-input [disabled]="detalharMotorista" type="email" name="txtEmail" [(ngModel)]="motoristaModel.Usuario.Email">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Telefone:
+              </ion-label>
+              <ion-input [disabled]="detalharMotorista" type="number" name="txtTelefone" [(ngModel)]="motoristaModel.Usuario.Telefone">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Login:
+              </ion-label>
+              <ion-input [disabled]="detalharMotorista" type="text" name="txtLogin" [(ngModel)]="motoristaModel.Usuario.Login">
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Senha:
+              </ion-label>
+              <ion-input [disabled]="detalharMotorista" type="password" name="txtSenha" [(ngModel)]="motoristaModel.Usuario.Senha">
+              </ion-input>
+            </ion-item>
+          </ion-list>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button [hidden]="exibicaoBtnGravar" ion-button class="btnOcuparTodaTela" (click)="atualizarMotorista()">
+          Gravar
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button [hidden]="exibicaoBtnEditar" ion-button class="btnOcuparTodaTela" (click)="habilitarEdicao()">
+          Editar
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button class="btnOcuparTodaTela" (click)="desabilitarEdicao()">
+          Voltar
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button [hidden]="exibicaoBtnEditar" ion-button class="btnOcuparTodaTela" (click)="excluirMotorista()">
+          Excluir
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

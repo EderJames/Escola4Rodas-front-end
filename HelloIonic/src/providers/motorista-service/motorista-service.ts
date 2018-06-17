@@ -6,16 +6,10 @@ import { Observable } from 'rxjs/Observable';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { IMotoristaService } from '../../providers.interfaces/IMotoristaService';
 
-/*
-  Generated class for the MotoristaServiceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class MotoristaServiceProvider implements IMotoristaService {
 
-  constructor(public http: Http, private nativeStorage : NativeStorage) {
+  constructor(public http: Http, private nativeStorage: NativeStorage) {
     console.log('Hello MotoristaServiceProvider Provider');
   }
 
@@ -29,16 +23,16 @@ export class MotoristaServiceProvider implements IMotoristaService {
     );
 
     return tokenObservable.flatMap(token => {
-      let headers : Headers = new Headers();
+      let headers: Headers = new Headers();
       headers.set('Authorization', `Bearer ${token}`);
 
       //caminho da url da minha webapi - instituicoes/get
       return this.http.get(HelloIonicConstants.BASE_URL + HelloIonicConstants.Motorista.GET, {
-        headers : headers
+        headers: headers
       }).map(response => {
-       let resp = response.json();
-       let resultado: MotoristaModel[] = resp.map(function (motorista, index, arr){
-          let m : MotoristaModel = new MotoristaModel();
+        let resp = response.json();
+        let resultado: MotoristaModel[] = resp.map(function (motorista, index, arr) {
+          let m: MotoristaModel = new MotoristaModel();
           m.Usuario = motorista.Usuario;
           m.Codigo_Usuario = motorista.Codigo_Usuario;
           m.Cnh = motorista.Cnh;
@@ -47,10 +41,87 @@ export class MotoristaServiceProvider implements IMotoristaService {
           m.Passageiros = motorista.Passageiros;
           m.Veiculos = motorista.Veiculos;
           return m;
-       });
+        });
 
-       return resultado;
+        return resultado;
       });
+    });
+  }
+
+  inserirMotorista(motoristaModel: MotoristaModel): Observable<string> {
+    debugger
+
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
+
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
+
+      return this.http.post(HelloIonicConstants.BASE_URL + HelloIonicConstants.Motorista.POST,
+        JSON.stringify(motoristaModel), { headers: headers })
+        .map(response => {
+          debugger;
+          return response.toString();//response.json();
+        });
+
+    });
+  }
+  atualizarMotorista(motoristaModel: MotoristaModel): Observable<string> {
+    debugger
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
+
+      return this.http.put(HelloIonicConstants.BASE_URL + HelloIonicConstants.Motorista.PUT,
+        JSON.stringify(motoristaModel), { headers: headers })
+        .map(response => {
+          debugger;
+          return response.toString();
+        });
+
+    });
+  }
+
+  deletarMotorista(motoristaModel: MotoristaModel): Observable<string> {
+    debugger
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
+
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
+
+      return this.http.delete(HelloIonicConstants.BASE_URL + HelloIonicConstants.Motorista.DELETE + "/" + motoristaModel.Codigo_Usuario,
+        { headers: headers })
+        .map(response => {
+          debugger;
+          return response.toString();
+        });
+
     });
   }
 }

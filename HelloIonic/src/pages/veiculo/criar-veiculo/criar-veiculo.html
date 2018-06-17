@@ -34,8 +34,8 @@
               <ion-label>
                 Motorista
               </ion-label>
-              <ion-select name="cmbMotorista" [(ngModel)]="veiculoModel.Motorista" aria-placeholder="Mostoristas">
-                <ion-option *ngFor="let motorista of motoristasDisponiveis" [value]="motorista">
+              <ion-select name="cmbMotorista" [(ngModel)]="veiculoModel.Codigo_Motorista" aria-placeholder="Mostoristas">
+                <ion-option *ngFor="let motorista of motoristasDisponiveis" [value]="motorista.Codigo_Usuario">
                   {{motorista.Usuario.Nome}}
                 </ion-option>
               </ion-select>

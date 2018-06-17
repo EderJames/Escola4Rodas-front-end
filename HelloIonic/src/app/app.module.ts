@@ -39,6 +39,7 @@ import { DetalhesDocumentoVeiculoPage } from '../pages/documentos/detalhes-docum
 import { CriarDocumentoVeiculoPage } from '../pages/documentos/criar-documento-veiculo/criar-documento-veiculo';
 import { DocumentosVeiculoPage } from '../pages/documentos/documentos-veiculo/documentos-veiculo';
 import { DocumentoVeiculoServiceProvider } from '../providers/documento-veiculo-service/documento-veiculo-service';
+import { DetalhesMotoristaPage } from '../pages/motorista/detalhes-motorista/detalhes-motorista';
 
 
 
@@ -55,14 +56,15 @@ import { DocumentoVeiculoServiceProvider } from '../providers/documento-veiculo-
     ViagensPage,
     PassageirosPage,
     VeiculosPage,
-    MotoristasPage,
     InstituicoesPage,
     DetalhesInstituicaoPage,
     CriarPassageiroPage,
     CriarLocaisPage,
     CriarViagemPage,
     CriarInstituicaoPage,
+    MotoristasPage,
     CriarMotoristaPage,
+    DetalhesMotoristaPage,
     CriarVeiculoPage,
     DetalhesVeiculoPage,
     DocumentosVeiculoPage,
@@ -131,13 +133,14 @@ import { DocumentoVeiculoServiceProvider } from '../providers/documento-veiculo-
     ViagensPage,
     PassageirosPage,
     VeiculosPage,
-    MotoristasPage,
     InstituicoesPage,
     CriarPassageiroPage,
     CriarLocaisPage,
     CriarViagemPage,
     CriarInstituicaoPage,
+    MotoristasPage,
     CriarMotoristaPage,
+    DetalhesMotoristaPage,
     CriarVeiculoPage,
     DetalhesVeiculoPage,
     DocumentosVeiculoPage,

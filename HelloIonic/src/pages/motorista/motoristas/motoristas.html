@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let motorista of motoristas">
+    <button ion-item *ngFor="let motorista of motoristas" (click)="detalharMotorista(motorista)">
       <ion-icon [name]="arrow-forward" item-left></ion-icon>
       {{motorista.Usuario.Nome}}
       <ion-icon name="arrow-forward" item-right></ion-icon>

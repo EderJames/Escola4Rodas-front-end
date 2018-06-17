@@ -34,6 +34,14 @@
               </ion-label>
               <ion-input [disabled]="detalharVeiculo" name="txtCargaMaxima" type="number" [(ngModel)]="veiculoModel.Carga_Maxima"></ion-input>
             </ion-item>
+            <ion-item [hidden]="exibicaoBtnEditar">
+              <ion-label>
+                Motorista
+              </ion-label>
+              <ion-label>
+                {{motoristaAtual.Usuario.Nome}}
+              </ion-label>
+            </ion-item>
             <ion-item>
               <ion-label>
                 Motorista
