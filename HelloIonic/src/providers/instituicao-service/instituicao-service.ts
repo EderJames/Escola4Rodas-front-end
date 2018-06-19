@@ -6,12 +6,6 @@ import { InstituicaoModel } from '../../models/InstituicaoModel';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { HelloIonicConstants } from '../../app/HelloIonicConstants';
 
-/*
-  Generated class for the InstituicaoServiceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class InstituicaoServiceProvider implements IInstituicaoService {
 

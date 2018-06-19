@@ -14,7 +14,6 @@
     <ion-row>
       <ion-col>
         <form>
-
           <ion-list>
             <ion-item>
               <ion-label>
@@ -42,7 +41,7 @@
                 {{motoristaAtual.Usuario.Nome}}
               </ion-label>
             </ion-item>
-            <ion-item>
+            <ion-item [hidden]="exibicaoBtnGravar">
               <ion-label>
                 Motorista
               </ion-label>
@@ -65,27 +64,36 @@
         </div>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row [hidden]="exibicaoBtnEditar">
       <ion-col>
-        <div [hidden]="exibicaoBtnEditar" class="btnTextoCentralizado">
+        <div  class="btnTextoCentralizado">
           <button ion-button class="btnOcuparTodaTela" (click)="habilitarEdicao()">
             Editar
           </button>
         </div>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row [hidden]="exibicaoBtnGravar">
       <ion-col>
-        <div [hidden]="exibicaoBtnGravar" class="btnTextoCentralizado">
+        <div  class="btnTextoCentralizado">
+          <button ion-button class="btnOcuparTodaTela" (click)="desabilitarEdicao()">
+            Voltar
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row [hidden]="exibicaoBtnGravar">
+      <ion-col>
+        <div  class="btnTextoCentralizado">
           <button ion-button class="btnOcuparTodaTela" (click)="gravarEdicao()">
             Gravar
           </button>
         </div>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row [hidden]="exibicaoBtnEditar">
       <ion-col>
-        <div [hidden]="exibicaoBtnEditar" class="btnTextoCentralizado">
+        <div  class="btnTextoCentralizado">
           <button ion-button class="btnOcuparTodaTela" (click)="deletarVeiculo()">
             Excluir
           </button>

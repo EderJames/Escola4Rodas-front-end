@@ -21,7 +21,6 @@ import { CriarViagemPage } from '../criar-viagem/criar-viagem';
 export class ViagensPage extends PaginaBase {
 
   viagens: ViagemModel[];
-
   constructor(public navCtrl: NavController, public navParams: NavParams,
       public loadingCtrl: LoadingController, public toastCtrl: ToastController,
       public alertCtrl: AlertController, private viagemService : ViagemServiceProvider) {

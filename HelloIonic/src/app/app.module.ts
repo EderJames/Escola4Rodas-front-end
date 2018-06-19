@@ -40,6 +40,8 @@ import { CriarDocumentoVeiculoPage } from '../pages/documentos/criar-documento-v
 import { DocumentosVeiculoPage } from '../pages/documentos/documentos-veiculo/documentos-veiculo';
 import { DocumentoVeiculoServiceProvider } from '../providers/documento-veiculo-service/documento-veiculo-service';
 import { DetalhesMotoristaPage } from '../pages/motorista/detalhes-motorista/detalhes-motorista';
+import { DetalhesViagemPage } from '../pages/viagem/detalhes-viagem/detalhes-viagem';
+import { DiaSemanaServiceProvider } from '../providers/dia-semana-service/dia-semana-service';
 
 
 
@@ -69,7 +71,8 @@ import { DetalhesMotoristaPage } from '../pages/motorista/detalhes-motorista/det
     DetalhesVeiculoPage,
     DocumentosVeiculoPage,
     DetalhesDocumentoVeiculoPage,
-    CriarDocumentoVeiculoPage
+    CriarDocumentoVeiculoPage,
+    DetalhesViagemPage
   ],
   imports: [
     BrowserModule,
@@ -145,7 +148,8 @@ import { DetalhesMotoristaPage } from '../pages/motorista/detalhes-motorista/det
     DetalhesVeiculoPage,
     DocumentosVeiculoPage,
     DetalhesDocumentoVeiculoPage,
-    CriarDocumentoVeiculoPage
+    CriarDocumentoVeiculoPage,
+    DetalhesViagemPage
   ],
   providers: [
     StatusBar,
@@ -160,7 +164,8 @@ import { DetalhesMotoristaPage } from '../pages/motorista/detalhes-motorista/det
     VeiculoServiceProvider,
     ViagemServiceProvider,
     DocumentoVeiculoServiceProvider,
-    DocumentoVeiculoServiceProvider
+    DocumentoVeiculoServiceProvider,
+    DiaSemanaServiceProvider
   ]
 })
 export class AppModule { }

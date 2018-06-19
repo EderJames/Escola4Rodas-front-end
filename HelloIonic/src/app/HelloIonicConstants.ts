@@ -98,5 +98,10 @@ export class HelloIonicConstants{
         DIARIA: 'Diária'
     } 
 
-    
+    static readonly DiaSemana = {
+        GET: 'diasemana',
+        POST:'diasemana',
+        PUT: 'diasemana',
+        DELETE: 'diasemana'
+    }
 }
