@@ -30,7 +30,7 @@ export class LoginPage extends PaginaBase {
     this.loginModel = new LoginModel();
 
     this.loginModel.email = "edeleno12@gmail.com";
-    this.loginModel.senha = "123456";
+    this.loginModel.senha = "123456eder897412";
     this.desativarMenu();
   }
 
@@ -45,13 +45,16 @@ export class LoginPage extends PaginaBase {
     if(this.loginFrmGroup.valid){
       this.mostrarLoading("Fazendo login....");
       this.navCtrl.setRoot(HomePage, {}, {animate: true, direction: 'forward'});
+      debugger
       this.autenticacaoService.login(this.loginModel).subscribe(
         data => {
+          debugger
           this.esconderLoading();
           //this.navCtrl.setRoot(MenuMotoristaPage, {}, {animate: true, direction: 'forward'});
           this.mostrarToast('Login realizado com sucesso');
         },
         err => {
+          debugger
           this.esconderLoading();
           this.mostrarToast('Não foi possível realizar o login');
         }

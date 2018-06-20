@@ -1,15 +1,16 @@
 import { TipoDocumento } from "../models/TipoDocumento";
 
 export class HelloIonicConstants{
-    static readonly BASE_URL: string = "http://localhost:59974/api/";//"https://escola4rodas.azurewebsites.net/api/";
-    static readonly TOKEN_URL: string = "http://localhost:59974/";//"https://escola4rodas.azurewebsites.net/";
+    static readonly BASE_URL: string = "https://escola4rodas.azurewebsites.net/api/";//"http://localhost:59974/api/";
+    static readonly TOKEN_URL: string = "https://escola4rodas.azurewebsites.net/"; //"http://localhost:59974/";//
 
-    static readonly BASE_URL_PROXY_4RODAS: string = "http://192.168.1.3:8100/";
+    static readonly BASE_URL_PROXY_4RODAS: string = "http://192.168.100.6:8100/";
 
     static readonly Auth = {
         LOGIN_PROXY: 'proxylogin',
         LOGIN: 'login',
-        Token: 'token'
+        Token: 'token',
+        TOKEN_PROXY: 'proxytoken'
     };
 
     static readonly Produtos = {
@@ -65,6 +66,13 @@ export class HelloIonicConstants{
         DELETE: 'veiculo'
     }
 
+    static readonly proxyVeiculo = {
+        GET: 'proxyveiculo',
+        POST:'proxyveiculo',
+        PUT: 'proxyveiculo',
+        DELETE: 'proxyveiculo'
+    }
+
     static readonly DocumentoVeiculo = {
         GET: 'documentoveiculo',
         POST:'documentoveiculo',
@@ -72,11 +80,11 @@ export class HelloIonicConstants{
         DELETE: 'documentoveiculo'
     }
 
-    static readonly proxyVeiculo = {
-        GET: 'proxyveiculo',
-        POST:'proxyveiculo',
-        PUT: 'proxyveiculo',
-        DELETE: 'proxyveiculo'
+    static readonly proxyDocumentoVeiculo = {
+        GET: 'proxydocumentoveiculo',
+        POST:'proxydocumentoveiculo',
+        PUT: 'proxydocumentoveiculo',
+        DELETE: 'proxydocumentoveiculo'
     }
 
     static readonly Viagem = {
