@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController, AlertController, LoadingController, ToastController, DateTime } from 'ionic-angular';
+import { NavController, MenuController, AlertController, LoadingController, ToastController, DateTime, NavParams } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ViagemModel } from '../../models/ViagemModel';
 import { PaginaBase } from '../../infraestrutura/PaginaBase';
@@ -7,6 +7,7 @@ import { ViagemServiceProvider } from '../../providers/viagem-service/viagem-ser
 import { DocumentoVeiculoModel } from '../../models/DocumentoVeiculoModel';
 import { VeiculoServiceProvider } from '../../providers/veiculo-service/veiculo-service';
 import { VeiculoModel } from '../../models/VeiculoModel';
+import { UsuarioModel } from '../../models/UsuarioModel';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { VeiculoModel } from '../../models/VeiculoModel';
 export class HomePage extends PaginaBase {
 
   token: string;
-  nomeUsuario: string = "Tio Eder";
+  usuarioLogado : UsuarioModel;
   proximasViagens: Array<ViagemModel>;
   documentosVencer: Array<DocumentoVeiculoModel>;
   veiculos: Array<VeiculoModel>;
@@ -24,24 +25,33 @@ export class HomePage extends PaginaBase {
   constructor(public navCtrl: NavController, private nativeStorage: NativeStorage,
     public menuCtrl: MenuController, public alertCtrl: AlertController,
     public loadingCtrl: LoadingController, toastCtrl: ToastController,
-    private viagemService: ViagemServiceProvider, private veiculoService: VeiculoServiceProvider) {
+    private viagemService: ViagemServiceProvider, private veiculoService: VeiculoServiceProvider,
+    public navParams: NavParams) {
 
     super({ alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl });
+    this.verificarCarregamentoTela();
+  }
 
-    this.nativeStorage.getItem('token_autenticacao')
-      .then(
-        data => { this.token = data.token },
-        erro => this.token = '<sem token>'
-      );
-
-
-    menuCtrl.enable(true);
+  verificarCarregamentoTela(){
+    debugger;
+    this.usuarioLogado = new UsuarioModel();
+    this.obterToken();
+    this.usuarioLogado = this.navParams.data.usuarioLogadoEnviar;
+    this.menuCtrl.enable(true);
     this.proximasViagens = new Array<ViagemModel>();
     this.documentosVencer = new Array<DocumentoVeiculoModel>();
     this.veiculos = new Array<VeiculoModel>();
 
     this.povoarArrayProximasViagens();
     this.povoarArrayDocumentosAVencer();
+  }
+
+  obterToken(){
+    this.nativeStorage.getItem('token_autenticacao')
+    .then(
+      data => { this.token = data.token },
+      erro => this.token = '<sem token>'
+    );
   }
 
   povoarArrayProximasViagens() {

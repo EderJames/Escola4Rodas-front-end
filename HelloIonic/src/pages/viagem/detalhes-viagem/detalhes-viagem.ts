@@ -19,12 +19,15 @@ import { DiaSemanaServiceProvider } from '../../../providers/dia-semana-service/
   templateUrl: 'detalhes-viagem.html',
 })
 export class DetalhesViagemPage extends PaginaBase {
+  
   viagemModel: ViagemModel;
   motoristasDisponiveis: Array<MotoristaModel>;
   veiculosDisponiveis: Array<VeiculoModel>;
   tiposViagensDisponiveis: Array<TipoViagem>;
   instituicoesDisponiveis: Array<InstituicaoModel>;
   diaSemanaDisponiveis: Array<DiaSemanaModel>;
+  exibicaoBtnEditar: boolean;
+  exibicaoBtnGravar: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public loadingCtrl: LoadingController, public toastCtrl: ToastController,
@@ -38,11 +41,15 @@ export class DetalhesViagemPage extends PaginaBase {
 
   verificarCarregamentoTela() {
     //this.viagemModel = this.navCtrl.na
+    debugger
+    this.viagemModel = this.navParams.data.viagem;
+    this.desabilitarEdicao();
     this.buscarMotoristas();
     this.buscarVeiculos();
     this.buscarInstituicoes();
     this.buscarTiposViagem();
     this.buscarDiasSemana();
+
   }
 
   ionViewDidLoad() {
@@ -72,6 +79,7 @@ export class DetalhesViagemPage extends PaginaBase {
   buscarInstituicoes() {
     this.instituicaoService.listarInstituicoes().subscribe(
       resposta => {
+        debugger;
         this.instituicoesDisponiveis = resposta;
       },
       erro => {
@@ -96,5 +104,15 @@ export class DetalhesViagemPage extends PaginaBase {
         { Codigo: 2, Nome: "Semanal" },
         { Codigo: 3, Nome: "Mensal" }
       );
+  }
+
+  habilitarEdicao(){
+    this.exibicaoBtnGravar = false;
+    this.exibicaoBtnEditar = true;
+  }
+
+  desabilitarEdicao(){
+    this.exibicaoBtnGravar = true;
+    this.exibicaoBtnEditar = false;
   }
 }

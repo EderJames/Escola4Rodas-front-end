@@ -1,7 +1,6 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>detalhes viagem {{viagemModel.Nome}}</ion-title>
+    <ion-title>Detalhes viagem</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
@@ -9,17 +8,20 @@
     <ion-row>
       <ion-col>
         <h1>
-          Cadastro de viagem
+          Detalhes viagem: {{viagemModel.Nome}}
         </h1>
       </ion-col>
     </ion-row>
     <ion-row>
-      <form>
-        <ion-col>
+      <ion-col>
+        <form>
           <ion-list>
             <ion-item>
               <ion-label>
                 Motorista
+              </ion-label>
+              <ion-label>
+                {{viagemModel.VeiculoViagem.Motorista.Usuario.Nome}}
               </ion-label>
               <ion-select name="cmbMotorista" [(ngModel)]="viagemModel.VeiculoViagem.Motorista" aria-placeholder="Mostoristas">
                 <ion-option *ngFor="let motorista of motoristasDisponiveis" [value]="motorista.Usuario.Codigo_Usuario">
@@ -28,33 +30,37 @@
               </ion-select>
             </ion-item>
             <ion-item>
+              <ion-label>Horário</ion-label>
+              <ion-datetime name="txtHorario" displayFormat="DDDD MM YYYY, HH:mm" pickerFormat="DDDD MMM YYYY, HH:mm" [(ngModel)]="viagemModel.Data_Inicio">
+              </ion-datetime>
+            </ion-item>
+            <ion-item name="cmbInstituicoes">
+              <ion-label>Instituicoes</ion-label>
+              <ion-select name="cmbInstituicoes" [(ngModel)]="viagemModel.Instituicoes" aria-placeholder="Instituicoes">
+                <ion-option *ngFor="let instituicao of viagemModel.Instituicoes" multiple="true" [value]="instituicao">
+                  {{instituicao.Nome}}
+                </ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
               <ion-label>
                 Veículo
               </ion-label>
+              <ion-label>
+                {{viagemModel.VeiculoViagem.nome}}
+              </ion-label>
               <ion-select name="cmbViagem" [(ngModel)]="viagemModel.VeiculoViagem.Codigo_Veiculo" aria-placeholder="Viagens">
                 <ion-option *ngFor="let veiculo of veiculosDisponiveis" [value]="veiculo.Codigo_Veiculo">
-                  {{veiculo.nome}}
+                  {{veiculo.Nome}}
                 </ion-option>
               </ion-select>
             </ion-item>
-            <ion-item>
-              <ion-label>Horário</ion-label>
-              <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="viagemModel.Data_Inicio">
-              </ion-datetime>
-            </ion-item>
-            <ion-item>
+            <ion-item name="txtTipoViagem">
               <ion-label>Tipo viagem</ion-label>
+              <ion-label>{{viagemModel.tipoViagem}}</ion-label>
               <ion-select name="cmbTipo" [(ngModel)]="viagemModel.tipoViagem" aria-placeholder="Viagens">
-                <ion-option *ngFor="let tipoViagem of tiposViagensDisponiveis" [value]="tipoViagem">
+                <ion-option *ngFor="let tipoViagem of tiposViagensDisponiveis" [value]="tipoViagem.Codigo">
                   {{tipoViagem.Nome}}
-                </ion-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>Instituicoes</ion-label>
-              <ion-select name="cmbInstituicoes" [(ngModel)]="viagemModel.Instituicoes" aria-placeholder="Instituicoes">
-                <ion-option *ngFor="let instituicao of viagemModel.Instituicoes" [value]="instituicao.codigo">
-                  {{instituicao.nome}}
                 </ion-option>
               </ion-select>
             </ion-item>
@@ -66,16 +72,41 @@
                 </ion-option>
               </ion-select>
             </ion-item>
-            <ion-item>
-              <div class="btnTextoCentralizado">
-                <button ion-button class="btnOcuparTodaTela">
-                  Cadastrar
-                </button>
-              </div>
-            </ion-item>
           </ion-list>
+        </form>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <div [hidden]="exibicaoBtnEditar" class="btnTextoCentralizado">
+        <button ion-button class="btnOcuparTodaTela" (click)="gerenciarPassageiros()">
+          Passageiros
+        </button>
+      </div>
+    </ion-row>
+    <ion-row>
+      <div [hidden]="exibicaoBtnEditar" class="btnTextoCentralizado">
+        <button ion-button class="btnOcuparTodaTela" (click)="habilitarEdicao()">
+          Editar
+        </button>
+      </div>
+    </ion-row>
+    <ion-row>
+      <ion-row [hidden]="exibicaoBtnGravar">
+        <ion-col>
+          <div class="btnTextoCentralizado">
+            <button ion-button class="btnOcuparTodaTela" (click)="gravarEdicao()">
+              Gravar
+            </button>
+          </div>
         </ion-col>
-      </form>
+      </ion-row>
+    </ion-row>
+    <ion-row>
+      <div [hidden]="exibicaoBtnEditar" class="btnTextoCentralizado">
+        <button ion-button class="btnOcuparTodaTela">
+          Excluir
+        </button>
+      </div>
     </ion-row>
   </ion-grid>
 </ion-content>

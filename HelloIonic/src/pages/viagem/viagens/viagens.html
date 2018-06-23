@@ -8,12 +8,12 @@
 </ion-header>
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let viagem of viagens" class="btnOcuparTodaTela ">
+    <button ion-item *ngFor="let viagem of viagens" class="btnOcuparTodaTela" (click)="detalharViagem(viagem)">
       <ion-icon [name]="bus" item-left></ion-icon>
       {{viagem.Nome}}
     </button>
   </ion-list>
   <button ion-button class="btnOcuparTodaTela" (click)="adicionarViagem()">
-    +
+    Adicionar viagem
   </button>
 </ion-content>

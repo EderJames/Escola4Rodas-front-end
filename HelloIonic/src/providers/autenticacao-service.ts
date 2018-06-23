@@ -6,6 +6,8 @@ import { LoginModel } from '../models/LoginModel';
 import { Observable } from 'rxjs/Observable';
 import { HelloIonicConstants } from '../app/HelloIonicConstants';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { UsuarioModel } from '../models/UsuarioModel';
+import { useAnimation } from '@angular/core/src/animation/dsl';
 
 @Injectable()
 export class AutenticacaoService implements IAutenticacaoService {
@@ -14,8 +16,7 @@ export class AutenticacaoService implements IAutenticacaoService {
     console.log("Hello AutenticacaoService Provider");
   }
 
-  login(loginModel: LoginModel): Observable<void> {
-    debugger;
+  obterToken(loginModel : LoginModel): Observable<void> {
     if (!loginModel || !loginModel.email || !loginModel.senha) {
       return Observable.throw("e-mail e/ou senha não informados");
     }
@@ -42,16 +43,75 @@ export class AutenticacaoService implements IAutenticacaoService {
       .map(response => {
         debugger;
         let resp = response.json();
-
         debugger;
 
         this.nativeStorage.setItem('token_autenticacao', {token: resp.access_token})
-                          .then(
-                            () => console.log('Token armazenado'),
-                            (erro) => console.log(erro)
-                          );
+        .then(
+          () => console.log('Token armazenado'),
+          (erro) => console.log(erro)
+        );
+
       });
-    
+  }
+
+  login(loginModel: LoginModel): Observable<UsuarioModel> {
+
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
+
+      return this.http.post(HelloIonicConstants.BASE_URL + HelloIonicConstants.Usuario.Login,
+        JSON.stringify(loginModel), { headers: headers })
+        .map(response => {
+          debugger;
+          let resp = response.json();
+
+          let usuarioLogado: UsuarioModel;
+          usuarioLogado = new UsuarioModel();
+
+          usuarioLogado.Codigo = resp.Codigo;
+          usuarioLogado.Dthr = resp.Dthr;
+          usuarioLogado.Email = resp.Email;
+          usuarioLogado.Id = resp.Id;
+          usuarioLogado.Idade = resp.Idade;
+          usuarioLogado.Login = resp.Login;
+          usuarioLogado.Nome = resp.Nome;
+          usuarioLogado.Senha = resp.Senha;
+          usuarioLogado.Telefone = resp.Telefone;
+
+          return usuarioLogado;//response.json();
+        });
+    });
+
+    /*
+    return this.http.get(HelloIonicConstants.BASE_URL + HelloIonicConstants.Motorista.GET, {
+        headers: headers
+      }).map(response => {
+        let resp = response.json();
+        let resultado: MotoristaModel[] = resp.map(function (motorista, index, arr) {
+          let m: MotoristaModel = new MotoristaModel();
+          m.Usuario = motorista.Usuario;
+          m.Codigo_Usuario = motorista.Codigo_Usuario;
+          m.Cnh = motorista.Cnh;
+          m.Viagens = motorista.Viagens;
+          m.Instituicoes = motorista.Instituicoes;
+          m.Passageiros = motorista.Passageiros;
+          m.Veiculos = motorista.Veiculos;
+          return m;
+        });
+
+        return resultado;
+    */
+
   }
 
   logout(): void {

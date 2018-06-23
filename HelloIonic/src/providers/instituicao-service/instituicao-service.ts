@@ -14,6 +14,7 @@ export class InstituicaoServiceProvider implements IInstituicaoService {
   }
 
   listarInstituicoes(): Observable<InstituicaoModel[]> {
+    debugger;
     let tokenObservable = Observable.fromPromise(
       this.nativeStorage.getItem('token_autenticacao')
         .then(

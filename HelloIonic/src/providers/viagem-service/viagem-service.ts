@@ -37,9 +37,10 @@ export class ViagemServiceProvider implements IViagemService {
         headers : headers
       }).map(response => {
        let resp = response.json();
-       
+       debugger;
        let resultado: ViagemModel[] = resp.map(function (viagem, index, arr){
           let v : ViagemModel = new ViagemModel();
+          debugger
           v.Codigo = viagem.Codigo;
           v.Nome = viagem.Nome;
           v.Codigo_Veiculo = viagem.Codigo_Veiculo;
@@ -50,9 +51,9 @@ export class ViagemServiceProvider implements IViagemService {
           v.VeiculoViagem = viagem.VeiculoViagem;
           v.RotaViagem = viagem.RotaViagem;
           v.Passageiros = viagem.Passageiros;
+          v.tipoViagem = viagem.Tipo_Viagem;
+          v.diasSemanaViagem = viagem.DiaSemanaViagem;
 
-          //v.diasSemanaViagem = viagem.diasSemanaViagem;
-          //v.tipoViagem = viagem.tipoViagem;
           return v;
        });
 
