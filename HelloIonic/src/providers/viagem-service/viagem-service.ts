@@ -43,7 +43,7 @@ export class ViagemServiceProvider implements IViagemService {
        let resultado: ViagemModel[] = resp.map(function (viagem, index, arr){
           let v : ViagemModel = new ViagemModel();
           debugger
-          v.Codigo = viagem.Codigo;
+          v.codigo = viagem.Codigo;
           v.Nome = viagem.Nome;
           v.Codigo_Veiculo = viagem.Codigo_Veiculo;
           v.Codigo_Rota = viagem.Codigo_Rota;
@@ -54,12 +54,12 @@ export class ViagemServiceProvider implements IViagemService {
           v.RotaViagem = viagem.RotaViagem;
           v.Passageiros = viagem.Passageiros;
           v.tipoViagem = viagem.Tipo_Viagem;
-          v.diasSemanaViagem = viagem.DiaSemanaViagem;
+          v.diaSemanaViagem = viagem.DiaSemanaViagem;
           for(let i: number = 0; i < viagem.DiaSemanaViagem.length; i++){
-            v.diasSemanaViagem[i].codigo = viagem.DiaSemanaViagem[i].Codigo;
-            v.diasSemanaViagem[i].diaSemana = new DiaSemanaModel();// = viagem.DiaSemanaViagem[i].DiaSemana;
-            v.diasSemanaViagem[i].diaSemana.codigo = viagem.DiaSemanaViagem[i].DiaSemana.Codigo;
-            v.diasSemanaViagem[i].diaSemana.diaSemana = viagem.DiaSemanaViagem[i].DiaSemana.Dia_Semana;
+            v.diaSemanaViagem[i].codigo = viagem.DiaSemanaViagem[i].Codigo;
+            v.diaSemanaViagem[i].diaSemana = new DiaSemanaModel();// = viagem.DiaSemanaViagem[i].DiaSemana;
+            v.diaSemanaViagem[i].diaSemana.codigo = viagem.DiaSemanaViagem[i].DiaSemana.Codigo;
+            v.diaSemanaViagem[i].diaSemana.diaSemana = viagem.DiaSemanaViagem[i].DiaSemana.Dia_Semana;
           }
           return v;
        });
@@ -101,7 +101,7 @@ export class ViagemServiceProvider implements IViagemService {
       let headers: Headers = new Headers();
       headers.set('Authorization', `Bearer ${token}`);
       headers.set('Content-type', 'application/json');
-
+      debugger
       return this.http.put(HelloIonicConstants.BASE_URL  + HelloIonicConstants.Viagem.PUT, JSON.stringify(viagemModel), { headers: headers })
       .map(response => {
         let resp = response.json();
@@ -124,7 +124,7 @@ export class ViagemServiceProvider implements IViagemService {
       headers.set('Authorization', `Bearer ${token}`);
       headers.set('Content-type', 'application/json');
 
-      return this.http.delete(HelloIonicConstants.BASE_URL  + HelloIonicConstants.Viagem.DELETE + "/" + viagemModel.Codigo, { headers: headers })
+      return this.http.delete(HelloIonicConstants.BASE_URL  + HelloIonicConstants.Viagem.DELETE + "/" + viagemModel.codigo, { headers: headers })
       .map(response => {
         let resp = response.json();
         return "";

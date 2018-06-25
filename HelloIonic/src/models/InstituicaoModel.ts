@@ -5,6 +5,7 @@ import { ViagemModel } from "./ViagemModel";
 
 export class InstituicaoModel{
     Codigo : number;
+    Codigo_Instituicao : number;
     nome: string;
     codigoLocal: number;
     dthr: Date;
