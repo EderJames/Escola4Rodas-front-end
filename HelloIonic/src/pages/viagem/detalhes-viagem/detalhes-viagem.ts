@@ -12,6 +12,7 @@ import { InstituicaoServiceProvider } from '../../../providers/instituicao-servi
 import { InstituicaoModel } from '../../../models/InstituicaoModel';
 import { DiaSemanaModel } from '../../../models/DiaSemanaModel';
 import { DiaSemanaServiceProvider } from '../../../providers/dia-semana-service/dia-semana-service';
+import { DiaSemanaViagemModel } from '../../../models/DiaSemanaViagemModel';
 
 @IonicPage()
 @Component({
@@ -26,8 +27,11 @@ export class DetalhesViagemPage extends PaginaBase {
   tiposViagensDisponiveis: Array<TipoViagem>;
   instituicoesDisponiveis: Array<InstituicaoModel>;
   diaSemanaDisponiveis: Array<DiaSemanaModel>;
+  diasSemanaViagemDisponiveis: Array<DiaSemanaViagemModel>;
   exibicaoBtnEditar: boolean;
   exibicaoBtnGravar: boolean;
+  detalharViagem: boolean;
+  metodoSelecao: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public loadingCtrl: LoadingController, public toastCtrl: ToastController,
@@ -40,16 +44,21 @@ export class DetalhesViagemPage extends PaginaBase {
   }
 
   verificarCarregamentoTela() {
-    //this.viagemModel = this.navCtrl.na
     debugger
     this.viagemModel = this.navParams.data.viagem;
+    this.diasSemanaViagemDisponiveis = new Array<DiaSemanaViagemModel>();
+    
+    this.metodoSelecao = {
+      title: 'Instituições',
+      mode: 'md'
+    }
+
+    this.buscarDiasSemana();
     this.desabilitarEdicao();
     this.buscarMotoristas();
     this.buscarVeiculos();
     this.buscarInstituicoes();
     this.buscarTiposViagem();
-    this.buscarDiasSemana();
-
   }
 
   ionViewDidLoad() {
@@ -88,9 +97,17 @@ export class DetalhesViagemPage extends PaginaBase {
   }
 
   buscarDiasSemana() {
+    debugger
     this.diaSemanaService.listarDiaSemana().subscribe(
       resposta => {
         this.diaSemanaDisponiveis = resposta;
+        
+        for(let i : number = 0; i < this.diaSemanaDisponiveis.length; i++){
+          this.diasSemanaViagemDisponiveis.push(new DiaSemanaViagemModel);
+          this.diasSemanaViagemDisponiveis[i].codigo = this.diaSemanaDisponiveis[i].codigo;
+          this.diasSemanaViagemDisponiveis[i].diaSemana = this.diaSemanaDisponiveis[i];
+          //this.viagemModel.diasSemanaViagem[i].diaSemana = this.diaSemanaDisponiveis[i];
+        }
       },
       erro => {
         this.mostrarMensagemErro("Não foi possível carregar os veículos disponíveis");
@@ -107,12 +124,44 @@ export class DetalhesViagemPage extends PaginaBase {
   }
 
   habilitarEdicao(){
+    this.detalharViagem =  false; 
     this.exibicaoBtnGravar = false;
     this.exibicaoBtnEditar = true;
   }
 
   desabilitarEdicao(){
+    this.detalharViagem = true;
     this.exibicaoBtnGravar = true;
     this.exibicaoBtnEditar = false;
+  }
+
+  gerenciarPassageiros(){
+    
+  }
+
+  gravar(){
+    debugger
+    this.viagemService.atualizarViagem(this.viagemModel).subscribe(
+      resposta=>{
+        debugger
+
+      },
+      err =>{
+        debugger
+
+      });
+  }
+
+  excluir(){
+    debugger
+    this.viagemService.inserirViagem(this.viagemModel).subscribe(
+      resposta=>{
+        debugger
+          
+      },
+      err =>{
+        debugger
+
+      });
   }
 }

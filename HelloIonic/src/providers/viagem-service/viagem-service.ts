@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { HelloIonicConstants } from '../../app/HelloIonicConstants';
 import { IViagemService } from '../../providers.interfaces/IViagemService';
+import { DiaSemanaModel } from '../../models/DiaSemanaModel';
 
 /*
   Generated class for the ViagemServiceProvider provider.
@@ -53,7 +54,12 @@ export class ViagemServiceProvider implements IViagemService {
           v.Passageiros = viagem.Passageiros;
           v.tipoViagem = viagem.Tipo_Viagem;
           v.diasSemanaViagem = viagem.DiaSemanaViagem;
-
+          for(let i: number = 0; i < viagem.DiaSemanaViagem.length; i++){
+            v.diasSemanaViagem[i].codigo = viagem.DiaSemanaViagem[i].Codigo;
+            v.diasSemanaViagem[i].diaSemana = new DiaSemanaModel();// = viagem.DiaSemanaViagem[i].DiaSemana;
+            v.diasSemanaViagem[i].diaSemana.codigo = viagem.DiaSemanaViagem[i].DiaSemana.Codigo;
+            v.diasSemanaViagem[i].diaSemana.diaSemana = viagem.DiaSemanaViagem[i].DiaSemana.Dia_Semana;
+          }
           return v;
        });
 
@@ -62,24 +68,36 @@ export class ViagemServiceProvider implements IViagemService {
     });
   }
 
-  inserirViagem(viagemModel: ViagemModel): Observable<void> {
-    
-    let corpoRequisicao = {
-      codigoDiaSemana: viagemModel.codigoDiaSemana,
-      codigoVeiculo: viagemModel.Codigo_Veiculo,
-      dataInicio: viagemModel.Data_Inicio,
-      nome: viagemModel.Nome,
-      passageiros: viagemModel.Passageiros,
-      tipoViagem: viagemModel.tipoViagem,
-      veiculo: viagemModel.VeiculoViagem
-    }
-
-    return this.http.post(HelloIonicConstants.BASE_URL_PROXY_4RODAS  + HelloIonicConstants.Viagem.POST, corpoRequisicao)
+  inserirViagem(viagemModel: ViagemModel): Observable<string> {
+    return this.http.post(HelloIonicConstants.BASE_URL  + HelloIonicConstants.Viagem.POST, JSON.stringify(viagemModel))
       .map(response => {
         let resp = response.json();
-        
+        return "";
+      }, 
+      err=>{
+        return "";
       });
-    
   }
 
+  atualizarViagem(viagemModel: ViagemModel): Observable<string>{
+    return this.http.put(HelloIonicConstants.BASE_URL  + HelloIonicConstants.Viagem.PUT, JSON.stringify(viagemModel))
+      .map(response => {
+        let resp = response.json();
+        return "";
+      }, 
+      err=>{
+        return "";
+      });
+  }
+
+  deletarViagem(viagemModel: ViagemModel): Observable<string>{
+    return this.http.put(HelloIonicConstants.BASE_URL_PROXY_4RODAS  + HelloIonicConstants.Viagem.PUT, JSON.stringify(viagemModel))
+      .map(response => {
+        let resp = response.json();
+        return "";
+      }, 
+      err=>{
+        return "";
+      });
+  }
 }

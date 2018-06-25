@@ -46,9 +46,7 @@ export class LoginPage extends PaginaBase {
     debugger;
     if(this.loginFrmGroup.valid){
       this.mostrarLoading("Fazendo login....");
-      
       debugger
-
       this.autenticacaoService.obterToken(this.loginModel).subscribe(
         data =>{
           debugger
@@ -64,7 +62,6 @@ export class LoginPage extends PaginaBase {
   }
 
   efetuarLogin() : UsuarioModel{
-    
     this.autenticacaoService.login(this.loginModel).subscribe(
       data => {
         debugger
@@ -95,5 +92,4 @@ export class LoginPage extends PaginaBase {
   desativarMenu() {
     this.menuCtrl.enable(false);
   }
-  
 }

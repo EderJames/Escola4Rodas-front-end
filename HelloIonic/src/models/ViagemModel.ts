@@ -15,6 +15,6 @@ export class ViagemModel{
     RotaViagem: string;
     Passageiros: PassageiroModel[];
     tipoViagem: number;
-    codigoDiaSemana: DiaSemanaViagemModel;
+    codigoDiaSemana: number;
     diasSemanaViagem: DiaSemanaViagemModel[];
 }

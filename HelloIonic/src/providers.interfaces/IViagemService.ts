@@ -3,5 +3,7 @@ import { Observable } from "rxjs/Observable";
 
 export interface IViagemService{
     listarViagens(): Observable<ViagemModel[]>;
-    inserirViagem(viagemModel: ViagemModel): Observable<void>;
+    atualizarViagem(viagemModel: ViagemModel): Observable<string>;
+    inserirViagem(viagemModel: ViagemModel): Observable<string>;
+    deletarViagem(viagemModel: ViagemModel): Observable<string>;
 }

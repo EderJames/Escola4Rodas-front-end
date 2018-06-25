@@ -92,26 +92,6 @@ export class AutenticacaoService implements IAutenticacaoService {
         });
     });
 
-    /*
-    return this.http.get(HelloIonicConstants.BASE_URL + HelloIonicConstants.Motorista.GET, {
-        headers: headers
-      }).map(response => {
-        let resp = response.json();
-        let resultado: MotoristaModel[] = resp.map(function (motorista, index, arr) {
-          let m: MotoristaModel = new MotoristaModel();
-          m.Usuario = motorista.Usuario;
-          m.Codigo_Usuario = motorista.Codigo_Usuario;
-          m.Cnh = motorista.Cnh;
-          m.Viagens = motorista.Viagens;
-          m.Instituicoes = motorista.Instituicoes;
-          m.Passageiros = motorista.Passageiros;
-          m.Veiculos = motorista.Veiculos;
-          return m;
-        });
-
-        return resultado;
-    */
-
   }
 
   logout(): void {
