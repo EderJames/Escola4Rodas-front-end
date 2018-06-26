@@ -60,33 +60,31 @@
               <ion-label>Instituicoes</ion-label>
               <ion-select [selectOptions]="metodoSelecao" multiple="true" name="cmbInstituicoesDisponiveis" [(ngModel)]="viagemModel.Instituicoes"
                 aria-placeholder="Instituicoes">
-                <ion-option *ngFor="let instituicao of instituicoesDisponiveis" [value]="instituicao">
-                  {{instituicao.nome}}
+                <ion-option *ngFor="let instituicaoDisp of instituicoesDisponiveis" [value]="instituicaoDisp">
+                  {{instituicaoDisp.nome}}
                 </ion-option>
               </ion-select>
             </ion-item>
             <ion-item [hidden]="exibicaoBtnGravar">
               <ion-label>Dias da semana</ion-label>
-              <ion-select name="cmbDiasSemanaAtuais" multiple="true" aria-placeholder="Dias semana">
+              <ion-select name="cmbDiasSemanaAtuais" multiple="true" aria-placeholder="Dias semana" [(ngModel)]="viagemModel.diasSemanaViagem">
                 <ion-option *ngFor="let diaViagemNaSemana of diasSemanaViagemDisponiveis" [value]="diaViagemNaSemana">
                   {{diaViagemNaSemana.diaSemana.diaSemana}}
                 </ion-option>
               </ion-select>
             </ion-item>
           </ion-list>
-
           <div [hidden]="exibicaoBtnEditar">
             <ion-label>Instituicoes</ion-label>
             <button name="instituicoesAtuais" ion-item *ngFor="let instituicao of viagemModel.Instituicoes">
               {{instituicao.Nome}}
             </button>
           </div>
-
           <div [hidden]="exibicaoBtnEditar">
             <ion-label class="btnTextoCentralizado">Dias da semana</ion-label>
-            <button class="btnTextoCentralizado btnOcuparTodaTela" ion-item *ngFor="let diaViagemNaSemana of viagemModel.diasSemanaViagem"
+            <button class="btnTextoCentralizado btnOcuparTodaTela" ion-item *ngFor="let diaNaSemana of viagemModel.diaSemanaViagem"
               name="diasSemanaAtuais">
-              {{diaViagemNaSemana.diaSemana.diaSemana}}
+              {{diaNaSemana.diaSemana.diaSemana}}
             </button>
           </div>
         </form>

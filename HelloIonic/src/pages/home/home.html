@@ -28,18 +28,16 @@
             {{viagem.Nome}}
           </button>
         </ion-list>
-
         <ion-label>
           Documentos a vencer:
         </ion-label>
         <ion-list>
           <button ion-item *ngFor="let documento of documentosVencer">
             <ion-icon name="document"></ion-icon>
-            {{documento.nomeDocumento}}
+            {{documento.Nome_Documento}}, Vencimento: {{documento.Validade}} 
+            
           </button>
         </ion-list>
-        <p>Token atual: {{token}}</p>
-
       </ion-col>
     </ion-row>
   </ion-grid>

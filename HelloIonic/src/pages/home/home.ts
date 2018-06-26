@@ -8,6 +8,7 @@ import { DocumentoVeiculoModel } from '../../models/DocumentoVeiculoModel';
 import { VeiculoServiceProvider } from '../../providers/veiculo-service/veiculo-service';
 import { VeiculoModel } from '../../models/VeiculoModel';
 import { UsuarioModel } from '../../models/UsuarioModel';
+import { DocumentoVeiculoServiceProvider } from '../../providers/documento-veiculo-service/documento-veiculo-service';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { UsuarioModel } from '../../models/UsuarioModel';
 export class HomePage extends PaginaBase {
 
   token: string;
-  usuarioLogado : UsuarioModel;
+  usuarioLogado: UsuarioModel;
   proximasViagens: Array<ViagemModel>;
   documentosVencer: Array<DocumentoVeiculoModel>;
   veiculos: Array<VeiculoModel>;
@@ -26,13 +27,13 @@ export class HomePage extends PaginaBase {
     public menuCtrl: MenuController, public alertCtrl: AlertController,
     public loadingCtrl: LoadingController, toastCtrl: ToastController,
     private viagemService: ViagemServiceProvider, private veiculoService: VeiculoServiceProvider,
-    public navParams: NavParams) {
+    private documentoService: DocumentoVeiculoServiceProvider, public navParams: NavParams) {
 
     super({ alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl });
     this.verificarCarregamentoTela();
   }
 
-  verificarCarregamentoTela(){
+  verificarCarregamentoTela() {
     debugger;
     this.usuarioLogado = new UsuarioModel();
     this.obterToken();
@@ -46,50 +47,55 @@ export class HomePage extends PaginaBase {
     this.povoarArrayDocumentosAVencer();
   }
 
-  obterToken(){
+  obterToken() {
     this.nativeStorage.getItem('token_autenticacao')
-    .then(
-      data => { this.token = data.token },
-      erro => this.token = '<sem token>'
-    );
+      .then(
+        data => { this.token = data.token },
+        erro => this.token = '<sem token>'
+      );
   }
 
   povoarArrayProximasViagens() {
-    /*this.mostrarLoading("Buscando viagens");
+    //this.mostrarLoading("Buscando viagens");
     this.viagemService.listarViagens().subscribe(
       resposta => {
-        this.esconderLoading();
+        //this.esconderLoading();
+        debugger
         this.proximasViagens = resposta;
       },
       erro => {
         this.esconderLoading();
         this.mostrarMensagemErro(`Erro ao buscar os produtos: ${erro}`);
-      });*/
+      });
 
-    let viagem1 = new ViagemModel();
-    viagem1.Codigo = 1;
-    viagem1.Nome = "Cristóvão de mendoza";
+    /*
+  let viagem1 = new ViagemModel();
+  viagem1.codigo = 1;
+  viagem1.Nome = "Cristóvão de mendoza";
 
-    let viagem2 = new ViagemModel();
-    viagem2.Codigo = 2;
-    viagem2.Nome = "Maria Araci";
+  let viagem2 = new ViagemModel();
+  viagem2.codigo = 2;
+  viagem2.Nome = "Maria Araci";
 
-    this.proximasViagens.push(viagem1);
-    this.proximasViagens.push(viagem2);
+  this.proximasViagens.push(viagem1);
+  this.proximasViagens.push(viagem2);
+  */
   }
 
-  povoarArrayDocumentosAVencer(){
-    /*this.mostrarLoading("Buscando documentos");
-    this.veiculoService.listarVeiculos().subscribe(
+  povoarArrayDocumentosAVencer() {
+    this.mostrarLoading("Buscando documentos");
+    this.documentoService.listarDocumentosVeiculo().subscribe(
       resposta => {
+        debugger
         this.esconderLoading();
-        this.veiculos = resposta;
+        this.documentosVencer = resposta;
       },
       erro => {
         this.esconderLoading();
         this.mostrarMensagemErro(`Erro ao buscar os produtos: ${erro}`);
-      });*/
+      });
 
+    /*
     let documento1 = new DocumentoVeiculoModel();
     documento1.Codigo = 1;
     documento1.Codigo_Tipo_Documento = 1;
@@ -108,6 +114,6 @@ export class HomePage extends PaginaBase {
     this.documentosVencer.push(documento1);
     this.documentosVencer.push(documento2);
     this.documentosVencer.push(documento3);
-  } 
-  
+    */
+  }
 }

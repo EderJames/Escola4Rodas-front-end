@@ -4,7 +4,7 @@ import { PassageiroModel } from "./PassageiroModel";
 import { VeiculoModel } from "./VeiculoModel";
 
 export class ViagemModel{
-    Codigo: number;
+    codigo: number;
     Nome: string;
     Codigo_Veiculo: number;
     Codigo_Rota: number;
@@ -15,6 +15,5 @@ export class ViagemModel{
     RotaViagem: string;
     Passageiros: PassageiroModel[];
     tipoViagem: number;
-    codigoDiaSemana: number;
-    diasSemanaViagem: DiaSemanaViagemModel[];
+    diaSemanaViagem: DiaSemanaViagemModel[];
 }

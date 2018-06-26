@@ -6,6 +6,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { HelloIonicConstants } from '../../app/HelloIonicConstants';
 import { IViagemService } from '../../providers.interfaces/IViagemService';
 import { DiaSemanaModel } from '../../models/DiaSemanaModel';
+import { Header } from 'ionic-angular';
 
 /*
   Generated class for the ViagemServiceProvider provider.
@@ -42,7 +43,7 @@ export class ViagemServiceProvider implements IViagemService {
        let resultado: ViagemModel[] = resp.map(function (viagem, index, arr){
           let v : ViagemModel = new ViagemModel();
           debugger
-          v.Codigo = viagem.Codigo;
+          v.codigo = viagem.Codigo;
           v.Nome = viagem.Nome;
           v.Codigo_Veiculo = viagem.Codigo_Veiculo;
           v.Codigo_Rota = viagem.Codigo_Rota;
@@ -53,12 +54,12 @@ export class ViagemServiceProvider implements IViagemService {
           v.RotaViagem = viagem.RotaViagem;
           v.Passageiros = viagem.Passageiros;
           v.tipoViagem = viagem.Tipo_Viagem;
-          v.diasSemanaViagem = viagem.DiaSemanaViagem;
+          v.diaSemanaViagem = viagem.DiaSemanaViagem;
           for(let i: number = 0; i < viagem.DiaSemanaViagem.length; i++){
-            v.diasSemanaViagem[i].codigo = viagem.DiaSemanaViagem[i].Codigo;
-            v.diasSemanaViagem[i].diaSemana = new DiaSemanaModel();// = viagem.DiaSemanaViagem[i].DiaSemana;
-            v.diasSemanaViagem[i].diaSemana.codigo = viagem.DiaSemanaViagem[i].DiaSemana.Codigo;
-            v.diasSemanaViagem[i].diaSemana.diaSemana = viagem.DiaSemanaViagem[i].DiaSemana.Dia_Semana;
+            v.diaSemanaViagem[i].codigo = viagem.DiaSemanaViagem[i].Codigo;
+            v.diaSemanaViagem[i].diaSemana = new DiaSemanaModel();// = viagem.DiaSemanaViagem[i].DiaSemana;
+            v.diaSemanaViagem[i].diaSemana.codigo = viagem.DiaSemanaViagem[i].DiaSemana.Codigo;
+            v.diaSemanaViagem[i].diaSemana.diaSemana = viagem.DiaSemanaViagem[i].DiaSemana.Dia_Semana;
           }
           return v;
        });
@@ -69,7 +70,17 @@ export class ViagemServiceProvider implements IViagemService {
   }
 
   inserirViagem(viagemModel: ViagemModel): Observable<string> {
-    return this.http.post(HelloIonicConstants.BASE_URL  + HelloIonicConstants.Viagem.POST, JSON.stringify(viagemModel))
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+      .then(data => {return data.token}, err => {return null})
+    );
+    
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
+      headers.set('Content-type', 'application/json');
+
+      return this.http.post(HelloIonicConstants.BASE_URL  + HelloIonicConstants.Viagem.POST, JSON.stringify(viagemModel), { headers: headers })
       .map(response => {
         let resp = response.json();
         return "";
@@ -77,10 +88,21 @@ export class ViagemServiceProvider implements IViagemService {
       err=>{
         return "";
       });
+    });
   }
 
   atualizarViagem(viagemModel: ViagemModel): Observable<string>{
-    return this.http.put(HelloIonicConstants.BASE_URL  + HelloIonicConstants.Viagem.PUT, JSON.stringify(viagemModel))
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+      .then(data => {return data.token}, err => {return null})
+    );
+    
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
+      headers.set('Content-type', 'application/json');
+      debugger
+      return this.http.put(HelloIonicConstants.BASE_URL  + HelloIonicConstants.Viagem.PUT, JSON.stringify(viagemModel), { headers: headers })
       .map(response => {
         let resp = response.json();
         return "";
@@ -88,10 +110,21 @@ export class ViagemServiceProvider implements IViagemService {
       err=>{
         return "";
       });
+    });
   }
 
   deletarViagem(viagemModel: ViagemModel): Observable<string>{
-    return this.http.put(HelloIonicConstants.BASE_URL_PROXY_4RODAS  + HelloIonicConstants.Viagem.PUT, JSON.stringify(viagemModel))
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+      .then(data => {return data.token}, err => {return null})
+    );
+    
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
+      headers.set('Content-type', 'application/json');
+
+      return this.http.delete(HelloIonicConstants.BASE_URL  + HelloIonicConstants.Viagem.DELETE + "/" + viagemModel.codigo, { headers: headers })
       .map(response => {
         let resp = response.json();
         return "";
@@ -99,5 +132,6 @@ export class ViagemServiceProvider implements IViagemService {
       err=>{
         return "";
       });
+    });
   }
 }

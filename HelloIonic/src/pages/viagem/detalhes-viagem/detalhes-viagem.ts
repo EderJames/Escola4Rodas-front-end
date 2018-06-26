@@ -142,6 +142,30 @@ export class DetalhesViagemPage extends PaginaBase {
 
   gravar(){
     debugger
+    this.viagemModel.Codigo_Veiculo = this.viagemModel.VeiculoViagem.Codigo_Veiculo;
+    //this.viagemModel.VeiculoViagem.Motorista = null;
+    //this.viagemModel.VeiculoViagem.Documentos = null;
+    //this.viagemModel.VeiculoViagem.Viagens = null;
+
+    /*
+    this.viagemModel.Instituicoes.forEach(element => {
+      element.Viagens = null;
+      element.motoristas = null;
+      element.Codigo_Instituicao = element.Codigo;
+      element.passageiroInstituicao = null;
+
+    });
+    */
+
+    /*
+    this.viagemModel.Passageiros.forEach(element => {
+      element.instituicoes = null;
+      element.motorista = null;
+      element.pagamentos = null;
+      element.viagens = null;
+    });
+    */
+   
     this.viagemService.atualizarViagem(this.viagemModel).subscribe(
       resposta=>{
         debugger
