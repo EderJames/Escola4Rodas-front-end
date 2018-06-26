@@ -29,7 +29,6 @@ import { PassageiroServiceProvider } from '../providers/passageiro-service/passa
 import { VeiculoServiceProvider } from '../providers/veiculo-service/veiculo-service';
 import { ViagemServiceProvider } from '../providers/viagem-service/viagem-service';
 import { DetalhesInstituicaoPage } from '../pages/instituicao/detalhes-instituicao/detalhes-instituicao';
-import { CriarLocaisPage } from '../pages/criar-locais/criar-locais';
 import { CriarViagemPage } from '../pages/viagem/criar-viagem/criar-viagem';
 import { CriarInstituicaoPage } from '../pages/instituicao/criar-instituicao/criar-instituicao';
 import { CriarMotoristaPage } from '../pages/motorista/criar-motorista/criar-motorista';
@@ -42,6 +41,8 @@ import { DocumentoVeiculoServiceProvider } from '../providers/documento-veiculo-
 import { DetalhesMotoristaPage } from '../pages/motorista/detalhes-motorista/detalhes-motorista';
 import { DetalhesViagemPage } from '../pages/viagem/detalhes-viagem/detalhes-viagem';
 import { DiaSemanaServiceProvider } from '../providers/dia-semana-service/dia-semana-service';
+import { LocalServiceProvider } from '../providers/local-service/local-service';
+import { CriarLocaisPage } from '../pages/locais-passageiro/criar-local-passageiro/criar-locais';
 
 
 
@@ -165,7 +166,8 @@ import { DiaSemanaServiceProvider } from '../providers/dia-semana-service/dia-se
     ViagemServiceProvider,
     DocumentoVeiculoServiceProvider,
     DocumentoVeiculoServiceProvider,
-    DiaSemanaServiceProvider
+    DiaSemanaServiceProvider,
+    LocalServiceProvider
   ]
 })
 export class AppModule { }

@@ -86,6 +86,7 @@ export class DetalhesViagemPage extends PaginaBase {
   }
 
   buscarInstituicoes() {
+    debugger
     this.instituicaoService.listarInstituicoes().subscribe(
       resposta => {
         debugger;

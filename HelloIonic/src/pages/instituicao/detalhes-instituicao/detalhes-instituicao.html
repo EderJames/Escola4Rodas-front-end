@@ -1,14 +1,45 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Instituição {{instituicao.nome}}</ion-title>
+    <ion-title>Detalhars instituição</ion-title>
   </ion-navbar>
 </ion-header>
-
-
 <ion-content padding>
-   <p>{{produto.id}}</p>
-   <p>{{produto.nome}}</p>
-   <p>{{produto.descricao}}</p>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h1>
+          Instituição {{instituicao.nome}}
+        </h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Nome</ion-label>
+          <ion-input type="text" name="txtNome" [(ngModel)]="instituicaoModel.nome">
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Localização
+          </ion-label>
+          <ion-input type="text" name="txtLocalizacao" [(ngModel)]="instituicaoModel.local"></ion-input>
+        </ion-item>
+        <ion-item>
+          <button ion-button icon-left class="btnTextoCentralizado btnOcuparTodaTela">
+            <ion-icon name="locate">
+              Obter Localização
+            </ion-icon>
+          </button>
+        </ion-item>
+        <ion-item>
+          <button ion-button icon-left (click)="novaInstituicao()" class="btnTextoCentralizado btnOcuparTodaTela">
+            Cadastrar
+          </button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 

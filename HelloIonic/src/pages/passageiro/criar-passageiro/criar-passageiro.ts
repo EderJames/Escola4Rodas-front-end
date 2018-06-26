@@ -6,8 +6,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { UsuarioModel } from '../../../models/UsuarioModel';
 import { LocalPassageiroModel } from '../../../models/LocalPassageiroModel';
 import { InstituicaoModel } from '../../../models/InstituicaoModel';
-import { CriarLocaisPage } from '../../criar-locais/criar-locais';
 import { MenuController } from 'ionic-angular';
+import { CriarLocaisPage } from '../../locais-passageiro/criar-local-passageiro/criar-locais';
 
 
 @IonicPage()

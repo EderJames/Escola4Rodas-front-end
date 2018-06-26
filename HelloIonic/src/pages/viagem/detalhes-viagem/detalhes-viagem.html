@@ -61,7 +61,7 @@
               <ion-select [selectOptions]="metodoSelecao" multiple="true" name="cmbInstituicoesDisponiveis" [(ngModel)]="viagemModel.Instituicoes"
                 aria-placeholder="Instituicoes">
                 <ion-option *ngFor="let instituicao of instituicoesDisponiveis" [value]="instituicao">
-                  {{instituicao.Nome}}
+                  {{instituicao.nome}}
                 </ion-option>
               </ion-select>
             </ion-item>

@@ -1,18 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
-import { PaginaBase } from '../../infraestrutura/PaginaBase';
+import { PaginaBase } from '../../../infraestrutura/PaginaBase';
+import { DiaSemanaModel } from '../../../models/DiaSemanaModel';
+import { LocalPassageiroModel } from '../../../models/LocalPassageiroModel';
 import { FormBuilder } from '@angular/forms';
-import { LocalPassageiroModel } from '../../models/LocalPassageiroModel';
-import { LocalModel } from '../../models/LocalModel';
-import { DiaSemanaModel } from '../../models/DiaSemanaModel';
-import { DiaSemanLocalModel } from '../../models/DiaSemanaLocalModel';
-
-/**
- * Generated class for the CriarLocaisPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { LocalModel } from '../../../models/LocalModel';
+import { DiaSemanLocalModel } from '../../../models/DiaSemanaLocalModel';
 
 @IonicPage()
 @Component({
@@ -63,5 +56,4 @@ export class CriarLocaisPage extends PaginaBase {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CriarLocaisPage');
   }
-
 }
