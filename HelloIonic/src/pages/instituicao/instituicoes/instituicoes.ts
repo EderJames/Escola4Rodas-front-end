@@ -13,9 +13,8 @@ import { CriarInstituicaoPage } from '../criar-instituicao/criar-instituicao';
   templateUrl: 'instituicoes.html',
 })
 export class InstituicoesPage extends PaginaBase {
-
+  
   instituicoes: InstituicaoModel[];
-
   constructor(public navCtrl: NavController, public navParams: NavParams,
       public loadingCtrl: LoadingController, public toastCtrl: ToastController,
       public alertCtrl: AlertController, private instituicaoService : InstituicaoServiceProvider) {
@@ -27,6 +26,7 @@ export class InstituicoesPage extends PaginaBase {
     this.mostrarLoading("Buscando instituições");
     this.instituicaoService.listarInstituicoes().subscribe(
       resposta => {
+        debugger
         this.esconderLoading();
         this.instituicoes = resposta;
       },
@@ -36,7 +36,7 @@ export class InstituicoesPage extends PaginaBase {
       });
   }
 
-  mostrarDetalhesProduto(instituicao: InstituicaoModel){
+  detalharInstituicao(instituicao: InstituicaoModel){
     this.navCtrl.push(DetalhesInstituicaoPage, {
       instituicao: instituicao
     });

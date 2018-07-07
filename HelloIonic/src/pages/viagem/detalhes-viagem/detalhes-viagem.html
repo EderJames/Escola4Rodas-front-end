@@ -20,7 +20,7 @@
               <ion-label>
                 Motorista
               </ion-label>
-              <ion-select [hidden]="exibicaoBtnGravar" name="cmbMotorista" [(ngModel)]="viagemModel.VeiculoViagem.Motorista" aria-placeholder="Mostoristas">
+              <ion-select [disabled]="true" [hidden]="exibicaoBtnGravar" name="cmbMotorista" [(ngModel)]="viagemModel.VeiculoViagem.Motorista" aria-placeholder="Mostoristas">
                 <ion-option *ngFor="let motorista of motoristasDisponiveis" [value]="motorista">
                   {{motorista.Usuario.Nome}}
                 </ion-option>
@@ -43,7 +43,7 @@
                 {{viagemModel.VeiculoViagem.Nome}}
               </ion-label>
               <ion-select [hidden]="exibicaoBtnGravar" name="cmbViagem" [(ngModel)]="viagemModel.VeiculoViagem" aria-placeholder="Viagens">
-                <ion-option *ngFor="let veiculo of veiculosDisponiveis" [value]="veiculo">
+                <ion-option *ngFor="let veiculo of veiculosDisponiveis" [value]="veiculo" (change)="setarMotoristaVeiculo()">
                   {{veiculo.Nome}}
                 </ion-option>
               </ion-select>

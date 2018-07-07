@@ -1,8 +1,8 @@
 import { TipoDocumento } from "../models/TipoDocumento";
 
-export class HelloIonicConstants{
-    static readonly BASE_URL: string = "http://localhost:59974/api/";//"https://escola4rodas.azurewebsites.net/api/";
-    static readonly TOKEN_URL: string =  "http://localhost:59974/";//"https://escola4rodas.azurewebsites.net/";
+export class HelloIonicConstants {
+    static readonly BASE_URL: string =  "http://localhost:59974/api/";//"https://escola4rodas.azurewebsites.net/api/";;
+    static readonly TOKEN_URL: string = "http://localhost:59974/";//"https://escola4rodas.azurewebsites.net/";
 
     static readonly BASE_URL_PROXY_4RODAS: string = "http://192.168.100.6:8100/";
 
@@ -14,8 +14,7 @@ export class HelloIonicConstants{
     };
 
     static readonly Usuario = {
-        Login: 'usuario/login',
-        
+        Login: 'usuario/login'
     };
 
     static readonly Produtos = {
@@ -116,5 +115,12 @@ export class HelloIonicConstants{
         POST:'diasemana',
         PUT: 'diasemana',
         DELETE: 'diasemana'
+    }
+
+    static readonly Local = {
+        GET: 'local',
+        POST:'local',
+        PUT: 'local',
+        DELETE: 'local'
     }
 }

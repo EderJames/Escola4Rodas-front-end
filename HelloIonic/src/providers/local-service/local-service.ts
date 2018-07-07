@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { ILocalService } from '../../providers.interfaces/ILocalService';
 import { LocalModel } from '../../models/LocalModel';
 import { Observable } from 'rxjs/Observable';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { HelloIonicConstants } from '../../app/HelloIonicConstants';
 
 /*
   Generated class for the LocalServiceProvider provider.
@@ -13,13 +15,51 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class LocalServiceProvider implements ILocalService {
 
-  constructor(public http: HttpClient) {
+  constructor(public http: Http, private nativeStorage: NativeStorage) {
     console.log('Hello LocalServiceProvider Provider');
   }
 
   listarLocal(): Observable<LocalModel[]> {
-    throw new Error("Method not implemented.");
+    debugger
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
+
+      //caminho da url da minha webapi - instituicoes/get
+      return this.http.get(HelloIonicConstants.BASE_URL + HelloIonicConstants.Local.GET, {
+        headers: headers
+      }).map(response => {
+
+        let resp = response.json();
+        let resultado: LocalModel[] = resp.map(function (local, index, arr) {
+
+          debugger;
+          let l: LocalModel = new LocalModel();
+          
+            l.codigo = local.codigo;
+            l.bairro = local.Nome;
+            l.dthr = local.Placa;
+            l.latitude = local.Carga_Maxima;
+            l.longitude = local.Codigo_Motorista;
+            l.nomeLocal = local.Dthr;
+            l.nomeRua = local.Motorista;
+            l.numero = local.Documentos;
+            return l;
+          
+        });
+        return resultado;
+      });
+    });
   }
+
   inserirLocal(localModel: LocalModel): Observable<string> {
     throw new Error("Method not implemented.");
   }

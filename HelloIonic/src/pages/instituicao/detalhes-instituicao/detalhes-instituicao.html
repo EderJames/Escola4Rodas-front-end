@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Detalhars instituição</ion-title>
+    <ion-title>Detalhar instituição</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
@@ -9,7 +9,7 @@
     <ion-row>
       <ion-col>
         <h1>
-          Instituição {{instituicao.nome}}
+          Instituição {{instituicaoModel.nome}}
         </h1>
       </ion-col>
     </ion-row>
@@ -20,11 +20,14 @@
           <ion-input type="text" name="txtNome" [(ngModel)]="instituicaoModel.nome">
           </ion-input>
         </ion-item>
+        
         <ion-item>
-          <ion-label>
-            Localização
-          </ion-label>
-          <ion-input type="text" name="txtLocalizacao" [(ngModel)]="instituicaoModel.local"></ion-input>
+          <button ion-button
+           class="btnTextoCentralizado btnOcuparTodaTela" (click)="detalharLocal()">
+            <ion-icon>
+              Detalhar local
+            </ion-icon>
+          </button>
         </ion-item>
         <ion-item>
           <button ion-button icon-left class="btnTextoCentralizado btnOcuparTodaTela">
@@ -34,8 +37,8 @@
           </button>
         </ion-item>
         <ion-item>
-          <button ion-button icon-left (click)="novaInstituicao()" class="btnTextoCentralizado btnOcuparTodaTela">
-            Cadastrar
+          <button ion-button icon-left (click)="gravarInstituicao()" class="btnTextoCentralizado btnOcuparTodaTela">
+            Gravar
           </button>
         </ion-item>
       </ion-col>

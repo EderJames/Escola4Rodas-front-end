@@ -10,39 +10,41 @@ import { AutenticacaoService } from '../providers/autenticacao-service';
 import { IAutenticacaoService } from '../providers.interfaces/IAutenticacaoService';
 import { HttpModule } from '@angular/http';
 import { NativeStorage } from '@ionic-native/native-storage';
-
 import { TabsPage } from '../pages/produto/tabs/tabs';
 import { ProdutosPage } from '../pages/produto/produtos/produtos';
 import { PerfilPage } from '../pages/perfil/perfil';
-import { ProdutoServiceProvider } from '../providers/produto-service/produto-service';
 import { DetalhesProdutoPage } from '../pages/produto/detalhes-produto/detalhes-produto';
 import { MenuMotoristaPage } from '../pages/menu-motorista/menu-motorista';
-import { MotoristasPage } from '../pages/motorista/motoristas/motoristas';
-import { PassageirosPage } from '../pages/passageiro/passageiros/passageiros';
-import { CriarPassageiroPage } from '../pages/passageiro/criar-passageiro/criar-passageiro';
-import { VeiculosPage } from '../pages/veiculo/veiculos/veiculos';
 import { ViagensPage } from '../pages/viagem/viagens/viagens';
+import { PassageirosPage } from '../pages/passageiro/passageiros/passageiros';
+import { VeiculosPage } from '../pages/veiculo/veiculos/veiculos';
 import { InstituicoesPage } from '../pages/instituicao/instituicoes/instituicoes';
+import { DetalhesInstituicaoPage } from '../pages/instituicao/detalhes-instituicao/detalhes-instituicao';
+import { CriarPassageiroPage } from '../pages/passageiro/criar-passageiro/criar-passageiro';
+import { CriarLocaisPage } from '../pages/locais-passageiro/criar-local-passageiro/criar-locais';
+import { CriarViagemPage } from '../pages/viagem/criar-viagem/criar-viagem';
+import { CriarInstituicaoPage } from '../pages/instituicao/criar-instituicao/criar-instituicao';
+import { MotoristasPage } from '../pages/motorista/motoristas/motoristas';
+import { CriarMotoristaPage } from '../pages/motorista/criar-motorista/criar-motorista';
+import { DetalhesMotoristaPage } from '../pages/motorista/detalhes-motorista/detalhes-motorista';
+import { CriarVeiculoPage } from '../pages/veiculo/criar-veiculo/criar-veiculo';
+import { DetalhesVeiculoPage } from '../pages/veiculo/detalhes-veiculo/detalhes-veiculo';
+import { DocumentosVeiculoPage } from '../pages/documentos/documentos-veiculo/documentos-veiculo';
+import { DetalhesDocumentoVeiculoPage } from '../pages/documentos/detalhes-documento-veiculo/detalhes-documento-veiculo';
+import { CriarDocumentoVeiculoPage } from '../pages/documentos/criar-documento-veiculo/criar-documento-veiculo';
+import { DetalhesViagemPage } from '../pages/viagem/detalhes-viagem/detalhes-viagem';
+import { ProdutoServiceProvider } from '../providers/produto-service/produto-service';
 import { InstituicaoServiceProvider } from '../providers/instituicao-service/instituicao-service';
 import { MotoristaServiceProvider } from '../providers/motorista-service/motorista-service';
 import { PassageiroServiceProvider } from '../providers/passageiro-service/passageiro-service';
 import { VeiculoServiceProvider } from '../providers/veiculo-service/veiculo-service';
-import { ViagemServiceProvider } from '../providers/viagem-service/viagem-service';
-import { DetalhesInstituicaoPage } from '../pages/instituicao/detalhes-instituicao/detalhes-instituicao';
-import { CriarViagemPage } from '../pages/viagem/criar-viagem/criar-viagem';
-import { CriarInstituicaoPage } from '../pages/instituicao/criar-instituicao/criar-instituicao';
-import { CriarMotoristaPage } from '../pages/motorista/criar-motorista/criar-motorista';
-import { CriarVeiculoPage } from '../pages/veiculo/criar-veiculo/criar-veiculo';
-import { DetalhesVeiculoPage } from '../pages/veiculo/detalhes-veiculo/detalhes-veiculo';
-import { DetalhesDocumentoVeiculoPage } from '../pages/documentos/detalhes-documento-veiculo/detalhes-documento-veiculo';
-import { CriarDocumentoVeiculoPage } from '../pages/documentos/criar-documento-veiculo/criar-documento-veiculo';
-import { DocumentosVeiculoPage } from '../pages/documentos/documentos-veiculo/documentos-veiculo';
 import { DocumentoVeiculoServiceProvider } from '../providers/documento-veiculo-service/documento-veiculo-service';
-import { DetalhesMotoristaPage } from '../pages/motorista/detalhes-motorista/detalhes-motorista';
-import { DetalhesViagemPage } from '../pages/viagem/detalhes-viagem/detalhes-viagem';
+import { ViagemServiceProvider } from '../providers/viagem-service/viagem-service';
 import { DiaSemanaServiceProvider } from '../providers/dia-semana-service/dia-semana-service';
 import { LocalServiceProvider } from '../providers/local-service/local-service';
-import { CriarLocaisPage } from '../pages/locais-passageiro/criar-local-passageiro/criar-locais';
+import { DetalhesLocalInstituicaoPage } from '../pages/locais-instituicao/detalhes-local-instituicao/detalhes-local-instituicao';
+import { DetalhesPassageiroPage } from '../pages/passageiro/detalhes-passageiro/detalhes-passageiro';
+
 
 
 
@@ -73,7 +75,9 @@ import { CriarLocaisPage } from '../pages/locais-passageiro/criar-local-passagei
     DocumentosVeiculoPage,
     DetalhesDocumentoVeiculoPage,
     CriarDocumentoVeiculoPage,
-    DetalhesViagemPage
+    DetalhesViagemPage,
+    DetalhesLocalInstituicaoPage,
+    DetalhesPassageiroPage
   ],
   imports: [
     BrowserModule,
@@ -150,7 +154,10 @@ import { CriarLocaisPage } from '../pages/locais-passageiro/criar-local-passagei
     DocumentosVeiculoPage,
     DetalhesDocumentoVeiculoPage,
     CriarDocumentoVeiculoPage,
-    DetalhesViagemPage
+    DetalhesViagemPage,
+    DetalhesInstituicaoPage,
+    DetalhesLocalInstituicaoPage,
+    DetalhesPassageiroPage
   ],
   providers: [
     StatusBar,

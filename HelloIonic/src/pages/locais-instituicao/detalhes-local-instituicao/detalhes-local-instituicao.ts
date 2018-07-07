@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, LoadingController
 import { PaginaBase } from '../../../infraestrutura/PaginaBase';
 import { FormBuilder } from '@angular/forms';
 import { LocalInstituicaoModel } from '../../../models/LocalInstituicaoModel';
+//import { LocalServiceProvider } from '../../../providers/local-service/local-service';
 
 /**
  * Generated class for the DetalhesLocalInstituicaoPage page.
@@ -25,15 +26,16 @@ export class DetalhesLocalInstituicaoPage extends PaginaBase{
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public formBuilder: FormBuilder, alertCtrl: AlertController,
-    public loadingCtrl: LoadingController, public toastCtrl: ToastController,
-    private localService) {
+    public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
       
-      super({formBuilder: formBuilder, alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl});
+      super({alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl});
       this.verificarCarregamentoTela();
   }
 
   verificarCarregamentoTela(){
-    this.localInstituicaoModel = this.navParams.data.localInstituicao;
+    debugger;
+    this.localInstituicaoModel = this.navParams.data.localInstituicaoModel;
+    this.desabilitarEdicao();
   }
 
   ionViewDidLoad() {
@@ -52,38 +54,9 @@ export class DetalhesLocalInstituicaoPage extends PaginaBase{
     this.detalharLocalInstituicao = true;
   }
 
-  gravarEdicao(){
+  gravar(){
     this.desabilitarEdicao();
-    debugger
-    
-    this.localService.atualizarVeiculo(this.localInstituicaoModel).subscribe(
-      resposta => {
-        debugger
-        this.esconderLoading();
-        let teste = resposta;
-        this.mostrarMensagemSucesso(`${this.localInstituicaoModel.local.nomeLocal} editado com sucesso! `);
-      },
-      erro => {
-        debugger
-        this.esconderLoading();
-        this.mostrarMensagemErro(`Erro ao editar o local de instituição: ${this.localInstituicaoModel.local.nomeLocal}`);
-      });
+    //this.localService.atualizarLocal(this.localInstituicaoModel.local);
+    debugger    
   }
-  
-  deletarVeiculo(){
-    //this.validarExclusaoVeiculo();
-    this.localService.deletarVeiculo(this.deletarVeiculo).subscribe(
-      resposta => {
-        debugger
-        this.esconderLoading();
-        let teste = resposta;
-        this.mostrarMensagemSucesso(`${this.localInstituicaoModel.local.nomeLocal} excluído com sucesso! `);
-      },
-      erro => {
-        debugger
-        this.esconderLoading();
-        this.mostrarMensagemErro(`Erro ao editar o local de instituição: ${this.localInstituicaoModel.local.nomeLocal}`);
-      });
-  }
-
 }

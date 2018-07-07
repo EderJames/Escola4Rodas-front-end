@@ -5,6 +5,8 @@ import { PassageiroModel } from '../../models/PassageiroModel';
 import { Observable } from 'rxjs/Observable';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { HelloIonicConstants } from '../../app/HelloIonicConstants';
+import { LocalPassageiroModel } from '../../models/LocalPassageiroModel';
+import { LocalModel } from '../../models/LocalModel';
 
 /*
   Generated class for the PassageiroServiceProvider provider.
@@ -32,7 +34,6 @@ export class PassageiroServiceProvider implements IPassageiroService {
     return tokenObservable.flatMap(token => {
       let headers : Headers = new Headers();
       headers.set('Authorization',  `Bearer ${token}`);
-
       headers.append('Access-Control-Allow-Origin' , '*');
       headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
       headers.append('Accept','application/json');
@@ -57,7 +58,29 @@ export class PassageiroServiceProvider implements IPassageiroService {
           p.instituicoes = passageiro.Instituicoes;
           p.pagamentos = passageiro.Pagamentos;
           p.rotas = passageiro.Rotas;
-          p.locaisPassageiro = passageiro.Locais_Partida;
+          
+          debugger
+          p.locaisPassageiro = new Array<LocalPassageiroModel>();
+          let localPassageiro : LocalPassageiroModel;
+          
+          for(let i: number = 0; i < passageiro.LocaisPassageiro.length; i++){
+            localPassageiro = new LocalPassageiroModel();
+            localPassageiro.codigoLocal = passageiro.LocaisPassageiro[i].Codigo_Local;
+            localPassageiro.codigoPassageiro = passageiro.LocaisPassageiro[i].Codigo_Passageiro;
+            localPassageiro.codigoTipoLocal = passageiro.LocaisPassageiro[i].Codigo_Tipo_Local;
+            debugger
+            localPassageiro.local = new LocalModel();
+            localPassageiro.local.codigo = passageiro.LocaisPassageiro[i].Local.Codigo;
+            localPassageiro.local.bairro = passageiro.LocaisPassageiro[i].Local.Bairro;
+            localPassageiro.local.dthr = passageiro.LocaisPassageiro[i].Local.Dthr;
+            localPassageiro.local.latitude = passageiro.LocaisPassageiro[i].Local.Latitude;
+            localPassageiro.local.longitude = passageiro.LocaisPassageiro[i].Local.Longitude;
+            localPassageiro.local.nomeLocal = passageiro.LocaisPassageiro[i].Local.Nome_Local;
+            localPassageiro.local.nomeRua = passageiro.LocaisPassageiro[i].Local.Nome_Rua;
+            localPassageiro.local.numero = passageiro.LocaisPassageiro[i].Local.Numero;
+            p.locaisPassageiro.push(localPassageiro);
+          }
+          
           p.viagens = passageiro.Viagens;
 
           return p;

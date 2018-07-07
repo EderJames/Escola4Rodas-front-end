@@ -15,51 +15,42 @@
                   <ion-label>
                     Nome
                   </ion-label>
-                  <ion-input type="text" name="txtNomeLocal" [(ngModel)]="localInstituicaoModel.local.nomeLocal">
+                  <ion-input [disabled]="detalharLocalInstituicao" type="text" name="txtNomeLocal" [(ngModel)]="localInstituicaoModel.local.nomeLocal">
                   </ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label>
                     Bairro
                   </ion-label>
-                  <ion-input type="text" name="txtBairro" [(ngModel)]="localInstituicaoModel.local.bairro">
+                  <ion-input [disabled]="detalharLocalInstituicao" type="text" name="txtBairro" [(ngModel)]="localInstituicaoModel.local.bairro">
                   </ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label>
                     Nome rua
                   </ion-label>
-                  <ion-input type="text" name="txtNomeRua" [(ngModel)]="localInstituicaoModel.local.nomeRua">
+                  <ion-input [disabled]="detalharLocalInstituicao" type="text" name="txtNomeRua" [(ngModel)]="localInstituicaoModel.local.nomeRua">
                   </ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label>
                     Número
                   </ion-label>
-                  <ion-input type="number" name="txtNumero" [(ngModel)]="localInstituicaoModel.local.numero">
+                  <ion-input [disabled]="detalharLocalInstituicao" type="number" name="txtNumero" [(ngModel)]="localInstituicaoModel.local.numero">
                   </ion-input>
                 </ion-item>
                 <ion-item>
-                  <div class="btnObterLocalizacao">
-                    <button ion-button icon-left>
-                      <ion-icon name="locate">
-                        Obter Localização
-                      </ion-icon>
-                    </button>
-                  </div>
-                </ion-item>
-                <ion-item>
-                  <button class="btnTextoCentralizado btnOcuparTodaTela" (click)="habilitarEdicao()">
+                  <button [hidden]="exibicaoBtnEditar" ion-button class="btnTextoCentralizado btnOcuparTodaTela" (click)="habilitarEdicao()">
                     Editar
                   </button>
                 </ion-item>
+                <ion-item [hidden]="exibicaoBtnGravar">
+                  <button ion-button class="btnTextoCentralizado btnOcuparTodaTela" (click)="gravar()">
+                    Gravar
+                  </button>
+                </ion-item>
                 <ion-item>
-                    <button class="btnTextoCentralizado btnOcuparTodaTela" (click)="gravar()">
-                      Gravar
-                    </button>
-                  </ion-item>
-                <ion-item>
-                  <button class="btnTextoCentralizado btnOcuparTodaTela" (click)="excluir()">
+                  <button [hidden]="exibicaoBtnGravar" ion-button class="btnTextoCentralizado btnOcuparTodaTela" (click)="excluir()">
                     Excluir
                   </button>
                 </ion-item>

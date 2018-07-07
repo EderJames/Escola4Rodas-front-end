@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Criar passageiro</ion-title>
+    <ion-title>Criar local passageiro</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
@@ -21,32 +21,34 @@
                   <ion-label>
                     Nome
                   </ion-label>
-                  <ion-input type="text" name="txtNomeLocal" [(ngModel)]="localPassageiroModel.local.nome">
+                  <ion-input type="text" name="txtNomeLocal" [(ngModel)]="localPassageiroModel.local.nomeLocal">
                   </ion-input>
                 </ion-item>
                 <ion-item>
-                  <div class="btnObterLocalizacao">
-                    <button ion-button icon-left>
-                      <ion-icon name="locate" >
-                        Obter Localização
-                      </ion-icon>
-                    </button>
-                  </div>
-                </ion-item>
-                <ion-item>
-                  <ion-label>Horário</ion-label>
-                  <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="localPassageiroModel.local.dthr">
-                  </ion-datetime>
+                  <ion-label>
+                    Bairro
+                  </ion-label>
+                  <ion-input type="text" name="txtBairro" [(ngModel)]="localPassageiroModel.local.bairro">
+                  </ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label>
-                    Dias de Semana
+                    Nome rua
                   </ion-label>
-                  <ion-select name="cmbDiaSemana" multiple="true" [(ngModel)]="localPassageiroModel.diasSemana" okText="Ok!" cancelText="Cancelar">
-                    <ion-option *ngFor="let dia of diasSemana" [value]="dia.diaSemana" >
-                      {{dia.diaSemana}}
-                    </ion-option>
-                  </ion-select>
+                  <ion-input type="text" name="txtNomeRua" [(ngModel)]="localPassageiroModel.local.nomeRua">
+                  </ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label>
+                    Número
+                  </ion-label>
+                  <ion-input type="number" name="txtNumero" [(ngModel)]="localPassageiroModel.local.numero">
+                  </ion-input>
+                </ion-item>
+                <ion-item>
+                  <button class="btnTextoCentralizado btnOcuparTodaTela" ion-button (click)="criarLocal()">
+                    Salvar
+                  </button>
                 </ion-item>
               </ion-list>
             </ion-col>

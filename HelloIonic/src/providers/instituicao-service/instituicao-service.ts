@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { InstituicaoModel } from '../../models/InstituicaoModel';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { HelloIonicConstants } from '../../app/HelloIonicConstants';
+import { LocalInstituicaoModel } from '../../models/LocalInstituicaoModel';
+import { LocalModel } from '../../models/LocalModel';
 
 @Injectable()
 export class InstituicaoServiceProvider implements IInstituicaoService {
@@ -38,7 +40,20 @@ export class InstituicaoServiceProvider implements IInstituicaoService {
           i.nome = instituicao.Nome;
           i.codigoLocal = instituicao.Codigo_Local;
           i.dthr = instituicao.Dthr;
-          i.localInstituicao = instituicao.Local;
+          //i.localInstituicao = instituicao.LocalInstituicao;
+          i.localInstituicao = new LocalInstituicaoModel();
+          i.localInstituicao.codigoInstituicao = instituicao.LocalInstituicao.Codigo_Instituicao;
+          i.localInstituicao.codigoLocal = instituicao.LocalInstituicao.Codigo_Local;
+          i.localInstituicao.instituicao = instituicao.LocalInstituicao.Instituicao;
+          
+          debugger
+          i.localInstituicao.local = new LocalModel();
+          i.localInstituicao.local.codigo = instituicao.LocalInstituicao.Local.Codigo;
+          i.localInstituicao.local.bairro = instituicao.LocalInstituicao.Local.Bairro;
+          i.localInstituicao.local.nomeLocal = instituicao.LocalInstituicao.Local.Nome_Local;
+          i.localInstituicao.local.nomeRua = instituicao.LocalInstituicao.Local.Nome_Rua;
+          i.localInstituicao.local.numero = instituicao.LocalInstituicao.Local.Numero;
+
           i.passageiroInstituicao = instituicao.Passageiros;
           i.motoristas = instituicao.Motoristas;
           i.Viagens = instituicao.Viagens;

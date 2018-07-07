@@ -9,8 +9,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let instituicao of instituicoes">
-      <ion-icon name="arrow-forward" item-left></ion-icon>
+    <button ion-item *ngFor="let instituicao of instituicoes" (click)="detalharInstituicao(instituicao)">
       {{instituicao.nome}}
       <ion-icon name="arrow-forward" item-right></ion-icon>
     </button>

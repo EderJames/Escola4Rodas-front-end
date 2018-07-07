@@ -4,6 +4,7 @@ import { PassageiroModel } from '../../../models/PassageiroModel';
 import { PassageiroServiceProvider } from '../../../providers/passageiro-service/passageiro-service';
 import { PaginaBase } from '../../../infraestrutura/PaginaBase';
 import { CriarPassageiroPage } from '../criar-passageiro/criar-passageiro';
+import { DetalhesPassageiroPage } from '../detalhes-passageiro/detalhes-passageiro';
 
 /**
  * Generated class for the PassageirosPage page.
@@ -26,6 +27,7 @@ export class PassageirosPage extends PaginaBase {
      public loadingCtrl: LoadingController, public toastCtrl: ToastController,
      public alertCtrl: AlertController, private passageiroService : PassageiroServiceProvider) {
       super({alertCtrl: alertCtrl, loadingCtrl: loadingCtrl, toastCtrl: toastCtrl});
+
   }
 
   ionViewDidLoad() {
@@ -65,4 +67,10 @@ export class PassageirosPage extends PaginaBase {
     alert("Enviando e-mail para inadimplentes");
   }
 
+  detalharPassageiro(passageiro : PassageiroModel){
+    debugger
+    this.navCtrl.push(DetalhesPassageiroPage, {
+      passageiro: passageiro
+    });
+  }
 }
