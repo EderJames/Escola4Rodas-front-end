@@ -65,4 +65,80 @@ export class InstituicaoServiceProvider implements IInstituicaoService {
       });
     });
   }
+  
+  atualizarInstituicao(instituicaoModel: InstituicaoModel): Observable<string> {
+    debugger
+    
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
+
+      return this.http.put(HelloIonicConstants.BASE_URL + HelloIonicConstants.Instituicao.PUT,
+        JSON.stringify(instituicaoModel), { headers: headers })
+        .map(response => {
+          debugger;
+          return response.toString();
+        });
+
+    });
+  }
+
+  inserirInstituicao(instituicaoModel: InstituicaoModel): Observable<string> {
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
+
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
+
+      return this.http.post(HelloIonicConstants.BASE_URL + HelloIonicConstants.Instituicao.POST,
+        JSON.stringify(instituicaoModel), { headers: headers })
+        .map(response => {
+          debugger;
+          return response.toString();//response.json();
+        });
+
+    });
+  }
+
+  deletarInstituicao(instituicaoModel: InstituicaoModel): Observable<string> {
+    debugger
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
+
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
+
+      return this.http.delete(HelloIonicConstants.BASE_URL + HelloIonicConstants.Instituicao.DELETE + "/" + instituicaoModel.Codigo,
+         { headers: headers })
+        .map(response => {
+          debugger;
+          return response.toString();
+        });
+    });
+  }
 }

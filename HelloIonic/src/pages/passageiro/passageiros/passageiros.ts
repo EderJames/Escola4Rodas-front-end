@@ -40,15 +40,8 @@ export class PassageirosPage extends PaginaBase {
       },
       erro => {
         this.esconderLoading();
-        this.mostrarMensagemErro(`Erro ao buscar os produtos: ${erro}`);
+        this.mostrarMensagemErro(`Erro ao buscar os passageiros: ${erro}`);
       });
-  }
-
-
-  mostrarDetalhesProduto(produto: PassageiroModel){
-    //this.navCtrl.push(DetalhesMotorista, {
-    //  produto: produto
-    //});
   }
 
   novoPassageiro(){
@@ -59,7 +52,6 @@ export class PassageirosPage extends PaginaBase {
 
   filtrarInadimplentes(){
     alert("filtrando passageiros");
-    //this.filtrarInadimplentes = !this.filtrarInadimplentes;
     this.esconderEnvioEmail = false;
   }
 

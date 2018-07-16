@@ -4,15 +4,15 @@ import { LocalPassageiroModel } from "./LocalPassageiroModel";
 import { ViagemModel } from "./ViagemModel";
 import { InstituicaoModel } from "./InstituicaoModel";
 import { UsuarioModel } from "./UsuarioModel";
+import { PassageiroInstituicaoModel } from "./PassageiroInstituicaoModel";
 
 export class PassageiroModel{
     tipoViagem: number;
     codigoFormaPagamento: number;
     tipoPassageiro: number;
     codigoMotorista: number;
-    codigoUsuario : number;
-    
-    instituicoes: InstituicaoModel[];
+    Codigo_Usuario : number;
+    passageiroInstituicao: PassageiroInstituicaoModel[];
     motorista: MotoristaModel;
     pagamentos: PagametoModel[];
     rotas: string[];

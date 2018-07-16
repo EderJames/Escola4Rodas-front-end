@@ -123,4 +123,18 @@ export class HelloIonicConstants {
         PUT: 'local',
         DELETE: 'local'
     }
+
+    static readonly LocalPassageiro = {
+        GET: 'BuscarLocaisPorPassageiro',
+        POST:'InserirLocalPassageiro',
+        PUT: 'AtualizarLocalPassageiro',
+        DELETE: 'ExcluirLocalPassageiro'
+    }
+
+    static readonly LocalInstituicao = {
+        GET: 'BuscarLocalInstituicaoPorCodigo',
+        POST:'InserirLocalInstituicao',
+        PUT: 'AtualizarLocalInstituicao',
+        DELETE: 'ExcluirLocalInstituicao'
+    }
 }

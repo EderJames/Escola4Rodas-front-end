@@ -1,10 +1,9 @@
-
 <ion-header>
   <ion-navbar>
     <ion-title>detalhes-passageiro</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content>
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -23,32 +22,32 @@
                   <ion-label>
                     Idade
                   </ion-label>
-                  <ion-input [disabled]="detalharPassageiro" type="number" name="txtIdade" [(ngModel)]="passageiroModel.usuario.idade">
+                  <ion-input [disabled]="detalharPassageiro" type="number" name="txtIdade" [(ngModel)]="passageiroModel.usuario.Idade">
                   </ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label>
                     Telefone
                   </ion-label>
-                  <ion-input [disabled]="detalharPassageiro" type="tel" name="txtTelefone" [(ngModel)]="passageiroModel.usuario.telefone">
+                  <ion-input [disabled]="detalharPassageiro" type="tel" name="txtTelefone" [(ngModel)]="passageiroModel.usuario.Telefone">
                   </ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label>
                     E-mail
                   </ion-label>
-                  <ion-input  [disabled]="detalharPassageiro" type="email" name="txtEmail" [(ngModel)]="passageiroModel.usuario.email">
+                  <ion-input [disabled]="detalharPassageiro" type="email" name="txtEmail" [(ngModel)]="passageiroModel.usuario.Email">
                   </ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label>
                     Locais de Partida
                   </ion-label>
-                  <ion-select multiple="true" name="cmbLocalEntrada" [(ngModel)]="passageiroModel.locaisPassageiro" aria-placeholder="Locais entrada">
-                    <ion-option *ngFor="let localPassageiro of passageiroModel.locaisPassageiro" [value]="localPassageiro">
-                      {{localPassageiro.local.nomeLocal}}
-                    </ion-option>
-                  </ion-select>
+                </ion-item>
+                <ion-item>
+                  <button name="locaisPartidaAtuais" ion-item *ngFor="let localPassageiro of locaisPassageiroEntrada">
+                    {{localPassageiro.local.nomeLocal}}
+                  </button>
                 </ion-item>
                 <ion-item>
                   <div class="btnTextoCentralizado">
@@ -61,37 +60,44 @@
                   <ion-label>
                     Locais de Saída
                   </ion-label>
-                  <ion-select multiple="true" name="cmbLocalSaida" [(ngModel)]="passageiroModel.locaisPassageiro" aria-placeholder="Locais saída">
-                    <ion-option *ngFor="let localPassageiro of passageiroModel.locaisPassageiro" [value]="localPassageiro">
-                      {{localPassageiro.local.nomeLocal}}
-                    </ion-option>
-                  </ion-select>
+                </ion-item>
+                <ion-item>
+                  <button name="locaisSaidaAtuais" ion-item *ngFor="let localPassageiro of locaisPassageiroSaida">
+                    {{localPassageiro.local.nomeLocal}}
+                  </button>
                 </ion-item>
                 <ion-item>
                   <div class="btnTextoCentralizado">
-                    <button ion-button class="btnOcuparTodaTela" (click)="adicionarLocalPartida()">
+                    <button ion-button class="btnOcuparTodaTela" (click)="adicionarLocalSaida()">
                       +
                     </button>
                   </div>
                 </ion-item>
-                <ion-item>
-                  <ion-label>Instituição</ion-label>
-                  <ion-select name="cmbInstituicao" multiple="true" [(ngModel)]="passageiroModel.instituicoes" okText="Ok!" cancelText="Cancelar">
-                    <ion-option *ngFor="let instituicao of instituicoes" [value]="instituicao.nome">
+                <ion-item [hidden]="detalharPassageiro">
+                  <ion-label>Instituições</ion-label>
+                  <ion-select multiple="true" name="cmbInstituicoesDisponiveis" [(ngModel)]="passageiroModel.passageiroInstituicao"
+                    aria-placeholder="Instituicoes">
+                    <ion-option *ngFor="let passageiroInstituicao of passageiroInstituicaoDisponivel" [value]="passageiroInstituicao">
+                      {{passageiroInstituicao.instituicao.nome}}
                     </ion-option>
                   </ion-select>
                 </ion-item>
+                <ion-item [hidden]="exibicaoBtnEditar">
+                  <button name="instituicaoesListadas" ion-item *ngFor="let pi of passageiroModel.passageiroInstituicao" >
+                    {{pi.instituicao.nome}}
+                  </button>
+                </ion-item>
                 <ion-item>
                   <div class="btnTextoCentralizado">
-                    <button ion-button class="btnOcuparTodaTela" (click)="alocarAlunoEmInstituicao()">
-                      +
+                    <button ion-button class="btnOcuparTodaTela" (click)="habilitarEdicao()">
+                      Editar
                     </button>
                   </div>
                 </ion-item>
                 <ion-item>
                   <div class="btnTextoCentralizado">
-                    <button ion-button class="btnOcuparTodaTela">
-                      Cadastrar
+                    <button ion-button class="btnOcuparTodaTela" (click)="salvarDados()">
+                      Atualizar
                     </button>
                   </div>
                 </ion-item>

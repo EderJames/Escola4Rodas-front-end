@@ -8,6 +8,7 @@ import { LocalPassageiroModel } from '../../../models/LocalPassageiroModel';
 import { InstituicaoModel } from '../../../models/InstituicaoModel';
 import { MenuController } from 'ionic-angular';
 import { CriarLocaisPage } from '../../locais-passageiro/criar-local-passageiro/criar-locais';
+import { PassageiroInstituicaoModel } from '../../../models/PassageiroInstituicaoModel';
 
 
 @IonicPage()
@@ -28,7 +29,7 @@ export class CriarPassageiroPage extends PaginaBase {
     this.passageiroModel = new PassageiroModel();
     this.passageiroModel.usuario = new UsuarioModel();
     this.passageiroModel.locaisPassageiro = new Array<LocalPassageiroModel>();
-    this.passageiroModel.instituicoes = new Array<InstituicaoModel>();
+    this.passageiroModel.passageiroInstituicao = new Array<PassageiroInstituicaoModel>();
   }
 
   ionViewDidLoad() {

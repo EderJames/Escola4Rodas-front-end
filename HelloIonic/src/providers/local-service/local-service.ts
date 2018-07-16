@@ -61,14 +61,79 @@ export class LocalServiceProvider implements ILocalService {
   }
 
   inserirLocal(localModel: LocalModel): Observable<string> {
-    throw new Error("Method not implemented.");
+    debugger
+
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
+
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
+
+      return this.http.post(HelloIonicConstants.BASE_URL + HelloIonicConstants.Local.POST,
+        JSON.stringify(localModel), { headers: headers })
+        .map(response => {
+          debugger;
+          return response.toString();//response.json();
+        });
+
+    });
   }
   atualizarLocal(localModel: LocalModel): Observable<string> {
-    throw new Error("Method not implemented.");
+    debugger
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
+
+      return this.http.put(HelloIonicConstants.BASE_URL + HelloIonicConstants.LocalPassageiro.PUT,
+        JSON.stringify(localModel), { headers: headers })
+        .map(response => {
+          debugger;
+          return response.toString();
+        });
+
+    });
   }
+
   deletarLocal(localModel: LocalModel): Observable<string> {
-    throw new Error("Method not implemented.");
+    debugger
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
+
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
+
+      return this.http.delete(HelloIonicConstants.BASE_URL + HelloIonicConstants.Local.DELETE + "/" + localModel.codigo,
+         { headers: headers })
+        .map(response => {
+          debugger;
+          return response.toString();
+        });
+    });
   }
-  
 
 }

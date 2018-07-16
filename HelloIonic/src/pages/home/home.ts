@@ -37,7 +37,10 @@ export class HomePage extends PaginaBase {
     debugger;
     this.usuarioLogado = new UsuarioModel();
     this.obterToken();
-    this.usuarioLogado = this.navParams.data.usuarioLogadoEnviar;
+    if(this.navParams.data.usuarioLogadoEnviar != null){
+      this.usuarioLogado = this.navParams.data.usuarioLogadoEnviar;
+    }
+    
     this.menuCtrl.enable(true);
     this.proximasViagens = new Array<ViagemModel>();
     this.documentosVencer = new Array<DocumentoVeiculoModel>();

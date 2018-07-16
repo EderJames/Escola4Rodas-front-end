@@ -7,20 +7,90 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { HelloIonicConstants } from '../../app/HelloIonicConstants';
 import { LocalPassageiroModel } from '../../models/LocalPassageiroModel';
 import { LocalModel } from '../../models/LocalModel';
+import { PassageiroInstituicaoModel } from '../../models/PassageiroInstituicaoModel';
 
-/*
-  Generated class for the PassageiroServiceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class PassageiroServiceProvider implements IPassageiroService {
 
   constructor(public http: Http, private nativeStorage : NativeStorage) {
     console.log('Hello PassageiroServiceProvider Provider');
   }
+  
+  atualizarPassageiro(passageiroModel: PassageiroModel): Observable<string> {
+    debugger
+    
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      debugger
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
 
+      return this.http.put(HelloIonicConstants.BASE_URL + HelloIonicConstants.Passageiro.PUT,
+        JSON.stringify(passageiroModel), { headers: headers })
+        .map(response => {
+          debugger;
+          return response.toString();
+        });
+    });
+  }
+
+  inserirPassageiro(passageiroModel: PassageiroModel): Observable<string> {
+    debugger
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
+
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
+
+      return this.http.post(HelloIonicConstants.BASE_URL + HelloIonicConstants.Passageiro.POST,
+        JSON.stringify(passageiroModel), { headers: headers })
+        .map(response => {
+          debugger;
+          return response.toString();//response.json();
+        });
+    });
+  }
+
+  deletarPassageiro(passageiroModel: PassageiroModel): Observable<string> {
+    debugger
+    let tokenObservable = Observable.fromPromise(
+      this.nativeStorage.getItem('token_autenticacao')
+        .then(
+          data => { return data.token },
+          err => { return null }
+        )
+    );
+    return tokenObservable.flatMap(token => {
+      let headers: Headers = new Headers();
+      headers.set('Authorization', `Bearer ${token}`);
+
+      headers.append('Content-type', 'application/json');
+      headers.set('Authorization', `Bearer ${token}`);
+
+      return this.http.delete(HelloIonicConstants.BASE_URL + HelloIonicConstants.Passageiro.DELETE + "/" + passageiroModel.Codigo_Usuario,
+         { headers: headers })
+        .map(response => {
+          debugger;
+          return response.toString();
+        });
+
+    });
+  }
 
   listarPassageiros(): Observable<PassageiroModel[]> {
     let tokenObservable = Observable.fromPromise(
@@ -50,16 +120,14 @@ export class PassageiroServiceProvider implements IPassageiroService {
           p.tipoViagem = passageiro.Tipo_Viagem;
           p.codigoFormaPagamento = passageiro.Codigo_Forma_Pagamento;
           p.tipoPassageiro = passageiro.Tipo_Passageiro;
-          p.codigoUsuario = passageiro.Codigo_Usuario;
+          p.Codigo_Usuario = passageiro.Codigo_Usuario;
           p.dthr = passageiro.Dthr;
           p.codigoMotorista = passageiro.Codigo_Motorista;
           p.motorista = passageiro.Motorista;
           p.usuario = passageiro.Usuario;
-          p.instituicoes = passageiro.Instituicoes;
           p.pagamentos = passageiro.Pagamentos;
           p.rotas = passageiro.Rotas;
           
-          debugger
           p.locaisPassageiro = new Array<LocalPassageiroModel>();
           let localPassageiro : LocalPassageiroModel;
           
@@ -68,7 +136,6 @@ export class PassageiroServiceProvider implements IPassageiroService {
             localPassageiro.codigoLocal = passageiro.LocaisPassageiro[i].Codigo_Local;
             localPassageiro.codigoPassageiro = passageiro.LocaisPassageiro[i].Codigo_Passageiro;
             localPassageiro.codigoTipoLocal = passageiro.LocaisPassageiro[i].Codigo_Tipo_Local;
-            debugger
             localPassageiro.local = new LocalModel();
             localPassageiro.local.codigo = passageiro.LocaisPassageiro[i].Local.Codigo;
             localPassageiro.local.bairro = passageiro.LocaisPassageiro[i].Local.Bairro;
@@ -79,6 +146,20 @@ export class PassageiroServiceProvider implements IPassageiroService {
             localPassageiro.local.nomeRua = passageiro.LocaisPassageiro[i].Local.Nome_Rua;
             localPassageiro.local.numero = passageiro.LocaisPassageiro[i].Local.Numero;
             p.locaisPassageiro.push(localPassageiro);
+          }
+          
+          debugger
+          let objPassageiroInstituicaoModel: PassageiroInstituicaoModel;
+          p.passageiroInstituicao = new Array<PassageiroInstituicaoModel>();
+          for(let i:number = 0; i < passageiro.PassageiroInstituicao.length; i++){
+            objPassageiroInstituicaoModel = new PassageiroInstituicaoModel();
+
+            objPassageiroInstituicaoModel.Codigo_Instituicao = passageiro.PassageiroInstituicao[i].Codigo_Instituicao;
+            objPassageiroInstituicaoModel.Codigo_Passageiro = passageiro.PassageiroInstituicao[i].Codigo_Passageiro;
+            objPassageiroInstituicaoModel.Codigo_Tipo_Passageiro = passageiro.PassageiroInstituicao[i].Codigo_Tipo_Passageiro;
+            objPassageiroInstituicaoModel.passageiro = passageiro.PassageiroInstituicao[i].Passageiro;
+            objPassageiroInstituicaoModel.instituicao = passageiro.PassageiroInstituicao[i].Instituicao;
+            p.passageiroInstituicao.push(objPassageiroInstituicaoModel);
           }
           
           p.viagens = passageiro.Viagens;

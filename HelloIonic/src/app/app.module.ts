@@ -44,6 +44,8 @@ import { DiaSemanaServiceProvider } from '../providers/dia-semana-service/dia-se
 import { LocalServiceProvider } from '../providers/local-service/local-service';
 import { DetalhesLocalInstituicaoPage } from '../pages/locais-instituicao/detalhes-local-instituicao/detalhes-local-instituicao';
 import { DetalhesPassageiroPage } from '../pages/passageiro/detalhes-passageiro/detalhes-passageiro';
+import { LocalInstituicaoServiceProvider } from '../providers/local-instituicao-service/local-instituicao-service';
+import { CriarLocalInstituicaoPage } from '../pages/locais-instituicao/criar-local-instituicao/criar-local-instituicao';
 
 
 
@@ -77,7 +79,8 @@ import { DetalhesPassageiroPage } from '../pages/passageiro/detalhes-passageiro/
     CriarDocumentoVeiculoPage,
     DetalhesViagemPage,
     DetalhesLocalInstituicaoPage,
-    DetalhesPassageiroPage
+    DetalhesPassageiroPage,
+    CriarLocalInstituicaoPage
   ],
   imports: [
     BrowserModule,
@@ -157,7 +160,8 @@ import { DetalhesPassageiroPage } from '../pages/passageiro/detalhes-passageiro/
     DetalhesViagemPage,
     DetalhesInstituicaoPage,
     DetalhesLocalInstituicaoPage,
-    DetalhesPassageiroPage
+    DetalhesPassageiroPage,
+    CriarLocalInstituicaoPage
   ],
   providers: [
     StatusBar,
@@ -174,7 +178,8 @@ import { DetalhesPassageiroPage } from '../pages/passageiro/detalhes-passageiro/
     DocumentoVeiculoServiceProvider,
     DocumentoVeiculoServiceProvider,
     DiaSemanaServiceProvider,
-    LocalServiceProvider
+    LocalServiceProvider,
+    LocalInstituicaoServiceProvider
   ]
 })
 export class AppModule { }
