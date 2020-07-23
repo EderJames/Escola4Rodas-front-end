@@ -8,6 +8,7 @@ import { HelloIonicConstants } from '../../app/HelloIonicConstants';
 import { LocalPassageiroModel } from '../../models/LocalPassageiroModel';
 import { LocalModel } from '../../models/LocalModel';
 import { PassageiroInstituicaoModel } from '../../models/PassageiroInstituicaoModel';
+import { InstituicaoModel } from '../../models/InstituicaoModel';
 
 @Injectable()
 export class PassageiroServiceProvider implements IPassageiroService {
@@ -133,18 +134,18 @@ export class PassageiroServiceProvider implements IPassageiroService {
           
           for(let i: number = 0; i < passageiro.LocaisPassageiro.length; i++){
             localPassageiro = new LocalPassageiroModel();
-            localPassageiro.codigoLocal = passageiro.LocaisPassageiro[i].Codigo_Local;
-            localPassageiro.codigoPassageiro = passageiro.LocaisPassageiro[i].Codigo_Passageiro;
-            localPassageiro.codigoTipoLocal = passageiro.LocaisPassageiro[i].Codigo_Tipo_Local;
-            localPassageiro.local = new LocalModel();
-            localPassageiro.local.codigo = passageiro.LocaisPassageiro[i].Local.Codigo;
-            localPassageiro.local.bairro = passageiro.LocaisPassageiro[i].Local.Bairro;
-            localPassageiro.local.dthr = passageiro.LocaisPassageiro[i].Local.Dthr;
-            localPassageiro.local.latitude = passageiro.LocaisPassageiro[i].Local.Latitude;
-            localPassageiro.local.longitude = passageiro.LocaisPassageiro[i].Local.Longitude;
-            localPassageiro.local.nomeLocal = passageiro.LocaisPassageiro[i].Local.Nome_Local;
-            localPassageiro.local.nomeRua = passageiro.LocaisPassageiro[i].Local.Nome_Rua;
-            localPassageiro.local.numero = passageiro.LocaisPassageiro[i].Local.Numero;
+            localPassageiro.Codigo_Local = passageiro.LocaisPassageiro[i].Codigo_Local;
+            localPassageiro.Codigo_Passageiro = passageiro.LocaisPassageiro[i].Codigo_Passageiro;
+            localPassageiro.Codigo_Tipo_Local = passageiro.LocaisPassageiro[i].Codigo_Tipo_Local;
+            localPassageiro.Local = new LocalModel();
+            localPassageiro.Local.codigo = passageiro.LocaisPassageiro[i].Local.Codigo;
+            localPassageiro.Local.bairro = passageiro.LocaisPassageiro[i].Local.Bairro;
+            localPassageiro.Local.dthr = passageiro.LocaisPassageiro[i].Local.Dthr;
+            localPassageiro.Local.latitude = passageiro.LocaisPassageiro[i].Local.Latitude;
+            localPassageiro.Local.longitude = passageiro.LocaisPassageiro[i].Local.Longitude;
+            localPassageiro.Local.nomeLocal = passageiro.LocaisPassageiro[i].Local.Nome_Local;
+            localPassageiro.Local.nomeRua = passageiro.LocaisPassageiro[i].Local.Nome_Rua;
+            localPassageiro.Local.numero = passageiro.LocaisPassageiro[i].Local.Numero;
             p.locaisPassageiro.push(localPassageiro);
           }
           
@@ -158,7 +159,12 @@ export class PassageiroServiceProvider implements IPassageiroService {
             objPassageiroInstituicaoModel.Codigo_Passageiro = passageiro.PassageiroInstituicao[i].Codigo_Passageiro;
             objPassageiroInstituicaoModel.Codigo_Tipo_Passageiro = passageiro.PassageiroInstituicao[i].Codigo_Tipo_Passageiro;
             objPassageiroInstituicaoModel.passageiro = passageiro.PassageiroInstituicao[i].Passageiro;
-            objPassageiroInstituicaoModel.instituicao = passageiro.PassageiroInstituicao[i].Instituicao;
+
+            objPassageiroInstituicaoModel.instituicao = new InstituicaoModel();
+            objPassageiroInstituicaoModel.instituicao.Codigo_Instituicao = passageiro.PassageiroInstituicao[i].Instituicao.Codigo_Instituicao;
+            objPassageiroInstituicaoModel.instituicao.nome = passageiro.PassageiroInstituicao[i].Instituicao.Nome;
+            
+            
             p.passageiroInstituicao.push(objPassageiroInstituicaoModel);
           }
           

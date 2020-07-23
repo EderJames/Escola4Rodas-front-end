@@ -21,36 +21,50 @@
                   <ion-label>
                     Nome
                   </ion-label>
-                  <ion-input type="text" name="txtNomeLocal" [(ngModel)]="localPassageiroModel.local.nomeLocal">
+                  <ion-input type="text" name="txtNomeLocal" [(ngModel)]="localPassageiroModel.Local.nomeLocal">
                   </ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label>
                     Bairro
                   </ion-label>
-                  <ion-input type="text" name="txtBairro" [(ngModel)]="localPassageiroModel.local.bairro">
+                  <ion-input type="text" name="txtBairro" [(ngModel)]="localPassageiroModel.Local.bairro">
                   </ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label>
                     Nome rua
                   </ion-label>
-                  <ion-input type="text" name="txtNomeRua" [(ngModel)]="localPassageiroModel.local.nomeRua">
+                  <ion-input type="text" name="txtNomeRua" [(ngModel)]="localPassageiroModel.Local.nomeRua">
                   </ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label>
                     Número
                   </ion-label>
-                  <ion-input type="number" name="txtNumero" [(ngModel)]="localPassageiroModel.local.numero">
+                  <ion-input type="number" name="txtNumero" [(ngModel)]="localPassageiroModel.Local.numero">
                   </ion-input>
                 </ion-item>
-                <ion-item>
-                  <button class="btnTextoCentralizado btnOcuparTodaTela" ion-button (click)="criarLocal()">
-                    Salvar
-                  </button>
+                <ion-item >
+                  <ion-label>Dias da semana</ion-label>
+                  <ion-select name="cmbDiasSemanaAtuais" multiple="true" aria-placeholder="Dias semana" [(ngModel)]="localPassageiroModel.DiaSemanaLocal">
+                    <ion-option *ngFor="let diaLocal of diasSemanaLocal" [value]="diaLocal">
+                      {{diaLocal.diaSemana.diaSemana}}
+                    </ion-option>
+                  </ion-select>
                 </ion-item>
               </ion-list>
+              <div >
+                <ion-label class="btnTextoCentralizado">Dias da semana</ion-label>
+                <button class="btnTextoCentralizado btnOcuparTodaTela" ion-item *ngFor="let diaLocal2 of localPassageiroModel.DiaSemanaLocal" name="diasSemanaAtuais">
+                  {{diaLocal2.diaSemana.diaSemana}}
+                </button>
+              </div>
+              <div>
+                <button class="btnTextoCentralizado btnOcuparTodaTela" ion-button (click)="criarLocal()">
+                  Salvar
+                </button>
+              </div>
             </ion-col>
           </ion-row>
         </form>

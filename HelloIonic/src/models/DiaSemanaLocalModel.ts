@@ -1,7 +1,8 @@
 import { LocalPassageiroModel } from "./LocalPassageiroModel";
+import { DiaSemanaModel } from "./DiaSemanaModel";
 
 export class DiaSemanLocalModel{
     codigo: number;
-    diaSemana: string;
+    diaSemana: DiaSemanaModel;
     diaSemanaLocais: LocalPassageiroModel[];
 }

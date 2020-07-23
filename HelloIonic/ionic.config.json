@@ -1,34 +1,33 @@
 {
   "name": "HelloIonic",
-  "app_id": "",
-  "type": "ionic-angular",
   "integrations": {
     "cordova": {}
   },
+  "type": "ionic-angular",
   "proxies": [
-	{
-		"path":"/proxymotorista",
-		"proxyUrl": "https://escola4rodas.azurewebsites.net/api/motorista"
-	},
-	{
-		"path":"/proxyinstituicao",
-		"proxyUrl": "https://escola4rodas.azurewebsites.net/api/instituicao"
-	},
-	{
-		"path":"/proxypassageiro",
-		"proxyUrl": "https://escola4rodas.azurewebsites.net/api/passageiro"
-	},
-	{
-		"path":"/proxyveiculo",
-		"proxyUrl": "https://escola4rodas.azurewebsites.net/api/veiculo"
-	},
-	{
-		"path":"/proxyviagem",
-		"proxyUrl": "https://escola4rodas.azurewebsites.net/api/viagem"
-	},
-	{
-		"path":"/proxytoken",
-		"proxyUrl": "https://escola4rodas.azurewebsites.net/token"
-	}
+    {
+      "path": "/proxymotorista",
+      "proxyUrl": "https://escola4rodas.azurewebsites.net/api/motorista"
+    },
+    {
+      "path": "/proxyinstituicao",
+      "proxyUrl": "https://escola4rodas.azurewebsites.net/api/instituicao"
+    },
+    {
+      "path": "/proxypassageiro",
+      "proxyUrl": "https://escola4rodas.azurewebsites.net/api/passageiro"
+    },
+    {
+      "path": "/proxyveiculo",
+      "proxyUrl": "https://escola4rodas.azurewebsites.net/api/veiculo"
+    },
+    {
+      "path": "/proxyviagem",
+      "proxyUrl": "https://escola4rodas.azurewebsites.net/api/viagem"
+    },
+    {
+      "path": "/proxytoken",
+      "proxyUrl": "https://escola4rodas.azurewebsites.net/token"
+    }
   ]
 }

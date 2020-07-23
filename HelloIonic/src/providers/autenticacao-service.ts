@@ -55,7 +55,7 @@ export class AutenticacaoService implements IAutenticacaoService {
   }
 
   login(loginModel: LoginModel): Observable<UsuarioModel> {
-
+    debugger;
     let tokenObservable = Observable.fromPromise(
       this.nativeStorage.getItem('token_autenticacao')
         .then(

@@ -52,9 +52,11 @@
                   <ion-label>
                     Locais de Partida
                   </ion-label>
-                  <ion-select name="cmbLocalEntrada" [(ngModel)]="passageiroModel.locaisPassageiro.codigoLocal" aria-placeholder="Locais entrada">
-                    <ion-option *ngFor="let localPassageiro of passageiroModel.locaisPassageiro" [value]="localPassageiro.codigoLocal"></ion-option>
-                  </ion-select>
+                </ion-item>
+                <ion-item>
+                  <button name="locaisPartidaAtuais" ion-item *ngFor="let localPassageiro of locaisPassageiroEntrada">
+                    {{localPassageiro.Local.nomeLocal}}
+                  </button>
                 </ion-item>
                 <ion-item>
                   <div class="btnTextoCentralizado">
@@ -67,23 +69,31 @@
                   <ion-label>
                     Locais de Saída
                   </ion-label>
-                  <ion-select name="cmbLocalSaida" [(ngModel)]="passageiroModel.locaisPassageiro.codigoLocal" aria-placeholder="Locais saída">
-                    <ion-option *ngFor="let localPassageiro of passageiroModel.locaisPassageiro" [value]="localPassageiro.codigoLocal"></ion-option>
-                  </ion-select>
+                </ion-item>
+                <ion-item>
+                  <button name="locaisSaidaAtuais" ion-item *ngFor="let localPassageiro of locaisPassageiroSaida">
+                    {{localPassageiro.Local.nomeLocal}}
+                  </button>
                 </ion-item>
                 <ion-item>
                   <div class="btnTextoCentralizado">
-                    <button ion-button class="btnOcuparTodaTela" (click)="adicionarLocalPartida()">
+                    <button ion-button class="btnOcuparTodaTela" (click)="adicionarLocalSaida()">
                       +
                     </button>
                   </div>
                 </ion-item>
-                <ion-item>
-                  <ion-label>Instituição</ion-label>
-                  <ion-select name="cmbInstituicao" multiple="true" [(ngModel)]="passageiroModel.instituicoes" okText="Ok!" cancelText="Cancelar">
-                    <ion-option *ngFor="let instituicao of instituicoes" [value]="instituicao.nome">
+                <ion-item [hidden]="exibicaoBtnGravar">
+                  <ion-label>Instituições</ion-label>
+                  <ion-select multiple="true" name="cmbInstituicoesDisponiveis" [(ngModel)]="passageiroModel.passageiroInstituicao" aria-placeholder="Instituicoes">
+                    <ion-option *ngFor="let passageiroInstituicao of passageiroInstituicaoDisponivel" [value]="passageiroInstituicao">
+                      {{passageiroInstituicao.instituicao.nome}}
                     </ion-option>
                   </ion-select>
+                </ion-item>
+                <ion-item [hidden]="exibicaoBtnEditar">
+                  <button name="instituicaoesListadas" ion-item *ngFor="let passageiroInstituicao2 of passageiroModel.passageiroInstituicao">
+                    {{passageiroInstituicao2.instituicao.nome}}
+                  </button>
                 </ion-item>
                 <ion-item>
                   <div class="btnTextoCentralizado">

@@ -3,10 +3,10 @@ import { LocalModel } from "./LocalModel";
 import { DiaSemanLocalModel } from "./DiaSemanaLocalModel";
 
 export class LocalPassageiroModel{
-    codigoLocal: number;
-    local: LocalModel;
-    codigoTipoLocal: number;
-    codigoPassageiro: number;
-    passageiro: PassageiroModel;
-    diasSemana: DiaSemanLocalModel[];
+    Codigo_Local: number;
+    Local: LocalModel;
+    Codigo_Tipo_Local: number;
+    Codigo_Passageiro: number;
+    Passageiro: PassageiroModel;
+    DiaSemanaLocal: DiaSemanLocalModel[];
 }

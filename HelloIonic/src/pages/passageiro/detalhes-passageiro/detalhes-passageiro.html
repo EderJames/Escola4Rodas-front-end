@@ -46,7 +46,7 @@
                 </ion-item>
                 <ion-item>
                   <button name="locaisPartidaAtuais" ion-item *ngFor="let localPassageiro of locaisPassageiroEntrada">
-                    {{localPassageiro.local.nomeLocal}}
+                    {{localPassageiro.Local.nomeLocal}}
                   </button>
                 </ion-item>
                 <ion-item>
@@ -63,7 +63,7 @@
                 </ion-item>
                 <ion-item>
                   <button name="locaisSaidaAtuais" ion-item *ngFor="let localPassageiro of locaisPassageiroSaida">
-                    {{localPassageiro.local.nomeLocal}}
+                    {{localPassageiro.Local.nomeLocal}}
                   </button>
                 </ion-item>
                 <ion-item>
@@ -73,7 +73,7 @@
                     </button>
                   </div>
                 </ion-item>
-                <ion-item [hidden]="detalharPassageiro">
+                <ion-item [hidden]="exibicaoBtnGravar">
                   <ion-label>Instituições</ion-label>
                   <ion-select multiple="true" name="cmbInstituicoesDisponiveis" [(ngModel)]="passageiroModel.passageiroInstituicao"
                     aria-placeholder="Instituicoes">
@@ -83,18 +83,19 @@
                   </ion-select>
                 </ion-item>
                 <ion-item [hidden]="exibicaoBtnEditar">
-                  <button name="instituicaoesListadas" ion-item *ngFor="let pi of passageiroModel.passageiroInstituicao" >
-                    {{pi.instituicao.nome}}
+                  <button name="instituicaoesListadas" ion-item *ngFor="let passageiroInstituicao2 of passageiroModel.passageiroInstituicao" >
+                    {{passageiroInstituicao2.instituicao.nome}}
                   </button>
                 </ion-item>
-                <ion-item>
+                <ion-item [hidden]="exibicaoBtnEditar">
+                  
                   <div class="btnTextoCentralizado">
                     <button ion-button class="btnOcuparTodaTela" (click)="habilitarEdicao()">
                       Editar
                     </button>
                   </div>
                 </ion-item>
-                <ion-item>
+                <ion-item [hidden]="exibicaoBtnGravar">
                   <div class="btnTextoCentralizado">
                     <button ion-button class="btnOcuparTodaTela" (click)="salvarDados()">
                       Atualizar

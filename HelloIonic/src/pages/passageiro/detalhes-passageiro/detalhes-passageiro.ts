@@ -82,7 +82,7 @@ export class DetalhesPassageiroPage extends PaginaBase{
 
   povoarLocalEntradaSaida(){
     for(let i: number = 0; i < this.passageiroModel.locaisPassageiro.length; i++){
-      if(this.passageiroModel.locaisPassageiro[i].codigoTipoLocal == TipoLocalPassageiro.Local.Entrada){
+      if(this.passageiroModel.locaisPassageiro[i].Codigo_Tipo_Local == TipoLocalPassageiro.Local.Entrada){
         this.locaisPassageiroEntrada.push(this.passageiroModel.locaisPassageiro[i]);
       }
       else{
@@ -92,11 +92,11 @@ export class DetalhesPassageiroPage extends PaginaBase{
   }
 
   adicionarLocalPartida(){
-    this.navCtrl.push(CriarLocaisPage, {});
+    this.navCtrl.push(CriarLocaisPage, {passageiro: this.passageiroModel, tipoLocal: 1});
   }
 
   adicionarLocalSaida(){
-    this.navCtrl.push(CriarLocaisPage, {});    
+    this.navCtrl.push(CriarLocaisPage, {passageiro: this.passageiroModel, tipoLocal: 2});    
   }
 
   alocarAlunoEmInstituicao(){
